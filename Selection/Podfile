@@ -1,0 +1,8 @@
+target 'Selection' do
+  use_frameworks!
+
+  # 套件目錄
+pod 'Hero'
+pod 'GCHelper'
+
+end
