@@ -15,6 +15,7 @@ var playerDataYes :NSData = pressYes.data(using: String.Encoding.utf8, allowLoss
 var pressNo = "否"
 var playerDataNo :NSData = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
+
 //答案鎖定
 var lock = false
 //自身答案
@@ -22,8 +23,11 @@ var yourAnswer = 9
 //玩家ID
 var playerID = "noting"
 
+//人物動畫
+var animatedManID = "A"
+
 //答案倒數
-var countdownNember = 10.0
+var countdownNember = 10
 var answerCountdown = Timer()
 
 //屬性值
@@ -43,6 +47,9 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var answerCountdownLabel: UILabel!
+    @IBOutlet weak var blackMan: UIImageView!
+    @IBOutlet weak var whiteMan: UIImageView!
+
     
     //屬性條
     @IBOutlet weak var selfLine1: UIImageView!
@@ -82,18 +89,45 @@ class CustomGameMode: UIViewController {
         questionsLabel.text = questionsLabelText
         
         //答案回答倒數
-        answerCountdown = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
+        answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
         answerCountdown.fire()
-
+        
+        //人物動畫
+        let animated = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animatedImage), userInfo: nil, repeats: true)
+        animated.fire()
+            
+        
+        
         //改變數值條
 //        self.selfLine1Constraints.constant = -(self.selfLine1.frame.width*0.5)
         
     }
     
+    //人物動畫
+    func animatedImage()  {
+        if animatedManID == "A"{
+            blackMan.image = UIImage.animatedImageNamed("一般裝態黑2.png", duration: 1)
+            whiteMan.image = UIImage.animatedImageNamed("一般裝態白2.png", duration: 1)
+            animatedManID = "B"
+        }else if animatedManID == "B"{
+            blackMan.image = UIImage.animatedImageNamed("一般裝態黑3.png", duration: 1)
+            whiteMan.image = UIImage.animatedImageNamed("一般裝態白3.png", duration: 1)
+            animatedManID = "C"
+        }else if animatedManID == "C"{
+            blackMan.image = UIImage.animatedImageNamed("一般裝態黑2.png", duration: 1)
+            whiteMan.image = UIImage.animatedImageNamed("一般裝態白2.png", duration: 1)
+            animatedManID = "D"
+        }else if animatedManID == "D"{
+            blackMan.image = UIImage.animatedImageNamed("一般裝態黑1.png", duration: 1)
+            whiteMan.image = UIImage.animatedImageNamed("一般裝態白1.png", duration: 1)
+            animatedManID = "A"
+        }
+    }
+    
     //倒數結束隨機選擇答案
     func countdown() {
-        countdownNember = countdownNember - 0.1
-        answerCountdownLabel.text = String(format: "%.1f", countdownNember)
+        countdownNember = countdownNember - 1
+        answerCountdownLabel.text = String(format: "%d", countdownNember)
         print(countdownNember)
         if countdownNember <= 0{
             answerCountdownLabel.text = String(0.0)
@@ -136,8 +170,8 @@ class CustomGameMode: UIViewController {
     func labelText(){
         questionsLabel.text = questionsLabelText
         colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
-        answerCountdown = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-        countdownNember = 10.5
+        answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
+        countdownNember = 10
         answerCountdown.fire()
     }
     

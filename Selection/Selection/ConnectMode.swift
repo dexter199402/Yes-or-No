@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         
         //驗證身份,沒這行不能登錄
         GCHelper.sharedInstance.authenticateLocalUser()
+        if GKLocalPlayer.localPlayer().isAuthenticated == false {
+        }
 
         }
     
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
 
         }else{
             print("自訂遊戲")
-            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "CustomGameMode")
+            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "SelectPlayerMenu")
             self.present(vc2!, animated: true, completion: nil)
             
         }
@@ -59,14 +61,17 @@ extension ViewController: GCHelperDelegate {
     /// Method called when the device received data about the match from another device in the match.
     //當接受到傳值會執行的方法
     func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
-        
+
         otherAnswer = didReceiveData as NSData
         print("對方案了")
+        
         othercheck = true
             if lock{
                 // 通知customGameMode
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "play"), object: nil)
             }
+        
+        
         }
     /// Method called when the match has ended.
     func matchEnded() {
@@ -78,7 +83,7 @@ extension ViewController: GCHelperDelegate {
     /// Method called when a match has been initiated.
     func matchStarted() {
         print("開始")
-        let vc1=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode")
+        let vc1=self.storyboard?.instantiateViewController(withIdentifier:"SelectPlayerMenu")
         self.present(vc1!, animated: true, completion: nil)
     }
 }
