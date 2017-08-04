@@ -29,7 +29,8 @@ var animatedManID = "A"
 //答案倒數
 var countdownNember = 10
 var answerCountdown = Timer()
-
+//人物動畫
+var animated = Timer()
 //屬性值
 var selfHP = 10
 var selfATK = 10
@@ -50,7 +51,6 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var blackMan: UIImageView!
     @IBOutlet weak var whiteMan: UIImageView!
 
-    
     //屬性條
     @IBOutlet weak var selfLine1: UIImageView!
     @IBOutlet weak var selfLine2: UIImageView!
@@ -93,10 +93,12 @@ class CustomGameMode: UIViewController {
         answerCountdown.fire()
         
         //人物動畫
-        let animated = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animatedImage), userInfo: nil, repeats: true)
+        animated = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animatedImage), userInfo: nil, repeats: true)
         animated.fire()
-            
         
+        print("我叫做:",playerName)
+        print("對方叫做:",otherPlayerNameString)
+
         
         //改變數值條
 //        self.selfLine1Constraints.constant = -(self.selfLine1.frame.width*0.5)
@@ -127,7 +129,9 @@ class CustomGameMode: UIViewController {
     //倒數結束隨機選擇答案
     func countdown() {
         countdownNember = countdownNember - 1
-        answerCountdownLabel.text = String(format: "%d", countdownNember)
+        if lock == false{
+            answerCountdownLabel.text = String(format: "%d", countdownNember)
+        }
         print(countdownNember)
         if countdownNember <= 0{
             answerCountdownLabel.text = String(0.0)
@@ -142,6 +146,7 @@ class CustomGameMode: UIViewController {
                         lock = true
                         yourAnswer = 1
                         colorButton.image = UIImage.animatedImageNamed("按鈕選擇藍.png", duration: 1)
+                        answerCountdownLabel.text = "等待對方選擇..."
                     }catch{
                         print(error)
                     }
@@ -153,6 +158,7 @@ class CustomGameMode: UIViewController {
                         lock = true
                         yourAnswer = 0
                         colorButton.image = UIImage.animatedImageNamed("按鈕選擇紅.png", duration: 1)
+                        answerCountdownLabel.text = "等待對方選擇..."
                     }catch{
                         print(error)
                     }
@@ -205,6 +211,7 @@ class CustomGameMode: UIViewController {
                     lock = true
                     yourAnswer = 1
                     colorButton.image = UIImage.animatedImageNamed("按鈕選擇藍.png", duration: 1)
+                    answerCountdownLabel.text = "等待對方選擇..."
                 }
             }catch{
             print(error)
@@ -218,6 +225,7 @@ class CustomGameMode: UIViewController {
                     lock = true
                     yourAnswer = 0
                     colorButton.image = UIImage.animatedImageNamed("按鈕選擇紅.png", duration: 1)
+                    answerCountdownLabel.text = "等待對方選擇..."
                 }
             }catch{
                 print(error)
@@ -241,6 +249,9 @@ class CustomGameMode: UIViewController {
         present(alert, animated: true, completion: nil)
         answerCountdown.invalidate()
         playerID = "noting"
+        otherNameLock = false
+        nameLock = false
+        animated.invalidate()
     }
     /*
     // MARK: - Navigation
