@@ -154,7 +154,7 @@ class CustomGameMode: UIViewController {
                     }
                 }
                 if othercheck {
-                    result(view:self)
+                    result(vv:self)
                     if playerID == "noting"{
                         playerID = "B"
                         bName = playerName
@@ -176,7 +176,7 @@ class CustomGameMode: UIViewController {
     
     // ==對方後選結果方法=====>>
     func otherpley() {
-        result(view: self)
+        result(vv: self)
         if playerID == "noting"{
             playerID = "A"
             aName = playerName
@@ -227,7 +227,7 @@ class CustomGameMode: UIViewController {
         }
         lock = true
         if othercheck {
-            result(view:self)
+            result(vv:self)
             if playerID == "noting" {
                 playerID = "B"
                 bName = playerName
