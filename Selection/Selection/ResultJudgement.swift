@@ -15,9 +15,12 @@ var questionsLabelText = "這是題目"
 
 func result(view:UIViewController)  {
     
+    
+    
+    
     if otherAnswer == playerDataYes && yourAnswer == 1{
         print("1")
-        question()
+        
     }
     else if otherAnswer == playerDataYes && yourAnswer == 0{
         print("2")

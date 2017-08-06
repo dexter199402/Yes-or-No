@@ -187,6 +187,7 @@ class CustomGameMode: UIViewController {
         result(view: self)
         if playerID == "noting"{
             playerID = "A"
+            
         }
     }
     
