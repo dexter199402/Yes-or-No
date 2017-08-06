@@ -16,9 +16,11 @@ var otherPlayerNameString : String = NSString(data: otherPlayerName!as Data, enc
 var nameLock = false
 var otherNameLock = false
 
-
-// 今天做到這裡 8/3 傳名字給對方 還沒實作 接收對方的名字 思考nsdata
 let playerNameData :NSData = playerName.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+
+var aName = ""
+var bName = ""
+
 
 
 class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {

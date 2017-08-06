@@ -10,6 +10,9 @@ import UIKit
 
 
 class StoryView: UIViewController {
+    
+    @IBOutlet weak var storyTextLabel: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     //計時器 3秒dismiss

@@ -32,14 +32,14 @@ var answerCountdown = Timer()
 //人物動畫
 var animated = Timer()
 //屬性值
-var selfHP = 10
-var selfATK = 10
-var selfLuck = 10
-var selfGold = 10
-var otherHP = 10
-var otherATK = 10
-var otherLuck = 10
-var otherGold = 10
+var aHP = 10
+var aATK = 10
+var aLuck = 10
+var aGold = 10
+var bHP = 10
+var bATK = 10
+var bLuck = 10
+var bGold = 10
 
 class CustomGameMode: UIViewController {
     
@@ -51,15 +51,6 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var blackMan: UIImageView!
     @IBOutlet weak var whiteMan: UIImageView!
 
-    //屬性條
-    @IBOutlet weak var selfLine1: UIImageView!
-    @IBOutlet weak var selfLine2: UIImageView!
-    @IBOutlet weak var selfLine3: UIImageView!
-    @IBOutlet weak var selfLine4: UIImageView!
-    @IBOutlet weak var otherLine1: UIImageView!
-    @IBOutlet weak var otherLine2: UIImageView!
-    @IBOutlet weak var otherLine3: UIImageView!
-    @IBOutlet weak var otherLine4: UIImageView!
     //屬性條 constraints
     @IBOutlet weak var selfLine1Constraints: NSLayoutConstraint!
     @IBOutlet weak var selfLine2Constraints: NSLayoutConstraint!
@@ -69,7 +60,6 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var otherLine2Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine3Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine4Constraints: NSLayoutConstraint!
-    
     
     
     override func viewDidLoad() {
@@ -85,7 +75,7 @@ class CustomGameMode: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(gameOver), name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         
         //第一題
-        question()
+        question0()
         questionsLabel.text = questionsLabelText
         
         //答案回答倒數
@@ -167,6 +157,8 @@ class CustomGameMode: UIViewController {
                     result(view:self)
                     if playerID == "noting"{
                         playerID = "B"
+                        bName = playerName
+                        aName = otherPlayerNameString
                     }
                 }
             }
@@ -187,6 +179,8 @@ class CustomGameMode: UIViewController {
         result(view: self)
         if playerID == "noting"{
             playerID = "A"
+            aName = playerName
+            bName = otherPlayerNameString
         }
     }
     
@@ -236,6 +230,8 @@ class CustomGameMode: UIViewController {
             result(view:self)
             if playerID == "noting" {
                 playerID = "B"
+                bName = playerName
+                aName = otherPlayerNameString
             }
         }
     }

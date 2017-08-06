@@ -11,50 +11,182 @@ import UIKit
 
 
 var questionsLabelText = "這是題目"
+var storyTextLabelText = "這是結果"
+var judgeValue = 0
+var questionID = 0
 
 
-func result(view:UIViewController)  {
-    
-    if otherAnswer == playerDataYes && yourAnswer == 1{
-        print("1")
-        question()
-    }
-    else if otherAnswer == playerDataYes && yourAnswer == 0{
-        print("2")
-        question()
-    }
-    else if otherAnswer == playerDataNo && yourAnswer == 1{
-        print("3")
-        question()
-    }
-    else if otherAnswer == playerDataNo && yourAnswer == 0{
-        print("4")
-        question()
-    }
-    
-    //轉到StoryView畫面
-    guard let vc2 = view.storyboard?.instantiateViewController(withIdentifier: "StoryView") else {
-        print("v2 is nil")
-        return
-    }
-    view.present(vc2, animated: true, completion: nil)
-}
+func result(vv:UIViewController)  {
+    judge()
 
-
-func question() {
-    
-    let id = arc4random_uniform(5)
-    
-    switch id {
-    case 0:
-         questionsLabelText = "你說是我們相見恨晚～"
+    switch questionID {
     case 1:
-        questionsLabelText = "叔叔這裡有免費wifi，來叔叔這裡"
-    case 2:
-        questionsLabelText = "你他媽家裡種西瓜，他媽家裡養泥鰍"
-    case 3:
-        questionsLabelText = "西瓜大挖勒泥鰍肥，全家吃完死光光"
+        if judgeValue == 1 {
+            storyTextLabelText = "Ａ和Ｂ聊了很多間諜的心得，感覺旅途不那麼無聊了"
+            aATK += 1; aLuck += 1;bATK += 1;bLuck += 1
+            print("Ａ：ＡＴＫ＋1 ＬＵＣＫ＋1  Ｂ：ＡＴＫ＋1 ＬＵＣＫ＋1")
+            goStoryView(v: vv)
+        }else if judgeValue == 2{
+            storyTextLabelText = "Ａ一直想找Ｂ聊天，但Ｂ完全不鳥他，Ａ感覺自己很蠢，Ｂ看Ａ一臉失望感覺到精神勝利"
+            //Ａ一直想找Ｂ聊天，但Ｂ完全不鳥他，Ａ感覺自己很蠢，Ｂ看Ａ一臉失望感覺到精神勝利
+            //Ａ：ＡＴＫ-1 ＬＵＣＫ-1  Ｂ：所有數值+2
+        }else if judgeValue == 3{
+            
+        }else if judgeValue == 4{
+            
+        }
+        
+        break
     default:
-        questionsLabelText = "你媽超胖，他從台北到屏東翻個身就到了"
+        break
     }
 }
+
+
+
+
+
+
+
+func selectionQuestion() {
+
+}
+
+
+func judge()  {
+        if otherAnswer == playerDataYes && yourAnswer == 1{
+            judgeValue = 1
+            print("1")
+        }
+        else if otherAnswer == playerDataYes && yourAnswer == 0{
+            judgeValue = 2
+            print("2")
+        }
+        else if otherAnswer == playerDataNo && yourAnswer == 1{
+            judgeValue = 3
+            print("3")
+        }
+        else if otherAnswer == playerDataNo && yourAnswer == 0{
+            judgeValue = 4
+            print("4")
+        }
+}
+
+
+
+
+
+
+
+func  question1()  {
+    questionID = 1
+    if playerID == "A" {
+        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
+        }else if playerID == "B"{
+            questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
+        }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//func question(vv:UIViewController) {
+//
+//    if playerID == "A" {
+//        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
+//  
+//    }else if playerID == "B"{
+//        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
+//    }
+//    
+////    awdwdwqdad    qd
+//    
+//    if otherAnswer == playerDataYes && yourAnswer == 1{
+//        judgeValue = 1
+//        print("1")
+//        if playerID == "A" {
+//            questionsLabelText = "傍晚時候，走到了一個熟悉的地方，你想起以前常到這附近玩，河邊還留有以前設的陷阱，是否要將對方引導到陷阱去？"
+//            aATK = aATK + 1
+//            aLuck = aLuck + 1
+//            
+//        }else if playerID == "B"{
+//            questionsLabelText = "太陽快下山前，對方強力建議要在河邊搭帳過夜，是否要答應？"
+//            bATK = bATK + 1
+//            bLuck = bLuck + 1
+//        }
+//        goStoryView(v: vv)
+////    asdadawdfwaa  wdwd
+//        if otherAnswer == playerDataYes && yourAnswer == 1{
+//            judgeValue = 1
+//            print("1")
+//            
+//            
+//        }
+//        else if otherAnswer == playerDataYes && yourAnswer == 0{
+//            judgeValue = 2
+//            print("2")
+//            
+//        }
+//        else if otherAnswer == playerDataNo && yourAnswer == 1{
+//            judgeValue = 3
+//            print("3")
+//        }
+//        else if otherAnswer == playerDataNo && yourAnswer == 0{
+//            judgeValue = 4
+//            print("4")
+//        }
+//        
+//        
+//    }
+//    else if otherAnswer == playerDataYes && yourAnswer == 0{
+//        judgeValue = 2
+//        print("2")
+//        
+//    }
+//    else if otherAnswer == playerDataNo && yourAnswer == 1{
+//        judgeValue = 3
+//        print("3")
+//    }
+//    else if otherAnswer == playerDataNo && yourAnswer == 0{
+//        judgeValue = 4
+//        print("4")
+//    }
+//
+//    
+//    
+//
+//}
+
+
+func goStoryView(v:UIViewController) {
+    let view=v.storyboard?.instantiateViewController(withIdentifier:"StoryView")
+    v.present(view!, animated: true, completion: nil)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
