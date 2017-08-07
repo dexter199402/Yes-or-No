@@ -7,16 +7,19 @@
 //
 
 import UIKit
+var timeUp = Timer()
 
 
 class StoryView: UIViewController {
-    
     @IBOutlet weak var storyTextLabel: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    //計時器 3秒dismiss
-        let timeUp = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(StoryView.dismissSelf), userInfo: nil, repeats: true)
+        
+        storyTextLabel.text = storyTextLabelText
+
+    //計時器 7秒dismiss
+        timeUp = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(StoryView.dismissSelf), userInfo: nil, repeats: true)
         
         // 各項屬性重設
         othercheck = false
@@ -39,6 +42,7 @@ class StoryView: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
+        timeUp.invalidate()
         // 通知customGameMode更改屬性重設.
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelText"), object: nil)
     }

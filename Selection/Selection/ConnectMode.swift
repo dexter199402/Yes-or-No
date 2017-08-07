@@ -14,7 +14,7 @@ import GCHelper
 var otherAnswer:NSData?
 var othercheck = false
 
-class ViewController: UIViewController {
+class ConnectMode: UIViewController {
     @IBOutlet weak var buttonColor: UIImageView!
     @IBOutlet weak var whiteCircle: UIImageView!
 
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
 
 
 //擴充 CGHelperDelegte
-extension ViewController: GCHelperDelegate {
+extension ConnectMode: GCHelperDelegate {
     /// Method called when the device received data about the match from another device in the match.
     //當接受到傳值會執行的方法
     func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
@@ -97,4 +97,9 @@ extension ViewController: GCHelperDelegate {
         let vc1=self.storyboard?.instantiateViewController(withIdentifier:"SelectPlayerMenu")
         self.present(vc1!, animated: true, completion: nil)
     }
+    
+    @IBAction func backFirstView (_segue: UIStoryboardSegue){
+        
+    }
+    
 }

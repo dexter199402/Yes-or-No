@@ -27,7 +27,7 @@ var playerID = "noting"
 var animatedManID = "A"
 
 //答案倒數
-var countdownNember = 10
+var countdownNember = 20
 var answerCountdown = Timer()
 //人物動畫
 var animated = Timer()
@@ -75,7 +75,7 @@ class CustomGameMode: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(gameOver), name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         
         //第一題
-        question0()
+        question1()
         questionsLabel.text = questionsLabelText
         
         //答案回答倒數
@@ -88,6 +88,8 @@ class CustomGameMode: UIViewController {
         
         print("我叫做:",playerName)
         print("對方叫做:",otherPlayerNameString)
+        
+        
 
         
         //改變數值條
@@ -155,11 +157,6 @@ class CustomGameMode: UIViewController {
                 }
                 if othercheck {
                     result(vv:self)
-                    if playerID == "noting"{
-                        playerID = "B"
-                        bName = playerName
-                        aName = otherPlayerNameString
-                    }
                 }
             }
         }
@@ -171,17 +168,14 @@ class CustomGameMode: UIViewController {
         answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
         countdownNember = 10
         answerCountdown.fire()
+
+        
     }
     
     
     // ==對方後選結果方法=====>>
     func otherpley() {
         result(vv: self)
-        if playerID == "noting"{
-            playerID = "A"
-            aName = playerName
-            bName = otherPlayerNameString
-        }
     }
     
     
@@ -228,18 +222,13 @@ class CustomGameMode: UIViewController {
         lock = true
         if othercheck {
             result(vv:self)
-            if playerID == "noting" {
-                playerID = "B"
-                bName = playerName
-                aName = otherPlayerNameString
-            }
         }
     }
     
     func gameOver() {
         let alert = UIAlertController(title: "GameOver", message: "遊戲結束了按OK繼續", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: "backFirstView", sender: self)
         }
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
@@ -248,6 +237,14 @@ class CustomGameMode: UIViewController {
         otherNameLock = false
         nameLock = false
         animated.invalidate()
+        aHP = 10
+        aATK = 10
+        aLuck = 10
+        aGold = 10
+        bHP = 10
+        bATK = 10
+        bLuck = 10
+        bGold = 10
     }
     /*
     // MARK: - Navigation

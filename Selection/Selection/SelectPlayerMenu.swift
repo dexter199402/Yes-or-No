@@ -9,7 +9,7 @@
 import UIKit
 import GameKit
 import GCHelper
-
+var nameCheckTimer = Timer()
 var playerName = "吳明寺"
 var otherPlayerName:NSData?
 var otherPlayerNameString : String = NSString(data: otherPlayerName!as Data, encoding: String.Encoding.utf8.rawValue)! as String
@@ -31,8 +31,6 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //遊戲結束監聽器
-        NotificationCenter.default.addObserver(self, selector: #selector(back), name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         
         //名字
         playName = ["大衛布萊恩","傑森史塔森","嘎嘎蹦拉拉","佛心公司","我好興奮阿"]
@@ -62,33 +60,54 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                 print(error)
             }
             if otherNameLock == true {
-                let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode")
-                self.present(view!, animated: true, completion: nil)
+                if playerID == "noting" {
+                    playerID = "B"
+                }
+                goPlay()
             }
             else{
                 checkNameView.text = "\n\n\n\n你好"+playerName+"\n等待對方選擇..."
                 checkNameView.alpha = 1
+                if playerID == "noting"{
+                    playerID = "A"
+                }
                 //名字選擇監聽器
                 NotificationCenter.default.addObserver(self, selector: #selector(goPlay), name: NSNotification.Name(rawValue: "goPlay"), object: nil)
+                
             }
         }
     }
     
     func goPlay()  {
+        nameCheckTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(goCustomGameMode), userInfo: nil, repeats: true)
+        nameCheckTimer.fire()
         
+        aName = playerName
+        bName = otherPlayerNameString
+        
+        checkNameView.text = "你好\(playerName),\n你的夥伴叫做\(otherPlayerNameString)\n旅途愉快"
+        checkNameView.alpha = 1
+    }
+    
+    func goCustomGameMode() {
         let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode")
         self.present(view!, animated: true, completion: nil)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        nameCheckTimer.invalidate()
+    }
+    
+    
+    
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func back() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
     
 
