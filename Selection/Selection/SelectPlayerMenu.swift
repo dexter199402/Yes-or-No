@@ -10,6 +10,8 @@ import UIKit
 import GameKit
 import GCHelper
 var nameCheckTimer = Timer()
+var nameCheckTimerFirstRun = true
+
 var playerName = "吳明寺"
 var otherPlayerName:NSData?
 var otherPlayerNameString : String = NSString(data: otherPlayerName!as Data, encoding: String.Encoding.utf8.rawValue)! as String
@@ -25,6 +27,7 @@ var bName = ""
 
 class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet weak var checkNameView: UITextView!
+    @IBOutlet weak var checkNameViewBackground: UIImageView!
     
     var playName : NSMutableArray = []
     
@@ -68,6 +71,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             else{
                 checkNameView.text = "\n\n\n\n你好"+playerName+"\n等待對方選擇..."
                 checkNameView.alpha = 1
+                checkNameViewBackground.alpha = 1
                 if playerID == "noting"{
                     playerID = "A"
                 }
@@ -79,29 +83,40 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     }
     
     func goPlay()  {
-        nameCheckTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(goCustomGameMode), userInfo: nil, repeats: true)
+        nameCheckTimer = Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(SelectPlayerMenu.goCustomGameMode), userInfo: nil, repeats: true)
         nameCheckTimer.fire()
         
-        aName = playerName
-        bName = otherPlayerNameString
+        if playerID == "A" {
+            aName = playerName
+            bName = otherPlayerNameString
+        }else if playerID == "B" {
+            bName = playerName
+            aName = otherPlayerNameString
+        }
         
-        checkNameView.text = "你好\(playerName),\n你的夥伴叫做\(otherPlayerNameString)\n旅途愉快"
+        checkNameView.text = "\(playerName)，你好\n\n某個年代，某個大陸上有三個國家，幾百年來互相敵對，為了打破僵局，Ａ國與Ｂ國決定合作執行一項計畫，各派出一名間諜潛入Ｃ國，Ａ國間諜的名字是 \(aName)，Ｂ國間諜的名字叫 \(bName)，兩人表面上同心協力，背地裡卻各有心機"
         checkNameView.alpha = 1
+        checkNameViewBackground.alpha = 1
+        
     }
+    
     
     func goCustomGameMode() {
-        let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode")
-        self.present(view!, animated: true, completion: nil)
+        if nameCheckTimerFirstRun == true{
+            nameCheckTimerFirstRun = false
+        }else{
+            let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode")
+            self.present(view!, animated: true, completion: nil)
+        }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
+        print("停止timer")
         nameCheckTimer.invalidate()
+        nameCheckTimerFirstRun = true
+        checkNameView.alpha = 0
+        checkNameViewBackground.alpha = 0
     }
-    
-    
-    
-    
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -122,3 +137,5 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     */
 
 }
+
+

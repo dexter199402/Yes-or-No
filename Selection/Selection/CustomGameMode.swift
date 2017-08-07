@@ -15,7 +15,6 @@ var playerDataYes :NSData = pressYes.data(using: String.Encoding.utf8, allowLoss
 var pressNo = "否"
 var playerDataNo :NSData = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
-
 //答案鎖定
 var lock = false
 //自身答案
@@ -27,19 +26,19 @@ var playerID = "noting"
 var animatedManID = "A"
 
 //答案倒數
-var countdownNember = 20
+var countdownNember = 10
 var answerCountdown = Timer()
 //人物動畫
 var animated = Timer()
 //屬性值
-var aHP = 10
-var aATK = 10
-var aLuck = 10
-var aGold = 10
-var bHP = 10
-var bATK = 10
-var bLuck = 10
-var bGold = 10
+var aHP = 50
+var aATK = 20
+var aLuck = 20
+var aGold = 500
+var bHP = 50
+var bATK = 20
+var bLuck = 20
+var bGold = 500
 
 class CustomGameMode: UIViewController {
     
@@ -50,7 +49,17 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var answerCountdownLabel: UILabel!
     @IBOutlet weak var blackMan: UIImageView!
     @IBOutlet weak var whiteMan: UIImageView!
-
+    
+    //屬刑調 image
+    @IBOutlet weak var selfLine1: UIImageView!
+    @IBOutlet weak var selfLine2: UIImageView!
+    @IBOutlet weak var selfLine3: UIImageView!
+    @IBOutlet weak var selfLine4: UIImageView!
+    @IBOutlet weak var otherLine1: UIImageView!
+    @IBOutlet weak var otherLine2: UIImageView!
+    @IBOutlet weak var otherLine3: UIImageView!
+    @IBOutlet weak var otherLine4: UIImageView!
+    
     //屬性條 constraints
     @IBOutlet weak var selfLine1Constraints: NSLayoutConstraint!
     @IBOutlet weak var selfLine2Constraints: NSLayoutConstraint!
@@ -75,7 +84,7 @@ class CustomGameMode: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(gameOver), name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         
         //第一題
-        question1()
+        question1_1()
         questionsLabel.text = questionsLabelText
         
         //答案回答倒數
@@ -86,15 +95,20 @@ class CustomGameMode: UIViewController {
         animated = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animatedImage), userInfo: nil, repeats: true)
         animated.fire()
         
-        print("我叫做:",playerName)
-        print("對方叫做:",otherPlayerNameString)
-        
-        
-
-        
-        //改變數值條
-//        self.selfLine1Constraints.constant = -(self.selfLine1.frame.width*0.5)
-        
+        //初始數值
+        statsLine()
+    }
+    
+    //改變數值條顯示
+    func statsLine()  {
+        self.selfLine1Constraints.constant = -(self.selfLine1.frame.width*CGFloat(100-aHP)/100)
+        self.selfLine2Constraints.constant = -(self.selfLine2.frame.width*CGFloat(40-aATK)/40)
+        self.selfLine3Constraints.constant = -(self.selfLine3.frame.width*CGFloat(40-aLuck)/40)
+        self.selfLine4Constraints.constant = -(self.selfLine4.frame.width*CGFloat(1000-aGold)/1000)
+        self.otherLine1Constraints.constant = -(self.otherLine1.frame.width*CGFloat(100-bHP)/100)
+        self.otherLine2Constraints.constant = -(self.otherLine2.frame.width*CGFloat(40-bATK)/40)
+        self.otherLine3Constraints.constant = -(self.otherLine3.frame.width*CGFloat(40-bLuck)/40)
+        self.otherLine4Constraints.constant = -(self.otherLine4.frame.width*CGFloat(1000-bGold)/1000)
     }
     
     //人物動畫
@@ -161,15 +175,15 @@ class CustomGameMode: UIViewController {
             }
         }
     }
-    //更改題目label方法 改變圖片回原本樣子 開始倒數
+    
+    //結束過場後執行
     func labelText(){
         questionsLabel.text = questionsLabelText
         colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
         answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
         countdownNember = 10
         answerCountdown.fire()
-
-        
+        statsLine()
     }
     
     

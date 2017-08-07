@@ -9,14 +9,17 @@
 import UIKit
 var timeUp = Timer()
 
+var timeUpFirstRun = true
 
 class StoryView: UIViewController {
     @IBOutlet weak var storyTextLabel: UITextView!
+    @IBOutlet weak var statsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         storyTextLabel.text = storyTextLabelText
+        statsLabel.text = statsLabelText
 
     //計時器 7秒dismiss
         timeUp = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(StoryView.dismissSelf), userInfo: nil, repeats: true)
@@ -27,11 +30,18 @@ class StoryView: UIViewController {
         lock = false
         yourAnswer = 8
         answerCountdown.invalidate()
+        
         timeUp.fire()
     
     }
     func dismissSelf(){
-        self.dismiss(animated: true, completion: nil)
+        if timeUpFirstRun == true {
+            timeUpFirstRun = false
+            print("第一次執行timer")
+        }else{
+            self.dismiss(animated: true, completion: nil)
+            print("轉！")
+        }
     }
 
     
@@ -42,7 +52,9 @@ class StoryView: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
+        print("停止timer")
         timeUp.invalidate()
+        timeUpFirstRun = true
         // 通知customGameMode更改屬性重設.
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelText"), object: nil)
     }

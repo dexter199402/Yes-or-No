@@ -38,5 +38,4 @@ func buttonPath(path: UIImageView){
      layer2.strokeColor = UIColor.white.cgColor
      path.layer.addSublayer(layer2)
 */
-    
 }

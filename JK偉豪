@@ -1,3 +1,59 @@
+func question1_21() {
+    questionID = 1.21
+    if playerID == "A" {
+        questionsLabelText = ""
+    }else if playerID == "B"{
+        questionsLabelText = ""
+    }
+}
+
+func story1_21(){
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = ""
+		statsLabelText = "\n對方\n"
+            }else if playerID == "B" {
+                storyTextLabelText = ""
+		statsLabelText = "\n對方\n"
+            }
+            //數值變化
+            //帶入下個問題
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = ""
+                statsLabelText = "\n對方\n"
+            }else if playerID == "B" {
+                storyTextLabelText = ""
+                statsLabelText = "\n對方\n"
+            }
+            //數值變化
+            //下個問題
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = ""
+                statsLabelText = "\n對方\n"
+            }else if playerID == "B" {
+                storyTextLabelText = ""
+                statsLabelText = "\n對方\n"
+            }
+            //數值變化
+            //下個問題
+        }else if judgeValue == 4{
+            storyTextLabelText = ""
+            if playerID == "A" {
+             statsLabelText = "\n對方\n"
+           }else{
+              statsLabelText = "\n對方\n"
+           }
+            //數值變化
+            //下個問題
+        }
+}
+
+
+
+
+
 EX .  Ａ： 									
       Ｂ：
       Ａ是Ｂ是，Ａ：

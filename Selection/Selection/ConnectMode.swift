@@ -26,7 +26,9 @@ class ConnectMode: UIViewController {
         
 //        if GKLocalPlayer.localPlayer().isAuthenticated == false {
 //        }
-
+        
+        
+        
     }
     
     
@@ -98,8 +100,8 @@ extension ConnectMode: GCHelperDelegate {
         self.present(vc1!, animated: true, completion: nil)
     }
     
+    //逃生門回到這
     @IBAction func backFirstView (_segue: UIStoryboardSegue){
         
     }
-    
 }
