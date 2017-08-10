@@ -25,11 +25,9 @@ func selectionQuestion() {
         }
         break
     default:
-        
         break
     }
 }
-
 
 func judge()  {
     if otherAnswer == playerDataYes && yourAnswer == 1{

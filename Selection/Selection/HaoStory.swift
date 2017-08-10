@@ -14,10 +14,8 @@ func  question1_1()  {
     questionID = 1.1
     if playerID == "A" {
         questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
-        print("===========AOK")
     }else if playerID == "B"{
         questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
-        print("===========BOK")
     }
 }
 func story1_1() {
@@ -28,7 +26,7 @@ func story1_1() {
             storyTextLabelText = "你和\(aName)聊了很多間諜的心得，感覺旅途不那麼無聊了"
         }
         statsLabelText = "雙方\nＡＴＫ＋1 ＬＵＣＫ＋1"
-        aATK += 1; aLuck += 1;bATK += 1;bLuck += 1
+        abChange(aH: 0, aA: 1, aL: 1, aG: 0, bH: 0, bA: 1, bL: 1, bG: 0)
         question1_2()
     }else if judgeValue == 2{
         if playerID == "A" {
@@ -38,7 +36,7 @@ func story1_1() {
             storyTextLabelText = "\(aName)一直想找你聊天，但你完全不鳥他，他感覺自己很蠢，你看他一臉失望感覺到精神勝利"
             statsLabelText = "所有數值+2\n對方\nＡＴＫ-1 ＬＵＣＫ-1"
         }
-        aATK -= 1;aLuck -= 1;bHP += 2;bATK += 2;bLuck += 2;
+        abChange(aH: 0, aA: -1, aL: 0, aG: 0, bH: 2, bA: 2, bL: 2, bG: 0)
         question1_2()
     }else if judgeValue == 3{
         if playerID == "A" {
@@ -48,12 +46,12 @@ func story1_1() {
             storyTextLabelText = "你一直想找\(aName)聊天，但他完全不鳥妳，你感覺自己很蠢，他看妳一臉失望感覺到精神勝利"
             statsLabelText = "ＡＴＫ-1 ＬＵＣＫ-1\n對方\n所有數值+2"
         }
-        aHP += 2;aATK += 2;aLuck += 2;bATK -= 1;bLuck -= 1;
+        abChange(aH: 2, aA: 2, aL: 2, aG: 0, bH: 0, bA: -1, bL: -1, bG: 0)
         question1_2()
     }else if judgeValue == 4{
         storyTextLabelText = "你不甩他，他也不鳥你，一路上持續瀰漫著詭異的氣氛"
         statsLabelText = "雙方\nＡＴＫ-1 ＬＵＣＫ-1"
-        aATK -= 1;aLuck -= 1;bATK -= 1;bLuck -= 1;
+        abChange(aH: 0, aA: -1, aL: -1, aG: 0, bH: 0, bA: -1, bL: -1, bG: 0)
         question1_2()
     }
 }
@@ -77,7 +75,7 @@ func story1_2() {
             storyTextLabelText = "你呆萌呆萌的往\(aName)設的陷阱走去，突然一聲巨響，你掉入了一個大坑洞中，在洞中一臉疑惑的看著在上方洞口奸笑的\(aName)"
             statsLabelText = "ＨＰ-3\n對方\nＡＴＫ+2"
         }
-        aATK += 2;bHP -= 2;
+        abChange(aH: 0, aA: 2, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
         question1_214()
     }else if judgeValue == 2{
         if playerID == "A" {
@@ -87,7 +85,7 @@ func story1_2() {
             storyTextLabelText = "\(bName)完全看穿了\(aName)的企圖，堅決不答應，心機都被猜到的\(aName)感覺自己智商被完爆了"
             statsLabelText = "ＨＰ+1 ＡＴＫ+2\n對方\nＨＰ-1 ＡＴＫ-2"
         }
-        aHP -= 1;aATK -= 2 ; bHP += 1 ; bATK += 2
+        abChange(aH: -1, aA: -2, aL: 0, aG: 0, bH: 1, bA: 2, bL: 0, bG: 0)
         question1_223()
     }else if judgeValue == 3{
         if playerID == "A" {
@@ -97,7 +95,7 @@ func story1_2() {
             storyTextLabelText = "兩個人找了河邊另一塊安全的地方休息，晚上還一起吃了一頓烤魚大餐 "
             statsLabelText = "ＨＰ+2 ＡＴＫ+1\n對方\nＨＰ+2 ＡＴＫ+1"
         }
-        aHP += 2; aATK += 1; bHP += 2; bATK -= 1
+        abChange(aH: 2, aA: 1, aL: 0, aG: 0, bH: 2, bA: 1, bL: 0, bG: 0)
         question1_223()
     }else if judgeValue == 4{
         storyTextLabelText = "\(aName)好心地想找\(bName)一起在安全的地方過夜，可是\(bName)死都不要，他想自己找個地方過夜，突然腳一踩空，跌進了一個不知道誰挖的大洞裡"
@@ -111,16 +109,16 @@ func story1_2() {
     }
 }
 
-//MARK: 1.223
-func question1_223() {
-    questionID = 1.223
+//MARK: 1.214
+func question1_214() {
+    questionID = 1.214
     if playerID == "A" {
         questionsLabelText = "你看著在陷阱中過了一夜的\(bName)，心中盤算著是否要將他救起？"
     }else if playerID == "B"{
         questionsLabelText = "你在陷阱中度過了一夜，精疲力盡的你是否要向對方求救？"
     }
 }
-func story1_223() {
+func story1_214() {
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "\(bName)正要求饒，\(aName)就決定將他救起，\(bName)雖然不爽，但也感謝\(aName)救他起來，兩人於是和平的繼續前進"
@@ -163,16 +161,16 @@ func story1_223() {
     }
 }
 
-//MARK: 1.214
-func question1_214() {
-    questionID = 1.214
+//MARK: 1.223
+func question1_223() {
+    questionID = 1.223
     if playerID == "A" {
         questionsLabelText = "路途到目前為止都非常順利，你覺得很奇怪，跟預期的好像不太一樣，\(bName)肯定有什麼陰謀，要不要去找\(bName)的麻煩？"
     }else if playerID == "B"{
         questionsLabelText = "路途到目前為止都非常順利，你覺得很奇怪，跟預期的好像不太一樣，\(aName)肯定有什麼陰謀，要不要去找\(aName)的麻煩？"
     }
 }
-func story1_214() {
+func story1_223() {
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "\(aName)掏出咖哩棒，\(bName)舉起好折凳，兩個人打成一團，兩敗俱傷"
@@ -233,9 +231,7 @@ func story1_3(){
             statsLabelText = "ＬＵＣＫ-2\n對方\nＨＰ+1 ＡＴＫ+1 ＬＵＣＫ+1"
         }
         abChange(aH: 1, aA: 1, aL: 1, aG: 0, bH: 0, bA: 0, bL: -2, bG: 0)
-        //帶入下個問題
         selectionQuestion()
-        //測試
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "\(aName)大聲的質問\(bName)，引起許多旅人的圍觀，但最後證明只是有小動物咬走了一些食物而已，\(aName)於是被\(bName)及路人瘋狂嘲諷，羞愧得無地自容"
@@ -245,9 +241,7 @@ func story1_3(){
             statsLabelText = "ＨＰ+1 ＡＴＫ+1 ＬＵＣＫ+1\n對方\nＨＰ-2 ＡＴＫ-2 ＬＵＣＫ-2"
         }
         abChange(aH: -2, aA: -2, aL: -2, aG: 0, bH: 1, bA: 1, bL: 1, bG: 0)
-        //帶入下個問題
         selectionQuestion()
-        //測試
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "\(bName)偷看了\(aName)的信件，掌握了\(aName)的弱點，事後把信放回原位，\(aName)完全沒有發現"
@@ -257,9 +251,7 @@ func story1_3(){
             statsLabelText = "ＡＴＫ＋2 ＬＵＣＫ+1\n對方\nＨＰ-1 ＡＴＫ-1 ＬＵＣＫ-1"
         }
         abChange(aH: -1, aA: -1, aL: -1, aG: 0, bH: 0, bA: 2, bL: 1, bG: 0)
-        //帶入下個問題
         selectionQuestion()
-        //測試
     }else if judgeValue == 4{
         storyTextLabelText = "\(bName)沒有動\(aName)的東西，\(aName)也沒去懷疑\(bName)，兩人像沒事一樣繼續踏上旅途"
         if playerID == "A" {
@@ -267,44 +259,267 @@ func story1_3(){
         }else{
             statsLabelText = ""
         }
-        //帶入下個問題
         selectionQuestion()
-        //測試
+    }
+}
+
+
+//MARK: 50.1
+func question50_1() {
+    questionID = 50.1
+    if playerID == "A" {
+        questionsLabelText = "這傢伙怎麼突然要給我水喝，是否要接受他的心意？"
+    }else if playerID == "B"{
+        questionsLabelText = "看這傢伙口也渴了，拿點”液體“給他好了，是否把水更換成尿？"
+    }
+}
+func story50_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "噗～你混蛋拿尿給我喝！對方拿了自己的尿尿給你喝，你感到無比其辱。"
+            statsLabelText = "HP-1,Luck-1\n對方\nLuck+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "阿不是拉我拿錯了～哈哈哈哈～你看著對方喝尿的蠢樣，沾沾自喜的辯解。"
+            statsLabelText = "Luck+1\n對方\nHP-1,Luck-1"
+        }
+        abChange(aH: -1, aA: 0, aL: -1, aG: 0, bH: 0, bA: 0, bL: 1, bG: 0)
+        question50_113()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "夥伴謝拉，我口正渴，哎呦不錯喔。補充水分過後精神氣爽。"
+            statsLabelText = "HP+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "對方喝你的遞給他的水，大口大口的喝，什麼事都沒發生。"
+            statsLabelText = "對方\nHP+1"
+        }
+        abChange(aH: 1, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        question50_2()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "你揭穿了他。他把水偷偷換成了尿。然而這逃不過你的眼睛，你打了他一巴掌。"
+            statsLabelText = "Luck+1\n對方\nHP-1 Luck-1"
+        }else if playerID == "B" {
+            storyTextLabelText = "他拒絕你的“液體”還發現了你想給喝尿，被打了一巴掌的你無從辯解。"
+            statsLabelText = "HP-1 Luck-1\n對方\nLuck+1"
+        }
+        abChange(aH: 0, aA: 0, aL: 1, aG: 0, bH: -1, bA: 0, bL: -1, bG: 0)
+        question50_113()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "你拒絕他遞給你的水，什麼事都沒有發生。"
+            statsLabelText = "對方\nHP+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "他拒絕你的好意，不喝算了。你自己把水喝掉了。"
+            statsLabelText = "HP+1"
+        }
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 1, bA: 0, bL: 0, bG: 0)
+        question50_2()
+    }
+}
+
+//MARK: 50.113
+func question50_113() {
+    questionID = 50.113
+    if playerID == "A" {
+        questionsLabelText = "真的很受不了\(bName)那傢伙，剛剛居然讓我喝尿，要不要出腳絆倒他？"
+    }else if playerID == "B"{
+        questionsLabelText = "經過剛剛的尿尿事件我覺得\(aName)會搞一些小動作，要不要再跟他道歉一次？"
+    }
+}
+func story50_113(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "當\(aName)伸出腳時\(bName)突然走道\(aName)面前道歉，\(aName)沒有絆到\(bName)，覺得可惜。"
+            statsLabelText = "Luck-1\n對方\nLuck+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "當\(aName)伸出腳時\(bName)突然走道\(aName)面前道歉，\(aName)沒有絆到\(bName)，覺得可惜。"
+            statsLabelText = "Luck+1\n對方\nLuck-1"
+        }
+        abChange(aH: 0, aA: 0, aL: -1, aG: 0, bH: 0, bA: 0, bL: 1, bG: 0)
+        question50_2()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)無情的絆倒了\(bName)，跌倒的\(bName)坐在地上幫自己呼呼。"
+            statsLabelText = "Luck+1\n對方\nHP-1"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)失去了道歉的機會，這時\(aName)出腳絆倒了\(bName)。"
+            statsLabelText = "HP-1\n對方\nLuck+1"
+        }
+        abChange(aH: 0, aA: 0, aL: 1, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
+        question50_2()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)大方地原諒了\(bName)，\(bName)也慎重的重新道歉一次，旅程繼續。"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)大方地原諒了\(bName)，\(bName)也慎重的重新道歉一次，旅程繼續。"
+            statsLabelText = ""
+        }
+        question50_2()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)給了\(bName)一個道歉的機會，但\(bName)並不領情，屌兒啷噹的做著鬼臉。"
+            statsLabelText = "Luck-2\n對方\nLuck+2"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)給了\(bName)一個道歉的機會，但\(bName)並不領情，屌兒啷噹的做著鬼臉。"
+            statsLabelText = "Luck+2\n對方\nLuck-2"
+        }
+        abChange(aH: 0, aA: 0, aL: -2, aG: 0, bH: 0, bA: 0, bL: 2, bG: 0)
+        question50_2()
+    }
+}
+
+//MARK: 50.2 QQQQ
+func question50_2() {
+    questionID = 50.2
+    if playerID == "A" {
+        questionsLabelText = "走著走著還真無聊啊，是否要開口唱歌？"
+    }else if playerID == "B"{
+        questionsLabelText = "走著走著還真無聊啊，是否要開口唱歌？"
+    }
+}
+func story50_2(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)走在路上突然同時開口唱歌，兩人咒罵著對方為何要跟他一起唱歌，覺得噁心。"
+            statsLabelText = "LP-1 ATK-1 Luck-1\n對方\nLP-1 ATK-1 Luck-1"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)走在路上突然同時開口唱歌，兩人咒罵著對方為何要跟他一起唱歌，覺得噁心。"
+            statsLabelText = "LP-1 ATK-1 Luck-1\n對方\nLP-1 ATK-1 Luck-1"
+        }
+        abChange(aH: -1, aA: -1, aL: -1, aG: 0, bH: -1, bA: -1, bL: -1, bG: 0)
+        //帶入下個問題
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)突然開口唱歌，儘管\(bName)在旁咒罵著說閉嘴別再唱，但是\(aName)仍然唱的很陶醉。"
+            statsLabelText = "ATK+2"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)突然開口唱歌，儘管\(bName)在旁咒罵著說閉嘴別再唱，但是\(aName)仍然唱的很陶醉。"
+            statsLabelText = ""
+        }
+        abChange(aH: 0, aA: 2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        //下個問題
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)突然開口唱歌，儘管\(aName)在旁咒罵著說閉嘴別再唱，但是\(bName)仍然唱的很陶醉。"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)突然開口唱歌，儘管\(aName)在旁咒罵著說閉嘴別再唱，但是\(bName)仍然唱的很陶醉。"
+            statsLabelText = "ATK+2"
+        }
+        abChange(aH: 0, aA: 0, aL: 0, aG: 00, bH: 0, bA: 2, bL: 0, bG: 0)
+        //下個問題
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "你還是覺得很無聊"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "你還是覺得很無聊"
+            statsLabelText = ""
+        }
+        //下個問題
+    }
+}
+
+
+//MARK: 51.1
+func question51_1() {
+    questionID = 51.1
+    if playerID == "A" {
+        questionsLabelText = ""
+    }else if playerID == "B"{
+        questionsLabelText = ""
+    }
+}
+func story51_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }
+        //數值變化
+        //帶入下個問題
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }
+        //數值變化
+        //下個問題
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }
+        //數值變化
+        //下個問題
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = ""
+            statsLabelText = "\n對方\n"
+        }
+        //數值變化
+        //下個問題
     }
 }
 
 
 
 
+
+
+
+
+
+
+//===============
+
 func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
     aHP = aHP + aH
+    if aHP >= 50 {
+        aHP = 50
+    }
     aATK = aATK + aA
+    if aATK >= 20 {
+        aATK = 20
+    }
     aLuck = aLuck + aL
+    if aLuck >= 20 {
+        aLuck = 20
+    }
     aGold = aGold + aG
+    if aGold >= 1000{
+        aGold = 1000
+    }
     bHP = bHP + bH
+    if bHP >= 50 {
+        bHP = 50
+    }
     bATK = bATK + bA
+    if bATK >= 20 {
+        bATK = 20
+    }
     bLuck = bLuck + bL
+    if bLuck >= 20 {
+        bLuck = 20
+    }
     bGold = bGold + bG
+    if bGold >= 1000 {
+        bGold = 1000
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

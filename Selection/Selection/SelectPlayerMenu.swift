@@ -36,7 +36,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         
         
         //名字
-        playName = ["大衛布萊恩","傑森史塔森","嘎嘎蹦拉拉","佛心公司","我好興奮阿"]
+        playName = ["佛羅多·巴金斯","菜菜子","賽佛勒斯·石內卜","邱偉豪","跩哥·馬份","勒苟拉斯","安納金·天行者","歐比王·肯諾比","丘巴卡"]
 
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -49,8 +49,6 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         playerName = playName[row] as! String
         return playName[row] as? String
     }
-    
-    
     
     
     @IBAction func okBtn(_ sender: Any) {
@@ -105,13 +103,16 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         if nameCheckTimerFirstRun == true{
             nameCheckTimerFirstRun = false
         }else{
-            let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode")
-            self.present(view!, animated: true, completion: nil)
+            guard let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode") else {
+                print("沒有view可以轉")
+                return
+            }
+            
+            self.present(view, animated: true, completion: nil)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("停止timer")
         nameCheckTimer.invalidate()
         nameCheckTimerFirstRun = true
         checkNameView.alpha = 0

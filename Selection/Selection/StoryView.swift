@@ -37,10 +37,8 @@ class StoryView: UIViewController {
     func dismissSelf(){
         if timeUpFirstRun == true {
             timeUpFirstRun = false
-            print("第一次執行timer")
         }else{
             self.dismiss(animated: true, completion: nil)
-            print("轉！")
         }
     }
 
@@ -52,7 +50,6 @@ class StoryView: UIViewController {
     
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("停止timer")
         timeUp.invalidate()
         timeUpFirstRun = true
         // 通知customGameMode更改屬性重設.

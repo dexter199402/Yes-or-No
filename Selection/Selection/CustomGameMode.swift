@@ -22,28 +22,34 @@ var yourAnswer = 9
 //玩家ID
 var playerID = "noting"
 
-//人物動畫
-var animatedManID = "A"
-
 //答案倒數
-var countdownNember = 10
+var countdownNember = 20
 var answerCountdown = Timer()
-//人物動畫
-var animated = Timer()
+
 //屬性值
 var aHP = 50
-var aATK = 20
-var aLuck = 20
-var aGold = 500
+var aATK = 10
+var aLuck = 10
+var aGold = 200
 var bHP = 50
-var bATK = 20
-var bLuck = 20
-var bGold = 500
+var bATK = 10
+var bLuck = 10
+var bGold = 200
+
+//個數值條autolayout之後的長度
+var autolayoutLock = false
+var countDownImageWidthValue = CGFloat()
+var Line1Value = CGFloat()
+var Line2Value = CGFloat()
+var Line3Value = CGFloat()
 
 class CustomGameMode: UIViewController {
     
+    //倒數計時條
+    @IBOutlet weak var countDownImage: UIImageView!
+    @IBOutlet weak var countDownImageWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var colorButton: UIImageView!
-    @IBOutlet weak var blackCircle: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var answerCountdownLabel: UILabel!
@@ -51,24 +57,25 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var whiteMan: UIImageView!
     
     //屬刑調 image
+    
     @IBOutlet weak var selfLine1: UIImageView!
     @IBOutlet weak var selfLine2: UIImageView!
     @IBOutlet weak var selfLine3: UIImageView!
-    @IBOutlet weak var selfLine4: UIImageView!
+    @IBOutlet weak var selfGold: UILabel!
     @IBOutlet weak var otherLine1: UIImageView!
     @IBOutlet weak var otherLine2: UIImageView!
     @IBOutlet weak var otherLine3: UIImageView!
-    @IBOutlet weak var otherLine4: UIImageView!
+    @IBOutlet weak var otherGold: UILabel!
     
     //屬性條 constraints
+    
     @IBOutlet weak var selfLine1Constraints: NSLayoutConstraint!
     @IBOutlet weak var selfLine2Constraints: NSLayoutConstraint!
     @IBOutlet weak var selfLine3Constraints: NSLayoutConstraint!
-    @IBOutlet weak var selfLine4Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine1Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine2Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine3Constraints: NSLayoutConstraint!
-    @IBOutlet weak var otherLine4Constraints: NSLayoutConstraint!
+
     
     
     override func viewDidLoad() {
@@ -92,44 +99,85 @@ class CustomGameMode: UIViewController {
         answerCountdown.fire()
         
         //人物動畫
-        animated = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(animatedImage), userInfo: nil, repeats: true)
-        animated.fire()
+        manAnimation()
         
-        //初始數值
+        //初始數值調顯示
         statsLine()
     }
     
     //改變數值條顯示
     func statsLine()  {
-        self.selfLine1Constraints.constant = -(self.selfLine1.frame.width*CGFloat(100-aHP)/100)
-        self.selfLine2Constraints.constant = -(self.selfLine2.frame.width*CGFloat(40-aATK)/40)
-        self.selfLine3Constraints.constant = -(self.selfLine3.frame.width*CGFloat(40-aLuck)/40)
-        self.selfLine4Constraints.constant = -(self.selfLine4.frame.width*CGFloat(1000-aGold)/1000)
-        self.otherLine1Constraints.constant = -(self.otherLine1.frame.width*CGFloat(100-bHP)/100)
-        self.otherLine2Constraints.constant = -(self.otherLine2.frame.width*CGFloat(40-bATK)/40)
-        self.otherLine3Constraints.constant = -(self.otherLine3.frame.width*CGFloat(40-bLuck)/40)
-        self.otherLine4Constraints.constant = -(self.otherLine4.frame.width*CGFloat(1000-bGold)/1000)
+        if playerID == "A" {
+            self.selfLine1Constraints.constant = -(Line1Value*CGFloat(50-aHP)/50)
+            self.selfLine2Constraints.constant = -(Line2Value*CGFloat(20-aATK)/20)
+            self.selfLine3Constraints.constant = -(Line3Value*CGFloat(20-aLuck)/20)
+            if aATK <= 0 {
+                selfLine2.alpha = 0
+            }else{
+                selfLine2.alpha = 1
+            }
+            if aLuck <= 0 {
+                selfLine3.alpha = 0
+            }else{
+                selfLine3.alpha = 1
+            }
+            selfGold.text = "\(aGold)"
+            self.otherLine1Constraints.constant = -(Line1Value*CGFloat(50-bHP)/50)
+            self.otherLine2Constraints.constant = -(Line2Value*CGFloat(20-bATK)/20)
+            self.otherLine3Constraints.constant = -(Line3Value*CGFloat(20-bLuck)/20)
+            if bATK <= 0 {
+                otherLine2.alpha = 0
+            }else{
+                otherLine2.alpha = 1
+            }
+            if bLuck <= 0 {
+                otherLine3.alpha = 0
+            }else{
+                otherLine3.alpha = 1
+            }
+            otherGold.text = "\(bGold)"
+        }else if playerID == "B" {
+            self.selfLine1Constraints.constant = -(Line1Value*CGFloat(50-bHP)/50)
+            self.selfLine2Constraints.constant = -(Line2Value*CGFloat(20-bATK)/20)
+            self.selfLine3Constraints.constant = -(Line3Value*CGFloat(20-bLuck)/20)
+            if bATK <= 0 {
+                selfLine2.alpha = 0
+            }else{
+                selfLine2.alpha = 1
+            }
+            if bLuck <= 0 {
+                selfLine3.alpha = 0
+            }else{
+                selfLine3.alpha = 1
+            }
+            selfGold.text = "\(bGold)"
+            self.otherLine1Constraints.constant = -(Line1Value*CGFloat(50-aHP)/50)
+            self.otherLine2Constraints.constant = -(Line2Value*CGFloat(20-aATK)/20)
+            self.otherLine3Constraints.constant = -(Line3Value*CGFloat(20-aLuck)/20)
+            if aATK <= 0 {
+                otherLine2.alpha = 0
+            }else{
+                otherLine2.alpha = 1
+            }
+            if aLuck <= 0{
+                otherLine3.alpha = 0
+            }else{
+                otherLine3.alpha = 1
+            }
+            otherGold.text = "\(aGold)"
+        }
     }
     
     //人物動畫
-    func animatedImage()  {
-        if animatedManID == "A"{
-            blackMan.image = UIImage.animatedImageNamed("一般裝態黑2.png", duration: 1)
-            whiteMan.image = UIImage.animatedImageNamed("一般裝態白2.png", duration: 1)
-            animatedManID = "B"
-        }else if animatedManID == "B"{
-            blackMan.image = UIImage.animatedImageNamed("一般裝態黑3.png", duration: 1)
-            whiteMan.image = UIImage.animatedImageNamed("一般裝態白3.png", duration: 1)
-            animatedManID = "C"
-        }else if animatedManID == "C"{
-            blackMan.image = UIImage.animatedImageNamed("一般裝態黑2.png", duration: 1)
-            whiteMan.image = UIImage.animatedImageNamed("一般裝態白2.png", duration: 1)
-            animatedManID = "D"
-        }else if animatedManID == "D"{
-            blackMan.image = UIImage.animatedImageNamed("一般裝態黑1.png", duration: 1)
-            whiteMan.image = UIImage.animatedImageNamed("一般裝態白1.png", duration: 1)
-            animatedManID = "A"
-        }
+    func manAnimation() {
+        whiteMan.animationImages = [UIImage(named:"一般裝態白1.png")!,UIImage(named:"一般裝態白2.png")!,UIImage(named:"一般裝態白3.png")!,UIImage(named:"一般裝態白2.png")!]
+        whiteMan.animationDuration = 1
+        whiteMan.animationRepeatCount = 0
+        whiteMan.startAnimating()
+        blackMan.animationImages = [UIImage(named:"一般裝態黑1.png")!,UIImage(named:"一般裝態黑2.png")!,UIImage(named:"一般裝態黑3.png")!,UIImage(named:"一般裝態黑2.png")!]
+        blackMan.animationDuration = 1
+        blackMan.animationRepeatCount = 0
+        blackMan.startAnimating()
     }
     
     //倒數結束隨機選擇答案
@@ -137,6 +185,12 @@ class CustomGameMode: UIViewController {
         countdownNember = countdownNember - 1
         if lock == false{
             answerCountdownLabel.text = String(format: "%d", countdownNember)
+            self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(20-countdownNember)/20)
+            if countdownNember <= 0 {
+                countDownImage.alpha = 0
+            }else{
+                countDownImage.alpha = 0.1
+            }
         }
         print(countdownNember)
         if countdownNember <= 0{
@@ -181,7 +235,7 @@ class CustomGameMode: UIViewController {
         questionsLabel.text = questionsLabelText
         colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
         answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-        countdownNember = 10
+        countdownNember = 20
         answerCountdown.fire()
         statsLine()
     }
@@ -200,6 +254,14 @@ class CustomGameMode: UIViewController {
     
     override func viewDidLayoutSubviews() {
         buttonPath(path: colorButton)
+        if autolayoutLock == false {
+            countDownImageWidthValue = (self.countDownImage.frame.width)
+            Line1Value = self.selfLine1.frame.height
+            Line2Value = self.selfLine2.frame.width
+            Line3Value = self.selfLine3.frame.width
+            autolayoutLock = true
+        }
+        
     }
 //    判斷按下的按鈕
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {
@@ -250,15 +312,16 @@ class CustomGameMode: UIViewController {
         playerID = "noting"
         otherNameLock = false
         nameLock = false
-        animated.invalidate()
-        aHP = 10
+        whiteMan.stopAnimating()
+        blackMan.stopAnimating()
+        aHP = 50
         aATK = 10
         aLuck = 10
-        aGold = 10
-        bHP = 10
+        aGold = 200
+        bHP = 50
         bATK = 10
         bLuck = 10
-        bGold = 10
+        bGold = 200
     }
     /*
     // MARK: - Navigation
