@@ -23,6 +23,7 @@ class ConnectMode: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         //ttf 一覽
 //        for family: String in UIFont.familyNames
 //        {
@@ -95,12 +96,17 @@ extension ConnectMode: GCHelperDelegate {
     func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
         
         if otherNameLock == true{
-           otherAnswer = didReceiveData as NSData
-            othercheck = true
-            if lock{
+            
+            let dataString : String = NSString(data: didReceiveData, encoding: String.Encoding.utf8.rawValue)! as String
+            if dataString.contains("是")||dataString.contains("否") {
+                otherAnswer = didReceiveData as NSData
+                othercheck = true
+                if lock{
                 // 通知customGameMode
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "play"), object: nil)
-            } 
+                }
+            }
+            
         }
         
         if otherNameLock == false{
@@ -112,6 +118,8 @@ extension ConnectMode: GCHelperDelegate {
                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "goPlay"), object: nil)
             }
         }
+        
+        
     }
     /// Method called when the match has ended.
     func matchEnded() {

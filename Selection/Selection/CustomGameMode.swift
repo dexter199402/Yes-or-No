@@ -74,6 +74,24 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var otherLine1Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine2Constraints: NSLayoutConstraint!
     @IBOutlet weak var otherLine3Constraints: NSLayoutConstraint!
+    
+    //powpow對話
+    @IBOutlet weak var powpow1: UIImageView!
+    @IBOutlet weak var powpow2: UIImageView!
+    @IBOutlet weak var powpow3: UIImageView!
+    @IBOutlet weak var powpow4: UIImageView!
+    @IBOutlet weak var powLabel1: UILabel!
+    @IBOutlet weak var powLabel2: UILabel!
+    @IBOutlet weak var powLabel3: UILabel!
+    @IBOutlet weak var powLabel4: UILabel!
+    @IBOutlet weak var selfPowpow: UIImageView!
+    @IBOutlet weak var selfPowLabel: UILabel!
+    @IBOutlet weak var otherPowpow: UIImageView!
+    @IBOutlet weak var otherPowLabel: UILabel!
+    
+    var powpowTime:Timer = Timer()
+    var firstPow = true
+    
 
     
     
@@ -343,6 +361,83 @@ class CustomGameMode: UIViewController {
             result(vv:self)
         }
     }
+    
+    //按下白色小人
+    @IBAction func tapWhiteMan(_ sender: UITapGestureRecognizer) {
+            powpow1.alpha = 1
+            powpow2.alpha = 1
+            powpow3.alpha = 1
+            powpow4.alpha = 1
+            powLabel1.alpha = 1
+            powLabel2.alpha = 1
+            powLabel3.alpha = 1
+            powLabel4.alpha = 1
+        colorButton.isUserInteractionEnabled = false
+    }
+    //powpow1
+    @IBAction func powpow1(_ sender: Any) {
+        selfPowLabel.text = "你好"
+        powpowTimee()
+        powpowdismiss()
+    }
+    
+    
+    //powpow2
+    @IBAction func powpow2(_ sender: Any) {
+        selfPowLabel.text = "謝謝"
+        powpowTimee()
+        powpowdismiss()
+    }
+    
+    
+    //powpow3
+    @IBAction func powpow3(_ sender: Any) {
+        selfPowLabel.text = "呵呵"
+        powpowTimee()
+        powpowdismiss()
+    }
+    
+    
+    //powpow4
+    @IBAction func powpow4(_ sender: Any) {
+        selfPowLabel.text = "相信我"
+        powpowTimee()
+        powpowdismiss()
+    }
+    
+    func powpowdismiss()  {
+        powpow1.alpha = 0
+        powpow2.alpha = 0
+        powpow3.alpha = 0
+        powpow4.alpha = 0
+        powLabel1.alpha = 0
+        powLabel2.alpha = 0
+        powLabel3.alpha = 0
+        powLabel4.alpha = 0
+        colorButton.isUserInteractionEnabled = true
+    }
+    func powpowTimee()  {
+        selfPowpow.alpha = 1
+        selfPowLabel.alpha = 1
+        whiteMan.isUserInteractionEnabled = false
+        powpowTime = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.selfTalkPowMiss), userInfo: nil, repeats: true)
+        powpowTime.fire()
+    }
+    func selfTalkPowMiss()  {
+        if firstPow == true {
+            firstPow = false
+        }else{
+            selfPowLabel.alpha = 0
+            selfPowpow.alpha = 0
+            powpowTime.invalidate()
+            firstPow = true
+            whiteMan.isUserInteractionEnabled = true
+        }
+    }
+    
+    
+    
+    
     
     func gameOver() {
         let alert = UIAlertController(title: "GameOver", message: "遊戲結束了按OK繼續", preferredStyle: .alert)
