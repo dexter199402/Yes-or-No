@@ -14,6 +14,7 @@ var timeUpFirstRun = true
 class StoryView: UIViewController {
     @IBOutlet weak var storyTextLabel: UITextView!
     @IBOutlet weak var statsLabel: UILabel!
+    @IBOutlet weak var paperImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,12 @@ class StoryView: UIViewController {
         lock = false
         yourAnswer = 8
         answerCountdown.invalidate()
-        
         timeUp.fire()
     
+        //hero動畫
+        isHeroEnabled = true
+        self.storyTextLabel.heroModifiers = [.translate(y: 130)]
+        self.paperImage.heroModifiers = [.scale(x: 50, y: 100, z: 0)]
     }
     func dismissSelf(){
         if timeUpFirstRun == true {

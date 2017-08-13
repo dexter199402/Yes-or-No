@@ -7,21 +7,41 @@
 //
 
 import UIKit
+import AVFoundation
 import Hero
 import GameKit
 import GCHelper
 
+var playPage1Music:AVAudioPlayer = AVAudioPlayer()
 var otherAnswer:NSData?
 var othercheck = false
+var onlineMode = false
 
 class ConnectMode: UIViewController {
     @IBOutlet weak var buttonColor: UIImageView!
-    @IBOutlet weak var whiteCircle: UIImageView!
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //ttf 一覽
+//        for family: String in UIFont.familyNames
+//        {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
+        
+        //music
+        do{
+            let audioPath = Bundle.main.path(forResource: "Morning_Walk", ofType: "mp3")
+            try playPage1Music = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        playPage1Music.play()
         
         //驗證身份，檢查登入
         GCHelper.sharedInstance.authenticateLocalUser()
@@ -31,10 +51,13 @@ class ConnectMode: UIViewController {
             if (login != nil) {
                 print("我是有東西")
                 self.present(login!, animated: true, completion: nil)
-            }else {
-                print("取消登入超過三次")
             }
         }
+        
+        
+        //hero動畫
+        isHeroEnabled = true
+        buttonColor.heroModifiers = [.scale(x: 50, y: 100, z: 20)]
     }
     
     
@@ -50,15 +73,11 @@ class ConnectMode: UIViewController {
     @IBAction func tapButton(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: sender.view)
         if buttonColorPath.contains(point){
-        
             
-        
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self )
-
         }else{
             let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "SelectPlayerMenu")
             self.present(vc2!, animated: true, completion: nil)
-            
         }
     }
     override func didReceiveMemoryWarning() {
@@ -98,10 +117,13 @@ extension ConnectMode: GCHelperDelegate {
     func matchEnded() {
         // 通知 customGameMode遊戲結束了
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
+        onlineMode = false
+        
     }
     
     /// Method called when a match has been initiated.
     func matchStarted() {
+        onlineMode = true
         let vc1=self.storyboard?.instantiateViewController(withIdentifier:"SelectPlayerMenu")
         self.present(vc1!, animated: true, completion: nil)
     }

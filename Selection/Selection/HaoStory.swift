@@ -13,9 +13,9 @@ import Foundation
 func  question1_1()  {
     questionID = 1.1
     if playerID == "A" {
-        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
+        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(bName)聊天？"
     }else if playerID == "B"{
-        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(otherPlayerNameString)聊天？"
+        questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(aName)聊天？"
     }
 }
 func story1_1() {
@@ -422,7 +422,7 @@ func story50_2(){
 }
 
 
-//MARK: 51.1
+//MARK: 51.1 QQQQ
 func question51_1() {
     questionID = 51.1
     if playerID == "A" {
@@ -519,6 +519,11 @@ func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
     if bGold >= 1000 {
         bGold = 1000
     }
+    
+    if aHP <= 0 || bHP <= 0 {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
+    }
+    
 }
 
 

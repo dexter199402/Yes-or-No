@@ -21,10 +21,11 @@ func selectionQuestion() {
             question1_1()
             iD1Lock = true
         }else{
-            selectionQuestion()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         }
         break
     default:
+        
         break
     }
 }

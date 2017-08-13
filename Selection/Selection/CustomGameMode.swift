@@ -9,24 +9,23 @@
 import UIKit
 import GameKit
 import GCHelper
+import Hero
 
 var pressYes = "是"
 var playerDataYes :NSData = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 var pressNo = "否"
 var playerDataNo :NSData = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
-//答案鎖定
 var lock = false
-//自身答案
+
 var yourAnswer = 9
-//玩家ID
+
 var playerID = "noting"
 
 //答案倒數
 var countdownNember = 20
 var answerCountdown = Timer()
 
-//屬性值
 var aHP = 50
 var aATK = 10
 var aLuck = 10
@@ -94,15 +93,24 @@ class CustomGameMode: UIViewController {
         question1_1()
         questionsLabel.text = questionsLabelText
         
-        //答案回答倒數
-        answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-        answerCountdown.fire()
+        
+        if onlineMode == true {
+            answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
+            answerCountdown.fire()
+        }else if onlineMode == false {
+            countDownImage.alpha = 0
+            answerCountdownLabel.alpha = 0
+        }
+        
         
         //人物動畫
         manAnimation()
         
-        //初始數值調顯示
         statsLine()
+        
+        //hero動畫
+        isHeroEnabled = true
+        self.heroModalAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomOut)
     }
     
     //改變數值條顯示
@@ -191,6 +199,8 @@ class CustomGameMode: UIViewController {
             }else{
                 countDownImage.alpha = 0.1
             }
+        }else if lock {
+            answerCountdown.invalidate()
         }
         print(countdownNember)
         if countdownNember <= 0{
@@ -234,12 +244,13 @@ class CustomGameMode: UIViewController {
     func labelText(){
         questionsLabel.text = questionsLabelText
         colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
-        answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-        countdownNember = 20
-        answerCountdown.fire()
+        if onlineMode {
+            answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
+            countdownNember = 20
+            answerCountdown.fire()
+        }
         statsLine()
     }
-    
     
     // ==對方後選結果方法=====>>
     func otherpley() {
@@ -260,6 +271,7 @@ class CustomGameMode: UIViewController {
             Line2Value = self.selfLine2.frame.width
             Line3Value = self.selfLine3.frame.width
             autolayoutLock = true
+            
         }
         
     }
@@ -267,7 +279,9 @@ class CustomGameMode: UIViewController {
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: sender.view)
         if buttonColorPath.contains(point) {
-            do {
+            
+            if  onlineMode == true {
+                do {
                 if lock != true{
 //                上傳是的Data
                 _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerDataYes as Data, with: .reliable)
@@ -276,12 +290,28 @@ class CustomGameMode: UIViewController {
                     yourAnswer = 1
                     colorButton.image = UIImage.animatedImageNamed("按鈕選擇藍.png", duration: 1)
                     answerCountdownLabel.text = "等待對方選擇..."
+                    }
+                }catch{
+                    print(error)
                 }
-            }catch{
-            print(error)
             }
+            
+            if onlineMode == false {
+                print("是")
+                yourAnswer = 1
+                
+                let r = arc4random_uniform(2)
+                if r == 1 {
+                    otherAnswer = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+                }else{
+                    otherAnswer = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+                }
+            }
+            
         }else{
-            do {
+            
+            if onlineMode == true {
+                do {
                 if lock != true{
 //                上傳否的Data
                 _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerDataNo as Data, with: .reliable)
@@ -290,13 +320,26 @@ class CustomGameMode: UIViewController {
                     yourAnswer = 0
                     colorButton.image = UIImage.animatedImageNamed("按鈕選擇紅.png", duration: 1)
                     answerCountdownLabel.text = "等待對方選擇..."
+                    }
+                }catch{
+                    print(error)
                 }
-            }catch{
-                print(error)
+            }
+            
+            if onlineMode == false {
+                print("否")
+                yourAnswer = 0
+                
+                let r = arc4random_uniform(2)
+                if r == 1 {
+                    otherAnswer = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+                }else{
+                    otherAnswer = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+                }
             }
         }
         lock = true
-        if othercheck {
+        if othercheck || !onlineMode {
             result(vv:self)
         }
     }
@@ -322,6 +365,11 @@ class CustomGameMode: UIViewController {
         bATK = 10
         bLuck = 10
         bGold = 200
+        countDownImage.alpha = 1
+        answerCountdownLabel.alpha = 1
+        
+        //答案不重複
+        iD1Lock = false
     }
     /*
     // MARK: - Navigation

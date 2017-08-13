@@ -15,6 +15,8 @@
 		D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */; };
 		D52CB6BA1F1B553A00BA07E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D52CB6B81F1B553A00BA07E7 /* LaunchScreen.storyboard */; };
 		D54CC6B81F25A49500C2BEEC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54CC6B71F25A49500C2BEEC /* GameKit.framework */; };
+		D55CACBB1F3EEF6900BAA66B /* A_Tisket_A_Tasket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D55CACBA1F3EEF6900BAA66B /* A_Tisket_A_Tasket.mp3 */; };
+		D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */; };
 		D5A0D4B31F20D27A00600CD2 /* ButtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */; };
 		D5A0D4B51F20DBA800600CD2 /* CustomGameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */; };
 		D5BF5DE61F3865D600A5B531 /* QuestionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */; };
@@ -38,6 +40,8 @@
 		D52CB6B91F1B553A00BA07E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D52CB6BB1F1B553A00BA07E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D54CC6B71F25A49500C2BEEC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		D55CACBA1F3EEF6900BAA66B /* A_Tisket_A_Tasket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A_Tisket_A_Tasket.mp3; sourceTree = "<group>"; };
+		D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Morning_Walk.mp3; sourceTree = "<group>"; };
 		D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPath.swift; sourceTree = "<group>"; };
 		D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameMode.swift; sourceTree = "<group>"; };
 		D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFunction.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		D5A0D4BD1F20EC9000600CD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */,
+				D55CACBA1F3EEF6900BAA66B /* A_Tisket_A_Tasket.mp3 */,
 				D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */,
 			);
 			name = Model;
@@ -235,7 +241,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D52CB6BA1F1B553A00BA07E7 /* LaunchScreen.storyboard in Resources */,
+				D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */,
 				D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */,
+				D55CACBB1F3EEF6900BAA66B /* A_Tisket_A_Tasket.mp3 in Resources */,
 				D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,7 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C3DCGLZVXC;
 				INFOPLIST_FILE = Selection/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wei.Selection1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -449,7 +457,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C3DCGLZVXC;
 				INFOPLIST_FILE = Selection/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wei.Selection1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

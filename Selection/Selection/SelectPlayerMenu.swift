@@ -9,6 +9,7 @@
 import UIKit
 import GameKit
 import GCHelper
+//故事背景倒數
 var nameCheckTimer = Timer()
 var nameCheckTimerFirstRun = true
 
@@ -23,20 +24,41 @@ let playerNameData :NSData = playerName.data(using: String.Encoding.utf8, allowL
 var aName = ""
 var bName = ""
 
-
+//autolayOut之後尺寸
+var countDownWidth1:CGFloat = 0.0
+var sizeLock = false
 
 class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet weak var checkNameView: UITextView!
     @IBOutlet weak var checkNameViewBackground: UIImageView!
+    @IBOutlet weak var yourNameLabel: UILabel!
+    
+    @IBOutlet weak var countDownImage: UIImageView!
+    @IBOutlet weak var countDownWidth: NSLayoutConstraint!
     
     var playName : NSMutableArray = []
     
+    //名字選擇倒數
+    var nameCountDownTimer = Timer()
+    var countDownTimerNember = 30
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor.white
         
         //名字
         playName = ["佛羅多·巴金斯","菜菜子","賽佛勒斯·石內卜","邱偉豪","跩哥·馬份","勒苟拉斯","安納金·天行者","歐比王·肯諾比","丘巴卡"]
+        
+        if onlineMode == true {
+           nameCountDownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SelectPlayerMenu.nameCountDown), userInfo: nil, repeats: true)
+            nameCountDownTimer.fire()
+        }else if onlineMode == false{
+            countDownImage.alpha = 0
+        }
+        
+        //hero動畫
+        isHeroEnabled = true
+        yourNameLabel.heroModifiers = [.translate(y: 100)]
 
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -45,15 +67,31 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return playName.count
     }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
         playerName = playName[row] as! String
-        return playName[row] as? String
+        var att: NSAttributedString!
+        att = NSAttributedString(string: playerName,attributes: [NSForegroundColorAttributeName : UIColor.darkGray])
+        return att
+    }
+    
+    //名稱選擇倒數
+    func nameCountDown()  {
+        if countDownTimerNember > 0 {
+            countDownTimerNember -= 1
+            self.countDownWidth.constant = -(countDownWidth1*CGFloat(30-countDownTimerNember)/30)
+        }else if countDownTimerNember <= 0 {
+            nameCountDownTimer.invalidate()
+            countDownTimerNember = 30
+            okBtn((Any).self)
+        }
     }
     
     
     @IBAction func okBtn(_ sender: Any) {
         
-        if nameLock == false{
+        if onlineMode == true {
+            if nameLock == false{
             nameLock = true
             do {
                     _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerNameData as Data,    with: .reliable)
@@ -75,8 +113,20 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                 }
                 //名字選擇監聽器
                 NotificationCenter.default.addObserver(self, selector: #selector(goPlay), name: NSNotification.Name(rawValue: "goPlay"), object: nil)
-                
+                }
             }
+        }
+        
+        if onlineMode == false {
+            let ID = arc4random_uniform(2)
+            if ID == 0 {
+                playerID = "A"
+            }else{
+                playerID = "B"
+            }
+            checkNameView.alpha = 1
+            checkNameViewBackground.alpha = 1
+            goPlay()
         }
     }
     
@@ -84,14 +134,32 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         nameCheckTimer = Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(SelectPlayerMenu.goCustomGameMode), userInfo: nil, repeats: true)
         nameCheckTimer.fire()
         
-        if playerID == "A" {
-            aName = playerName
-            bName = otherPlayerNameString
-        }else if playerID == "B" {
-            bName = playerName
-            aName = otherPlayerNameString
+        if onlineMode == true {
+            if playerID == "A" {
+                aName = playerName
+                bName = otherPlayerNameString
+            }else if playerID == "B" {
+                bName = playerName
+                aName = otherPlayerNameString
+            }
         }
         
+        if onlineMode == false {
+            if playerID == "A" {
+                aName = playerName
+                let otherName = "電腦人"
+                bName = otherName
+            }else if playerID == "B" {
+                bName = playerName
+                let otherName = "電腦人"
+                aName = otherName
+            }
+        }
+        
+        //ttf
+//        checkNameView.font = UIFont(name: "setoFont", size: 36)
+        //
+        yourNameLabel.alpha = 0
         checkNameView.text = "\(playerName)，你好\n\n某個年代，某個大陸上有三個國家，幾百年來互相敵對，為了打破僵局，Ａ國與Ｂ國決定合作執行一項計畫，各派出一名間諜潛入Ｃ國，Ａ國間諜的名字是 \(aName)，Ｂ國間諜的名字叫 \(bName)，兩人表面上同心協力，背地裡卻各有心機"
         checkNameView.alpha = 1
         checkNameViewBackground.alpha = 1
@@ -107,7 +175,6 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                 print("沒有view可以轉")
                 return
             }
-            
             self.present(view, animated: true, completion: nil)
         }
     }
@@ -117,6 +184,15 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         nameCheckTimerFirstRun = true
         checkNameView.alpha = 0
         checkNameViewBackground.alpha = 0
+        countDownImage.alpha = 1
+        yourNameLabel.alpha = 1
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if sizeLock == false {
+            sizeLock = true
+            countDownWidth1 = (self.countDownImage.frame.width)
+        }
     }
     
     
