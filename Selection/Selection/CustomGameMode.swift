@@ -36,7 +36,7 @@ var bLuck = 10
 var bGold = 200
 
 //個數值條autolayout之後的長度
-var autolayoutLock = false
+var autolayoutLoc = false
 var countDownImageWidthValue = CGFloat()
 var Line1Value = CGFloat()
 var Line2Value = CGFloat()
@@ -47,6 +47,7 @@ class CustomGameMode: UIViewController {
     //倒數計時條
     @IBOutlet weak var countDownImage: UIImageView!
     @IBOutlet weak var countDownImageWidth: NSLayoutConstraint!
+    var countDownUse = false
     
     @IBOutlet weak var colorButton: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
@@ -56,7 +57,6 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var whiteMan: UIImageView!
     
     //屬刑調 image
-    
     @IBOutlet weak var selfLine1: UIImageView!
     @IBOutlet weak var selfLine2: UIImageView!
     @IBOutlet weak var selfLine3: UIImageView!
@@ -67,7 +67,6 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var otherGold: UILabel!
     
     //屬性條 constraints
-    
     @IBOutlet weak var selfLine1Constraints: NSLayoutConstraint!
     @IBOutlet weak var selfLine2Constraints: NSLayoutConstraint!
     @IBOutlet weak var selfLine3Constraints: NSLayoutConstraint!
@@ -88,9 +87,10 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var selfPowLabel: UILabel!
     @IBOutlet weak var otherPowpow: UIImageView!
     @IBOutlet weak var otherPowLabel: UILabel!
-    
     var powpowTime:Timer = Timer()
+    var otherPowpowTime:Timer = Timer()
     var firstPow = true
+    var otherFirstPow = true
     
 
     
@@ -107,6 +107,9 @@ class CustomGameMode: UIViewController {
         //遊戲結束監聽器
         NotificationCenter.default.addObserver(self, selector: #selector(gameOver), name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         
+        //訊息來了監聽
+        NotificationCenter.default.addObserver(self, selector: #selector(otherPow), name: NSNotification.Name(rawValue: "messageCome"), object: nil)
+        
         //第一題
         question1_1()
         questionsLabel.text = questionsLabelText
@@ -118,8 +121,8 @@ class CustomGameMode: UIViewController {
         }else if onlineMode == false {
             countDownImage.alpha = 0
             answerCountdownLabel.alpha = 0
+            whiteMan.isUserInteractionEnabled = false
         }
-        
         
         //人物動畫
         manAnimation()
@@ -220,11 +223,11 @@ class CustomGameMode: UIViewController {
         }else if lock {
             answerCountdown.invalidate()
         }
-        print(countdownNember)
         if countdownNember <= 0{
             answerCountdownLabel.text = String(0.0)
             //隨機選擇一個答案
             if lock != true {
+                countDownUse = true
                 let yesOrNo = arc4random_uniform(2)
                 if yesOrNo == 0 {
                     do {
@@ -264,7 +267,11 @@ class CustomGameMode: UIViewController {
         colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
         if onlineMode {
             answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-            countdownNember = 20
+            if countDownUse {
+                countdownNember = 10
+            }else{
+                countdownNember = 20
+            }
             answerCountdown.fire()
         }
         statsLine()
@@ -275,7 +282,6 @@ class CustomGameMode: UIViewController {
         result(vv: self)
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -283,15 +289,13 @@ class CustomGameMode: UIViewController {
     
     override func viewDidLayoutSubviews() {
         buttonPath(path: colorButton)
-        if autolayoutLock == false {
+        if autolayoutLoc == false {
             countDownImageWidthValue = (self.countDownImage.frame.width)
             Line1Value = self.selfLine1.frame.height
             Line2Value = self.selfLine2.frame.width
             Line3Value = self.selfLine3.frame.width
-            autolayoutLock = true
-            
+            autolayoutLoc = true
         }
-        
     }
 //    判斷按下的按鈕
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {
@@ -301,6 +305,7 @@ class CustomGameMode: UIViewController {
             if  onlineMode == true {
                 do {
                 if lock != true{
+                    countDownUse = false
 //                上傳是的Data
                 _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerDataYes as Data, with: .reliable)
                     print("是")
@@ -331,6 +336,7 @@ class CustomGameMode: UIViewController {
             if onlineMode == true {
                 do {
                 if lock != true{
+                    countDownUse = false
 //                上傳否的Data
                 _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerDataNo as Data, with: .reliable)
                     print("否")
@@ -362,7 +368,7 @@ class CustomGameMode: UIViewController {
         }
     }
     
-    //按下白色小人
+    //泡泡對話
     @IBAction func tapWhiteMan(_ sender: UITapGestureRecognizer) {
             powpow1.alpha = 1
             powpow2.alpha = 1
@@ -376,35 +382,28 @@ class CustomGameMode: UIViewController {
     }
     //powpow1
     @IBAction func powpow1(_ sender: Any) {
-        selfPowLabel.text = "你好"
-        powpowTimee()
+        let pow1 = "你好"
+        powpowTimee(str: pow1)
         powpowdismiss()
     }
-    
-    
     //powpow2
     @IBAction func powpow2(_ sender: Any) {
-        selfPowLabel.text = "謝謝"
-        powpowTimee()
+        let pow2 = "謝謝"
+        powpowTimee(str: pow2)
         powpowdismiss()
     }
-    
-    
     //powpow3
     @IBAction func powpow3(_ sender: Any) {
-        selfPowLabel.text = "呵呵"
-        powpowTimee()
+        let pow3 = "呵呵"
+        powpowTimee(str: pow3)
         powpowdismiss()
     }
-    
-    
     //powpow4
     @IBAction func powpow4(_ sender: Any) {
-        selfPowLabel.text = "相信我"
-        powpowTimee()
+        let pow4 = "相信我"
+        powpowTimee(str: pow4)
         powpowdismiss()
     }
-    
     func powpowdismiss()  {
         powpow1.alpha = 0
         powpow2.alpha = 0
@@ -416,7 +415,16 @@ class CustomGameMode: UIViewController {
         powLabel4.alpha = 0
         colorButton.isUserInteractionEnabled = true
     }
-    func powpowTimee()  {
+    func powpowTimee(str:String)  {
+        powpowTime.invalidate()
+        selfPowLabel.text = str
+        let dataaa :NSData = str.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+        do{
+            _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: dataaa as Data, with: .reliable)
+        }
+        catch{
+            print(error)
+        }
         selfPowpow.alpha = 1
         selfPowLabel.alpha = 1
         whiteMan.isUserInteractionEnabled = false
@@ -434,24 +442,31 @@ class CustomGameMode: UIViewController {
             whiteMan.isUserInteractionEnabled = true
         }
     }
-    
-    
-    
-    
-    
-    func gameOver() {
-        let alert = UIAlertController(title: "GameOver", message: "遊戲結束了按OK繼續", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-            self.performSegue(withIdentifier: "backFirstView", sender: self)
+    func otherPow()  {
+        otherPowpowTime.invalidate()
+        otherPowLabel.text = otherMessage
+        otherPowpow.alpha = 1
+        otherPowLabel.alpha = 1
+        otherPowpowTime = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.otherTalkPowMiss), userInfo: nil, repeats: true)
+        otherPowpowTime.fire()
+    }
+    func otherTalkPowMiss() {
+        if otherFirstPow == true {
+            otherFirstPow = false
+        }else{
+            otherPowLabel.alpha = 0
+            otherPowpow.alpha = 0
+            otherPowpowTime.invalidate()
+            otherFirstPow = true
         }
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
+    }
+
+    func gameOver() {
+        //前一場屬性重設
         answerCountdown.invalidate()
         playerID = "noting"
         otherNameLock = false
         nameLock = false
-        whiteMan.stopAnimating()
-        blackMan.stopAnimating()
         aHP = 50
         aATK = 10
         aLuck = 10
@@ -461,10 +476,16 @@ class CustomGameMode: UIViewController {
         bLuck = 10
         bGold = 200
         countDownImage.alpha = 1
+        whiteMan.stopAnimating()
+        blackMan.stopAnimating()
         answerCountdownLabel.alpha = 1
+        let alert = UIAlertController(title: "GameOver", message: "遊戲結束了按OK繼續", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.performSegue(withIdentifier: "backFirstView", sender: self)
+        }
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
         
-        //答案不重複
-        iD1Lock = false
     }
     /*
     // MARK: - Navigation

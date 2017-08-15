@@ -9,7 +9,7 @@
 import Foundation
 
 
-//MARK: 1.1
+
 func  question1_1()  {
     questionID = 1.1
     if playerID == "A" {
@@ -57,7 +57,7 @@ func story1_1() {
 }
 
 
-//MARK: 1.2
+
 func question1_2()  {
     questionID = 1.2
     if playerID == "A" {
@@ -109,7 +109,7 @@ func story1_2() {
     }
 }
 
-//MARK: 1.214
+
 func question1_214() {
     questionID = 1.214
     if playerID == "A" {
@@ -161,7 +161,7 @@ func story1_214() {
     }
 }
 
-//MARK: 1.223
+
 func question1_223() {
     questionID = 1.223
     if playerID == "A" {
@@ -212,7 +212,7 @@ func story1_223() {
     }
 }
 
-//MARK: 1.3
+
 func question1_3() {
     questionID = 1.3
     if playerID == "A" {
@@ -264,7 +264,7 @@ func story1_3(){
 }
 
 
-//MARK: 50.1
+
 func question50_1() {
     questionID = 50.1
     if playerID == "A" {
@@ -317,7 +317,7 @@ func story50_1(){
     }
 }
 
-//MARK: 50.113
+
 func question50_113() {
     questionID = 50.113
     if playerID == "A" {
@@ -369,7 +369,7 @@ func story50_113(){
     }
 }
 
-//MARK: 50.2 QQQQ
+
 func question50_2() {
     questionID = 50.2
     if playerID == "A" {
@@ -388,7 +388,7 @@ func story50_2(){
             statsLabelText = "LP-1 ATK-1 Luck-1\n對方\nLP-1 ATK-1 Luck-1"
         }
         abChange(aH: -1, aA: -1, aL: -1, aG: 0, bH: -1, bA: -1, bL: -1, bG: 0)
-        //帶入下個問題
+        selectionQuestion()
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "\(aName)突然開口唱歌，儘管\(bName)在旁咒罵著說閉嘴別再唱，但是\(aName)仍然唱的很陶醉。"
@@ -398,7 +398,7 @@ func story50_2(){
             statsLabelText = ""
         }
         abChange(aH: 0, aA: 2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
-        //下個問題
+        selectionQuestion()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "\(bName)突然開口唱歌，儘管\(aName)在旁咒罵著說閉嘴別再唱，但是\(bName)仍然唱的很陶醉。"
@@ -408,7 +408,7 @@ func story50_2(){
             statsLabelText = "ATK+2"
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 00, bH: 0, bA: 2, bL: 0, bG: 0)
-        //下個問題
+        selectionQuestion()
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "你還是覺得很無聊"
@@ -417,72 +417,64 @@ func story50_2(){
             storyTextLabelText = "你還是覺得很無聊"
             statsLabelText = ""
         }
-        //下個問題
+        selectionQuestion()
     }
 }
 
 
-//MARK: 51.1 QQQQ
+
+//MARK:QQQQ
 func question51_1() {
     questionID = 51.1
     if playerID == "A" {
-        questionsLabelText = ""
+        questionsLabelText = "前方有個村莊失火了要去幫忙媽"
     }else if playerID == "B"{
-        questionsLabelText = ""
+        questionsLabelText = "前方有個村莊失火了要去幫忙媽"
     }
 }
 func story51_1(){
     if judgeValue == 1 {
         if playerID == "A" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "\(aName)和\(bName)，一起去村莊裡幫忙滅火，平分了村名的獎賞。"
+            statsLabelText = "雙方\nGold+50"
         }else if playerID == "B" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "\(aName)和\(bName)，一起去村莊裡幫忙滅火，平分了村名的獎賞。"
+            statsLabelText = "雙方\nGold+50"
         }
-        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 50, bH: 0, bA: 0, bL: 0, bG: 50)
         //帶入下個問題
     }else if judgeValue == 2{
         if playerID == "A" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "你孤身前往火場幫忙，\(bName)只是在一旁觀看，村名感激你的幫忙給了點Gold，但你也受傷了。"
+            statsLabelText = "HP-2 Gold+100"
         }else if playerID == "B" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "你看著\(aName)獨自衝進火場，幫忙滅火得到獎賞，但也受傷了。"
+            statsLabelText = "對方\nHP-2 Gold+100"
         }
-        //數值變化
+        abChange(aH: -2, aA: 0, aL: 0, aG: 100, bH: 0, bA: 0, bL: 0, bG: 0)
         //下個問題
     }else if judgeValue == 3{
         if playerID == "A" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "你看著\(bName)獨自衝進火場，幫忙滅火得到獎賞，但也受傷了。"
+            statsLabelText = "對方\nHP-2 Gold+100"
         }else if playerID == "B" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "你孤身前往火場幫忙，\(aName)只是在一旁觀看，村名感激你的幫忙給了點Gold，但你也受傷了。"
+            statsLabelText = "HP-2 Gold+100"
         }
-        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -2, bA: 0, bL: 0, bG: 100)
         //下個問題
     }else if judgeValue == 4{
         if playerID == "A" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "你們兩個都決定不出手幫忙，路過村莊時看得太入迷不小心跌倒，而且還一起跌倒。"
+            statsLabelText = "雙方\nHP-1"
         }else if playerID == "B" {
-            storyTextLabelText = ""
-            statsLabelText = "\n對方\n"
+            storyTextLabelText = "你們兩個都決定不出手幫忙，路過村莊時看得太入迷不小心跌倒，而且還一起跌倒。"
+            statsLabelText = "雙方\nHP-1"
         }
-        //數值變化
+        abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
         //下個問題
     }
 }
-
-
-
-
-
-
-
-
-
 
 //===============
 
@@ -519,11 +511,9 @@ func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
     if bGold >= 1000 {
         bGold = 1000
     }
-    
     if aHP <= 0 || bHP <= 0 {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
     }
-    
 }
 
 

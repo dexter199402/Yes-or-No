@@ -38,6 +38,21 @@ func result(vv:UIViewController)  {
     case 1.3:
         story1_3()
         break
+    case 2.1:
+        story2_1()
+        break
+    case 2.2:
+        story2_2()
+        break
+    case 2.3:
+        story2_3()
+        break
+    case 2.31:
+        story2_31()
+        break
+    case 2.34:
+        story2_34()
+        break
     default:
         break
     }

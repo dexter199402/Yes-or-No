@@ -16,6 +16,8 @@ var playPage1Music:AVAudioPlayer = AVAudioPlayer()
 var otherAnswer:NSData?
 var othercheck = false
 var onlineMode = false
+var otherMessage = ""
+
 
 class ConnectMode: UIViewController {
     @IBOutlet weak var buttonColor: UIImageView!
@@ -34,6 +36,7 @@ class ConnectMode: UIViewController {
 //            }
 //        }
         
+        
         //music
         do{
             let audioPath = Bundle.main.path(forResource: "Morning_Walk", ofType: "mp3")
@@ -42,6 +45,8 @@ class ConnectMode: UIViewController {
         catch{
             print("\(error)")
         }
+        playPage1Music.numberOfLoops = -1
+        playPage1Music.prepareToPlay()
         playPage1Music.play()
         
         //驗證身份，檢查登入
@@ -50,7 +55,7 @@ class ConnectMode: UIViewController {
         localPlayer.authenticateHandler = {
             (login, error) in
             if (login != nil) {
-                print("我是有東西")
+                print("請登入")
                 self.present(login!, animated: true, completion: nil)
             }
         }
@@ -77,6 +82,7 @@ class ConnectMode: UIViewController {
             
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self )
         }else{
+            playPage1Music.stop()
             let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "SelectPlayerMenu")
             self.present(vc2!, animated: true, completion: nil)
         }
@@ -96,17 +102,20 @@ extension ConnectMode: GCHelperDelegate {
     func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
         
         if otherNameLock == true{
-            
             let dataString : String = NSString(data: didReceiveData, encoding: String.Encoding.utf8.rawValue)! as String
             if dataString.contains("是")||dataString.contains("否") {
                 otherAnswer = didReceiveData as NSData
                 othercheck = true
                 if lock{
-                // 通知customGameMode
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "play"), object: nil)
                 }
+            }else if dataString.contains("你好")||dataString.contains("謝謝")||dataString.contains("呵呵")||dataString.contains("相信我"){
+                otherMessage = dataString
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "messageCome"), object: nil)
+            }else if dataString.contains("/"){
+                qString = dataString
+                print("我是玩家Ｂ,我收到題目了")
             }
-            
         }
         
         if otherNameLock == false{
@@ -132,6 +141,7 @@ extension ConnectMode: GCHelperDelegate {
     /// Method called when a match has been initiated.
     func matchStarted() {
         onlineMode = true
+        playPage1Music.stop()
         let vc1=self.storyboard?.instantiateViewController(withIdentifier:"SelectPlayerMenu")
         self.present(vc1!, animated: true, completion: nil)
     }

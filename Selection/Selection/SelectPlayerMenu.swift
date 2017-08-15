@@ -27,6 +27,12 @@ var bName = ""
 //autolayOut之後尺寸
 var countDownWidth1:CGFloat = 0.0
 var sizeLock = false
+//問題序列
+var arrayy = [1,2,3,4,5,6,7,8,9,10]
+var getQuestion = [Int]()
+var qString = String()
+
+
 
 class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet weak var checkNameView: UITextView!
@@ -42,12 +48,16 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     var nameCountDownTimer = Timer()
     var countDownTimerNember = 30
     
+    var random:Int = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
+        
+        
         //名字
-        playName = ["佛羅多·巴金斯","菜菜子","賽佛勒斯·石內卜","邱偉豪","跩哥·馬份","勒苟拉斯","安納金·天行者","歐比王·肯諾比","丘巴卡"]
+        playName = ["小明","菜菜子","羊咩咩","摳哥","老王","印度蛙","天龍人","矮子輔","杰倫","阿象","邱偉豪"]
         
         if onlineMode == true {
            nameCountDownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SelectPlayerMenu.nameCountDown), userInfo: nil, repeats: true)
@@ -94,7 +104,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             if nameLock == false{
             nameLock = true
             do {
-                    _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerNameData as Data,    with: .reliable)
+                    _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerNameData as Data,with: .reliable)
             }catch{
                 print(error)
             }
@@ -108,6 +118,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                 checkNameView.text = "\n\n\n\n你好"+playerName+"\n等待對方選擇..."
                 checkNameView.alpha = 1
                 checkNameViewBackground.alpha = 1
+                nameCountDownTimer.invalidate()
                 if playerID == "noting"{
                     playerID = "A"
                 }
@@ -138,6 +149,25 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             if playerID == "A" {
                 aName = playerName
                 bName = otherPlayerNameString
+                //由Ａ玩家決定問題序列
+                //題目不重複
+                iD1Lock = false
+                iD2Lock = false
+                iD3Lock = false
+                iD4Lock = false
+                iD5Lock = false
+                arrayy = [1,2,3,4,5,6,7,8,9,10]
+                qString = ""
+                for _ in 1...5 {
+                    getTheRandomQuestion()
+                }
+                qString = String(getQuestion[0])+"/"+String(getQuestion[1])+"/"+String(getQuestion[2])+"/"+String(getQuestion[3])+"/"+String(getQuestion[4])
+                let qStringData:NSData = qString.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+                do {
+                    _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: qStringData as Data,with: .reliable)
+                }catch{
+                    print(error)
+                }
             }else if playerID == "B" {
                 bName = playerName
                 aName = otherPlayerNameString
@@ -145,6 +175,12 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         }
         
         if onlineMode == false {
+            
+            for _ in 1...5 {
+                getTheRandomQuestion()
+            }
+            qString = String(getQuestion[0])+"/"+String(getQuestion[1])+"/"+String(getQuestion[2])+"/"+String(getQuestion[3])+"/"+String(getQuestion[4])
+            
             if playerID == "A" {
                 aName = playerName
                 let otherName = "電腦人"
@@ -156,15 +192,20 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             }
         }
         
-        //ttf
-//        checkNameView.font = UIFont(name: "setoFont", size: 36)
-        //
         yourNameLabel.alpha = 0
         checkNameView.text = "\(playerName)，你好\n\n某個年代，某個大陸上有三個國家，幾百年來互相敵對，為了打破僵局，Ａ國與Ｂ國決定合作執行一項計畫，各派出一名間諜潛入Ｃ國，Ａ國間諜的名字是 \(aName)，Ｂ國間諜的名字叫 \(bName)，兩人表面上同心協力，背地裡卻各有心機"
         checkNameView.alpha = 1
         checkNameViewBackground.alpha = 1
-        
+        nameCountDownTimer.invalidate()
     }
+    
+    func getTheRandomQuestion()  {
+        random = Int(arc4random())%arrayy.count
+        getQuestion.append(arrayy[random])
+        arrayy.remove(at: random)
+    }
+    
+    
     
     
     func goCustomGameMode() {
