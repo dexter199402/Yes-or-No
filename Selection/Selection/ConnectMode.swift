@@ -17,24 +17,37 @@ var otherAnswer:NSData?
 var othercheck = false
 var onlineMode = false
 var otherMessage = ""
+var menuOpen = false
+var otherCompleteBtnBool = false
 
 
 class ConnectMode: UIViewController {
     @IBOutlet weak var buttonColor: UIImageView!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var menuBackground: UIImageView!
+    @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var musicSliderValue: UISlider!
+    @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        //ttf 一覽
-//        for family: String in UIFont.familyNames
-//        {
-//            print("\(family)")
-//            for names: String in UIFont.fontNames(forFamilyName: family)
-//            {
-//                print("== \(names)")
-//            }
-//        }
+        //menu shadow
+        menuView.layer.shadowOpacity = 1
+        menuView.layer.shadowRadius = 6
+        
+        
+//        ttf 一覽
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
         
         
         //music
@@ -60,12 +73,46 @@ class ConnectMode: UIViewController {
             }
         }
         
-        
         //hero動畫
         isHeroEnabled = true
-        buttonColor.heroModifiers = [.scale(x: 50, y: 100, z: 20)]
     }
     
+    
+    @IBAction func backGroundTap(_ sender: UITapGestureRecognizer) {
+        menuFunc()
+    }
+    @IBAction func openMenu(_ sender: Any) {
+        menuFunc()
+    }
+    func menuFunc()  {
+        if menuOpen {
+            leadingConstraint.constant = -190
+            menuLeadingConstraint.constant = -20
+            menuBtn.setImage(UIImage(named: "menu.png"), for: .normal)
+            self.menuBackground.isUserInteractionEnabled = false
+            self.buttonColor.isUserInteractionEnabled = true
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuBackground.alpha = 0
+            })
+        }else {
+            leadingConstraint.constant = 0
+            menuLeadingConstraint.constant = -180
+            menuBtn.setImage(UIImage(named: "backMenu.png"), for: .normal)
+            self.buttonColor.isUserInteractionEnabled = false
+            self.menuBackground.isUserInteractionEnabled = true
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuBackground.alpha = 0.8
+            })
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+        menuOpen = !menuOpen
+    }
+    @IBAction func musicSlider(_ sender: UISlider) {
+        playPage1Music.volume = musicSliderValue.value
+    }
+
     
     
     
@@ -115,6 +162,11 @@ extension ConnectMode: GCHelperDelegate {
             }else if dataString.contains("/"){
                 qString = dataString
                 print("我是玩家Ｂ,我收到題目了")
+            }else if dataString.contains("我看完了"){
+                otherCompleteBtnBool = true
+                if selfComplete {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "completeGo"), object: nil)
+                }
             }
         }
         

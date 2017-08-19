@@ -476,6 +476,13 @@ func story51_1(){
     }
 }
 
+
+
+
+
+
+
+
 //===============
 
 func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
@@ -512,8 +519,12 @@ func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
         bGold = 1000
     }
     if aHP <= 0 || bHP <= 0 {
+        print("有人死摟")
+        print(aHP)
+        print(bHP)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
     }
+    print(aATK,bATK,aLuck,bLuck)
 }
 
 

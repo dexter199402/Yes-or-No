@@ -14,6 +14,8 @@
 		D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D52CB6B31F1B553A00BA07E7 /* Main.storyboard */; };
 		D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */; };
 		D52CB6BA1F1B553A00BA07E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D52CB6B81F1B553A00BA07E7 /* LaunchScreen.storyboard */; };
+		D533B98A1F4471AA00099A6A /* show.ttc in Resources */ = {isa = PBXBuildFile; fileRef = D533B9891F4471AA00099A6A /* show.ttc */; };
+		D533B9DB1F45B52B00099A6A /* CLTypingLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D533B9DA1F45B52B00099A6A /* CLTypingLabel.framework */; };
 		D54CC6B81F25A49500C2BEEC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54CC6B71F25A49500C2BEEC /* GameKit.framework */; };
 		D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */; };
 		D5A0D4B31F20D27A00600CD2 /* ButtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */; };
@@ -38,6 +40,8 @@
 		D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D52CB6B91F1B553A00BA07E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D52CB6BB1F1B553A00BA07E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D533B9891F4471AA00099A6A /* show.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = show.ttc; sourceTree = "<group>"; };
+		D533B9DA1F45B52B00099A6A /* CLTypingLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CLTypingLabel.framework; path = "../../Library/Developer/Xcode/DerivedData/Selection-bxeptchhwevltrftwhscujxvevkk/Build/Products/Debug-iphoneos/CLTypingLabel/CLTypingLabel.framework"; sourceTree = "<group>"; };
 		D54CC6B71F25A49500C2BEEC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Morning_Walk.mp3; sourceTree = "<group>"; };
 		D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPath.swift; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D533B9DB1F45B52B00099A6A /* CLTypingLabel.framework in Frameworks */,
 				D50656D91F25F2C700797CCC /* GCHelper.framework in Frameworks */,
 				D702B8FFE17977DB7F51C77C /* Pods_Selection.framework in Frameworks */,
 				D54CC6B81F25A49500C2BEEC /* GameKit.framework in Frameworks */,
@@ -105,6 +110,7 @@
 		D52CB6C11F1DA4CF00BA07E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D533B9DA1F45B52B00099A6A /* CLTypingLabel.framework */,
 				D50656D81F25F2C700797CCC /* GCHelper.framework */,
 				D54CC6B71F25A49500C2BEEC /* GameKit.framework */,
 				A67EF924D2BB67C48E43B8CA /* Pods_Selection.framework */,
@@ -139,6 +145,7 @@
 		D5A0D4BD1F20EC9000600CD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D533B9891F4471AA00099A6A /* show.ttc */,
 				D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */,
 				D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */,
 			);
@@ -241,6 +248,7 @@
 				D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */,
 				D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */,
 				D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */,
+				D533B98A1F4471AA00099A6A /* show.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		42DB44606191AF4E120A9110 /* [CP] Embed Pods Frameworks */ = {

@@ -18,7 +18,6 @@ var iD5Lock = false
 func selectionQuestion() {
     
     let questionArray = Array(qString.components(separatedBy:"/"))
-    print(questionArray)
     if iD1Lock == false && iD2Lock == false && iD3Lock == false && iD4Lock == false && iD5Lock == false{
         iD1Lock = true
         questionSwitch(ID:Int(String(questionArray[0]))!)
@@ -34,11 +33,12 @@ func selectionQuestion() {
     } else if iD1Lock == true && iD2Lock == true && iD3Lock == true && iD4Lock == true && iD5Lock == false {
         iD5Lock = true
         questionSwitch(ID:Int(String(questionArray[4]))!)
+    }else{
+        question1_1()
     }
 }
 
 func questionSwitch(ID:Int) {
-    print("有進來questionSwitch")
         switch ID {
         case 1:
             question1_1()

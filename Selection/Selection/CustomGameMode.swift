@@ -450,6 +450,7 @@ class CustomGameMode: UIViewController {
         otherPowpowTime = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.otherTalkPowMiss), userInfo: nil, repeats: true)
         otherPowpowTime.fire()
     }
+    
     func otherTalkPowMiss() {
         if otherFirstPow == true {
             otherFirstPow = false
@@ -479,6 +480,7 @@ class CustomGameMode: UIViewController {
         whiteMan.stopAnimating()
         blackMan.stopAnimating()
         answerCountdownLabel.alpha = 1
+        getQuestion = [Int]()
         let alert = UIAlertController(title: "GameOver", message: "遊戲結束了按OK繼續", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             self.performSegue(withIdentifier: "backFirstView", sender: self)

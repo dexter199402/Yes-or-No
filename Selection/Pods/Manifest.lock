@@ -1,15 +1,18 @@
 PODS:
+  - CLTypingLabel (0.2.3)
   - GCHelper (0.4.1)
   - Hero (0.3.6)
 
 DEPENDENCIES:
+  - CLTypingLabel
   - GCHelper
   - Hero
 
 SPEC CHECKSUMS:
+  CLTypingLabel: 61393c97cc7498a23754eef8e04a4ea81543d3b1
   GCHelper: 168bb32ef2b045580ccc384cf6be11db5aae8fd8
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
 
-PODFILE CHECKSUM: 8e208f7d7a1fb1ad7b913a4c93e1101b94a8c6d2
+PODFILE CHECKSUM: c01523d25ed25af0601b2af48801cbc66a04d6c8
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.1.1
