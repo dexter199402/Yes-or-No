@@ -171,12 +171,15 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                 iD3Lock = false
                 iD4Lock = false
                 iD5Lock = false
-                arrayy = [1,2,3,4,5,6,7,8,9,10]
-                qString = ""
-                for _ in 1...5 {
-                    getTheRandomQuestion()
-                }
-                qString = String(getQuestion[0])+"/"+String(getQuestion[1])+"/"+String(getQuestion[2])+"/"+String(getQuestion[3])+"/"+String(getQuestion[4])
+                arrayy = [1,2,3,4,5,6,7,8,9,10,99]
+                //測試
+                qString = "1/2/50/51/99"
+                //隨機選問題
+//                qString = ""
+//                for _ in 1...5 {
+//                    getTheRandomQuestion()
+//                }
+//                qString = String(getQuestion[0])+"/"+String(getQuestion[1])+"/"+String(getQuestion[2])+"/"+String(getQuestion[3])+"/"+String(getQuestion[4])
                 let qStringData:NSData = qString.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
                 do {
                     _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: qStringData as Data,with: .reliable)
@@ -209,10 +212,9 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         
         checkNameView.font = UIFont (name: "DFHsiu-W3-WINP-BF", size: 30)
         
-        
-        checkNameView.text = "\(playerName)，你好\n\n某個年代，某個大陸上有三個國家，幾百年來互相敵對，為了打破僵局，Ａ國與Ｂ國決定合作執行一項計畫，各派出一名間諜潛入Ｃ國，Ａ國間諜的名字是 \(aName)，Ｂ國間諜的名字叫 \(bName)，兩人表面上同心協力，背地裡卻各有心機"
-        
+
         UIView.animate(withDuration: 1, animations: {
+            self.checkNameView.text = "\(playerName)，你好\n\n某個年代，某個大陸上有三個國家，幾百年來互相敵對，為了打破僵局，Ａ國與Ｂ國決定合作執行一項計畫，各派出一名間諜潛入Ｃ國，Ａ國間諜的名字是 \(aName)，Ｂ國間諜的名字叫 \(bName)，兩人表面上同心協力，背地裡卻各有心機"
             self.yourNameLabel.alpha = 0
             self.checkNameView.alpha = 1
             self.checkNameViewBackground.alpha = 1

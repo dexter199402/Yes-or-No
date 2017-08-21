@@ -19,6 +19,11 @@ var onlineMode = false
 var otherMessage = ""
 var menuOpen = false
 var otherCompleteBtnBool = false
+var selfSkillBool = false
+var otherSkillsString = ""
+var otherSkillsBool = false
+
+
 
 
 class ConnectMode: UIViewController {
@@ -34,20 +39,23 @@ class ConnectMode: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //初始值
+        onlineMode = false
+        
         //menu shadow
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
         
         
 //        ttf 一覽
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
+//        for family: String in UIFont.familyNames
+//        {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
         
         
         //music
@@ -86,8 +94,8 @@ class ConnectMode: UIViewController {
     }
     func menuFunc()  {
         if menuOpen {
-            leadingConstraint.constant = -190
-            menuLeadingConstraint.constant = -20
+            self.leadingConstraint.constant = -190
+            self.menuLeadingConstraint.constant = -20
             menuBtn.setImage(UIImage(named: "menu.png"), for: .normal)
             self.menuBackground.isUserInteractionEnabled = false
             self.buttonColor.isUserInteractionEnabled = true
@@ -166,6 +174,12 @@ extension ConnectMode: GCHelperDelegate {
                 otherCompleteBtnBool = true
                 if selfComplete {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "completeGo"), object: nil)
+                }
+            }else if dataString.contains("剪刀") || dataString.contains("石頭") || dataString.contains("布") {
+                otherSkillsBool = true
+                otherSkillsString = dataString
+                if selfSkillBool {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "skills"), object: nil)
                 }
             }
         }

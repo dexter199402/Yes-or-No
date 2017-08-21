@@ -443,6 +443,8 @@ func story51_1(){
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 50, bH: 0, bA: 0, bL: 0, bG: 50)
         //帶入下個問題
+        selectionQuestion()
+        //
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "你孤身前往火場幫忙，\(bName)只是在一旁觀看，村名感激你的幫忙給了點Gold，但你也受傷了。"
@@ -453,6 +455,8 @@ func story51_1(){
         }
         abChange(aH: -2, aA: 0, aL: 0, aG: 100, bH: 0, bA: 0, bL: 0, bG: 0)
         //下個問題
+        selectionQuestion()
+        //
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "你看著\(bName)獨自衝進火場，幫忙滅火得到獎賞，但也受傷了。"
@@ -463,6 +467,8 @@ func story51_1(){
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -2, bA: 0, bL: 0, bG: 100)
         //下個問題
+        selectionQuestion()
+        //
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "你們兩個都決定不出手幫忙，路過村莊時看得太入迷不小心跌倒，而且還一起跌倒。"
@@ -473,6 +479,8 @@ func story51_1(){
         }
         abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
         //下個問題
+        selectionQuestion()
+        //
     }
 }
 
