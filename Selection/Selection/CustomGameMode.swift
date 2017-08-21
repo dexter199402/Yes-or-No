@@ -91,13 +91,29 @@ class CustomGameMode: UIViewController {
     var otherPowpowTime:Timer = Timer()
     var firstPow = true
     var otherFirstPow = true
+    var viewDidLoadTimer:Timer = Timer()
     
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        //初始數值
+        autolayoutLoc = false
+        aHP = 50
+        aATK = 10
+        aLuck = 10
+        aGold = 200
+        bHP = 50
+        bATK = 10
+        bLuck = 10
+        bGold = 200
+        selfGold.text = "200"
+        otherGold.text = "200"
+        countDownImage.alpha = 1
+        answerCountdownLabel.alpha = 1
+
         // 更改label監聽器 改變圖片回原本樣子 開始倒數
         NotificationCenter.default.addObserver(self, selector: #selector(labelText), name: NSNotification.Name(rawValue: "LabelText"), object: nil)
         
@@ -126,20 +142,24 @@ class CustomGameMode: UIViewController {
         
         //人物動畫
         manAnimation()
+
         
-        statsLine()
+        
         
         //hero動畫
         isHeroEnabled = true
         self.heroModalAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomOut)
     }
     
+
     //改變數值條顯示
     func statsLine()  {
         if playerID == "A" {
-            self.selfLine1Constraints.constant = -(Line1Value*CGFloat(50-aHP)/50)
-            self.selfLine2Constraints.constant = -(Line2Value*CGFloat(20-aATK)/20)
-            self.selfLine3Constraints.constant = -(Line3Value*CGFloat(20-aLuck)/20)
+            
+                self.selfLine1Constraints.constant = -(Line1Value*CGFloat(50-aHP)/50)
+                self.selfLine2Constraints.constant = -(Line2Value*CGFloat(20-aATK)/20)
+                self.selfLine3Constraints.constant = -(Line3Value*CGFloat(20-aLuck)/20)
+            
             if aATK <= 0 {
                 selfLine2.alpha = 0
             }else{
@@ -151,9 +171,11 @@ class CustomGameMode: UIViewController {
                 selfLine3.alpha = 1
             }
             selfGold.text = "\(aGold)"
-            self.otherLine1Constraints.constant = -(Line1Value*CGFloat(50-bHP)/50)
-            self.otherLine2Constraints.constant = -(Line2Value*CGFloat(20-bATK)/20)
-            self.otherLine3Constraints.constant = -(Line3Value*CGFloat(20-bLuck)/20)
+            
+                self.otherLine1Constraints.constant = -(Line1Value*CGFloat(50-bHP)/50)
+                self.otherLine2Constraints.constant = -(Line2Value*CGFloat(20-bATK)/20)
+                self.otherLine3Constraints.constant = -(Line3Value*CGFloat(20-bLuck)/20)
+            
             if bATK <= 0 {
                 otherLine2.alpha = 0
             }else{
@@ -166,9 +188,12 @@ class CustomGameMode: UIViewController {
             }
             otherGold.text = "\(bGold)"
         }else if playerID == "B" {
-            self.selfLine1Constraints.constant = -(Line1Value*CGFloat(50-bHP)/50)
-            self.selfLine2Constraints.constant = -(Line2Value*CGFloat(20-bATK)/20)
-            self.selfLine3Constraints.constant = -(Line3Value*CGFloat(20-bLuck)/20)
+            
+                self.selfLine1Constraints.constant = -(Line1Value*CGFloat(50-bHP)/50)
+                self.selfLine2Constraints.constant = -(Line2Value*CGFloat(20-bATK)/20)
+                self.selfLine3Constraints.constant = -(Line3Value*CGFloat(20-bLuck)/20)
+        
+            
             if bATK <= 0 {
                 selfLine2.alpha = 0
             }else{
@@ -180,9 +205,11 @@ class CustomGameMode: UIViewController {
                 selfLine3.alpha = 1
             }
             selfGold.text = "\(bGold)"
-            self.otherLine1Constraints.constant = -(Line1Value*CGFloat(50-aHP)/50)
-            self.otherLine2Constraints.constant = -(Line2Value*CGFloat(20-aATK)/20)
-            self.otherLine3Constraints.constant = -(Line3Value*CGFloat(20-aLuck)/20)
+            
+                self.otherLine1Constraints.constant = -(Line1Value*CGFloat(50-aHP)/50)
+                self.otherLine2Constraints.constant = -(Line2Value*CGFloat(20-aATK)/20)
+                self.otherLine3Constraints.constant = -(Line3Value*CGFloat(20-aLuck)/20)
+            
             if aATK <= 0 {
                 otherLine2.alpha = 0
             }else{
@@ -194,6 +221,9 @@ class CustomGameMode: UIViewController {
                 otherLine3.alpha = 1
             }
             otherGold.text = "\(aGold)"
+        }
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -263,18 +293,19 @@ class CustomGameMode: UIViewController {
     
     //結束過場後執行
     func labelText(){
-        questionsLabel.text = questionsLabelText
-        colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
-        if onlineMode {
-            answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-            if countDownUse {
-                countdownNember = 10
-            }else{
-                countdownNember = 20
+        DispatchQueue.main.async {
+            self.questionsLabel.text = questionsLabelText
+            self.colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
+            if onlineMode {
+                answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
+                if self.countDownUse {
+                    countdownNember = 10
+                }else{
+                    countdownNember = 20
+                }
+                answerCountdown.fire()
             }
-            answerCountdown.fire()
         }
-        statsLine()
     }
     
     // ==對方後選結果方法=====>>
@@ -295,7 +326,18 @@ class CustomGameMode: UIViewController {
             Line2Value = self.selfLine2.frame.width
             Line3Value = self.selfLine3.frame.width
             autolayoutLoc = true
+            self.selfLine1Constraints.constant = -self.selfLine1.frame.height
+            self.otherLine1Constraints.constant = -self.otherLine1.frame.height
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            print(Line1Value)
+            self.statsLine()
+        }
+        
+        
     }
 //    判斷按下的按鈕
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {
@@ -464,18 +506,11 @@ class CustomGameMode: UIViewController {
 
     func gameOver() {
         //前一場屬性重設
+        
         answerCountdown.invalidate()
         playerID = "noting"
         otherNameLock = false
         nameLock = false
-        aHP = 50
-        aATK = 10
-        aLuck = 10
-        aGold = 200
-        bHP = 50
-        bATK = 10
-        bLuck = 10
-        bGold = 200
         countDownImage.alpha = 1
         whiteMan.stopAnimating()
         blackMan.stopAnimating()
@@ -487,8 +522,9 @@ class CustomGameMode: UIViewController {
         }
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
-        
     }
+    
+    
     /*
     // MARK: - Navigation
 

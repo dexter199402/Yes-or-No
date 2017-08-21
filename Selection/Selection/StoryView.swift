@@ -104,9 +104,11 @@ class StoryView: UIViewController {
                 print(error)
             }
             if otherCompleteBtnBool {
+                timeUpFirstRun = false
                 dismissSelf()
             }
         }else{
+            timeUpFirstRun = false
             dismissSelf()
         }
     }
@@ -118,6 +120,7 @@ class StoryView: UIViewController {
         }else{
             self.dismiss(animated: true, completion: nil)
         }
+        
     }
     
     override func didReceiveMemoryWarning() {

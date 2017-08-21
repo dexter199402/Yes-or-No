@@ -20,6 +20,8 @@
 		D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */; };
 		D5A0D4B31F20D27A00600CD2 /* ButtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */; };
 		D5A0D4B51F20DBA800600CD2 /* CustomGameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */; };
+		D5AB09931F4990BC0065D37B /* fightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB09921F4990BC0065D37B /* fightView.swift */; };
+		D5AB09951F49BF420065D37B /* gameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB09941F49BF420065D37B /* gameOver.swift */; };
 		D5BF5DE61F3865D600A5B531 /* QuestionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */; };
 		D5BF5DE81F3866D900A5B531 /* HaoStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE71F3866D900A5B531 /* HaoStory.swift */; };
 		D5BF5DEA1F3867BD00A5B531 /* ChenStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE91F3867BD00A5B531 /* ChenStory.swift */; };
@@ -46,6 +48,8 @@
 		D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Morning_Walk.mp3; sourceTree = "<group>"; };
 		D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPath.swift; sourceTree = "<group>"; };
 		D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameMode.swift; sourceTree = "<group>"; };
+		D5AB09921F4990BC0065D37B /* fightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fightView.swift; sourceTree = "<group>"; };
+		D5AB09941F49BF420065D37B /* gameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gameOver.swift; sourceTree = "<group>"; };
 		D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFunction.swift; sourceTree = "<group>"; };
 		D5BF5DE71F3866D900A5B531 /* HaoStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaoStory.swift; sourceTree = "<group>"; };
 		D5BF5DE91F3867BD00A5B531 /* ChenStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChenStory.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				DF042F331F2B394F00C7799A /* ResultJudgement.swift */,
 				D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */,
 				D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */,
+				D5AB09921F4990BC0065D37B /* fightView.swift */,
+				D5AB09941F49BF420065D37B /* gameOver.swift */,
 				D5BF5DEB1F38681900A5B531 /* Story */,
 			);
 			name = Controller;
@@ -313,10 +319,12 @@
 				D5A0D4B31F20D27A00600CD2 /* ButtonPath.swift in Sources */,
 				DFF66F111F20E8A00053DF37 /* SelectPlayerMenu.swift in Sources */,
 				D517C5D01F2F06FD00E8DAD1 /* StoryView.swift in Sources */,
+				D5AB09931F4990BC0065D37B /* fightView.swift in Sources */,
 				D5A0D4B51F20DBA800600CD2 /* CustomGameMode.swift in Sources */,
 				D52CB6B21F1B553A00BA07E7 /* ConnectMode.swift in Sources */,
 				D52CB6B01F1B553A00BA07E7 /* AppDelegate.swift in Sources */,
 				D5BF5DE61F3865D600A5B531 /* QuestionFunction.swift in Sources */,
+				D5AB09951F49BF420065D37B /* gameOver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,6 +62,8 @@ func result(vv:UIViewController)  {
 func goStoryView(v:UIViewController) {
     let view=v.storyboard?.instantiateViewController(withIdentifier:"StoryView")
     v.present(view!, animated: true, completion: nil)
+//    let view=v.storyboard?.instantiateViewController(withIdentifier:"fightView")
+//    v.present(view!, animated: true, completion: nil)
 }
 
 
