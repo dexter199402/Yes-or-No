@@ -8,6 +8,8 @@
 
 import UIKit
 
+var timeUp = Timer()
+
 class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageViewControllerDataSource {
     
     //所有畫面控制
@@ -19,7 +21,6 @@ class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageVie
     func vcInstance(name:String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: name)
     }
-    
     var nextTime = Double()
     
     
@@ -42,13 +43,12 @@ class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageVie
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.dis), name: NSNotification.Name(rawValue: "completeGo"), object: nil)
-        
         dismissSelf()
     }
     
     func dismissSelf()  {
         DispatchQueue.main.asyncAfter(deadline: .now()+nextTime) {
-            print("dismiss")
+//            print("過場dismiss自動計時:\(self.nextTime)")
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -73,8 +73,6 @@ class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageVie
         return allVC[previousIndex]
         
     }
-    
-    
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         guard let viewControllerIndex = allVC.index(of: viewController) else {
@@ -109,11 +107,6 @@ class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageVie
         return firstViewCOntrollerIndex
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        timeUp.invalidate()
-        // 通知customGameMode更改屬性重設.
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelText"), object: nil)
-    }
 
     
     override func didReceiveMemoryWarning() {

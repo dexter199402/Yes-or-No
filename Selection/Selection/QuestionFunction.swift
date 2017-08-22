@@ -18,6 +18,7 @@ var iD5Lock = false
 func selectionQuestion() {
     
     let questionArray = Array(qString.components(separatedBy:"/"))
+    
     if iD1Lock == false && iD2Lock == false && iD3Lock == false && iD4Lock == false && iD5Lock == false{
         iD1Lock = true
         questionSwitch(ID:Int(String(questionArray[0]))!)

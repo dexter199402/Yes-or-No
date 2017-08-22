@@ -9,23 +9,18 @@
 import UIKit
 import GameKit
 import GCHelper
-import Hero
-
 
 var pressYes = "是"
 var playerDataYes :NSData = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 var pressNo = "否"
 var playerDataNo :NSData = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
-//是否labelText
 var yesLabelText = "是"
 var noLabelText = "否"
 
 
 var lock = false
-
 var yourAnswer = 9
-
 var playerID = "noting"
 
 //答案倒數
@@ -50,10 +45,8 @@ var Line3Value = CGFloat()
 
 class CustomGameMode: UIViewController {
     
-    //是否label
     @IBOutlet weak var yesLabel: UILabel!
     @IBOutlet weak var noLabel: UILabel!
-    
     
     //倒數計時條
     @IBOutlet weak var countDownImage: UIImageView!
@@ -126,9 +119,6 @@ class CustomGameMode: UIViewController {
         answerCountdownLabel.alpha = 1
         yesLabelText = "是"
         noLabelText = "否"
-
-        // 更改label監聽器 改變圖片回原本樣子 開始倒數
-        NotificationCenter.default.addObserver(self, selector: #selector(labelText), name: NSNotification.Name(rawValue: "LabelText"), object: nil)
         
         // 對方玩家後選監聽器
         NotificationCenter.default.addObserver(self, selector: #selector(otherpley), name: NSNotification.Name(rawValue: "play"), object: nil)
@@ -139,15 +129,11 @@ class CustomGameMode: UIViewController {
         //訊息來了監聽
         NotificationCenter.default.addObserver(self, selector: #selector(otherPow), name: NSNotification.Name(rawValue: "messageCome"), object: nil)
         
-        //第一題
         selectionQuestion()
         questionsLabel.text = questionsLabelText
         
         
-        if onlineMode == true {
-            answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
-            answerCountdown.fire()
-        }else if onlineMode == false {
+        if onlineMode == false {
             countDownImage.alpha = 0
             answerCountdownLabel.alpha = 0
             whiteMan.isUserInteractionEnabled = false
@@ -157,11 +143,6 @@ class CustomGameMode: UIViewController {
         manAnimation()
 
         
-        
-        
-        //hero動畫
-        isHeroEnabled = true
-        self.heroModalAnimationType = .selectBy(presenting: .zoomSlide(direction: .left), dismissing: .zoomOut)
     }
     
 
@@ -268,6 +249,7 @@ class CustomGameMode: UIViewController {
         }
         if countdownNember <= 0{
             answerCountdownLabel.text = String(0.0)
+            answerCountdown.invalidate()
             //隨機選擇一個答案
             if lock != true {
                 countDownUse = true
@@ -303,24 +285,7 @@ class CustomGameMode: UIViewController {
             }
         }
     }
-    
-    //結束過場後執行
-    func labelText(){
-        DispatchQueue.main.async {
-            self.questionsLabel.text = questionsLabelText
-            self.colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
-            if onlineMode {
-                answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
-                if self.countDownUse {
-                    countdownNember = 10
-                }else{
-                    countdownNember = 20
-                }
-                answerCountdown.fire()
-            }
-        }
-    }
-    
+
     // ==對方後選結果方法=====>>
     func otherpley() {
         result(vv: self)
@@ -349,9 +314,20 @@ class CustomGameMode: UIViewController {
             self.yesLabel.text = yesLabelText
             self.noLabel.text = noLabelText
             self.statsLine()
+            
+            self.questionsLabel.text = questionsLabelText
+            self.colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
+            if onlineMode {
+                answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
+                if self.countDownUse {
+                    countdownNember = 10
+                }else{
+                    countdownNember = 20
+                }
+                print("問題倒數計開始:\(countdownNember)")
+                answerCountdown.fire()
+            }
         }
-        
-        
     }
 //    判斷按下的按鈕
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {

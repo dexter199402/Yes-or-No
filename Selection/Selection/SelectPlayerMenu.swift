@@ -32,7 +32,7 @@ var sizeLock = false
 //問題序列
 var arrayy = [1,2,3,4,5,6,7,8,9,10]
 var getQuestion = [Int]()
-var qString = String()
+var qString = ""
 
 
 
@@ -75,9 +75,6 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             countDownImage.alpha = 0
         }
         
-        //hero動畫
-        isHeroEnabled = true
-        yourNameLabel.heroModifiers = [.translate(y: 100)]
 
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -159,7 +156,6 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     func goPlay()  {
         nameCheckTimer = Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(SelectPlayerMenu.goCustomGameMode), userInfo: nil, repeats: true)
         nameCheckTimer.fire()
-        
         if onlineMode == true {
             
             iD1Lock = false

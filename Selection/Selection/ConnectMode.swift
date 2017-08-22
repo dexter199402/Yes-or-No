@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import Hero
 import GameKit
 import GCHelper
 
@@ -82,8 +81,7 @@ class ConnectMode: UIViewController {
             }
         }
         
-        //hero動畫
-        isHeroEnabled = true
+
     }
     
     
@@ -150,14 +148,15 @@ class ConnectMode: UIViewController {
 
 
 
-//擴充 CGHelperDelegte
 extension ConnectMode: GCHelperDelegate {
     /// Method called when the device received data about the match from another device in the match.
     //當接受到傳值會執行的方法
     func match(_ match: GKMatch, didReceiveData: Data, fromPlayer: String) {
         
         if otherNameLock == true{
+            
             let dataString : String = NSString(data: didReceiveData, encoding: String.Encoding.utf8.rawValue)! as String
+            
             if dataString.contains("是")||dataString.contains("否") {
                 otherAnswer = didReceiveData as NSData
                 othercheck = true
@@ -168,8 +167,8 @@ extension ConnectMode: GCHelperDelegate {
                 otherMessage = dataString
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "messageCome"), object: nil)
             }else if dataString.contains("/"){
+                print("玩家Ｂ收到問題列表")
                 qString = dataString
-                print("我是玩家Ｂ,我收到題目了")
             }else if dataString.contains("我看完了"){
                 otherCompleteBtnBool = true
                 if selfComplete {
