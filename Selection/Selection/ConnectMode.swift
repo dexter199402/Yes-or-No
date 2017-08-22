@@ -13,6 +13,7 @@ import GameKit
 import GCHelper
 
 var playPage1Music:AVAudioPlayer = AVAudioPlayer()
+var buttonSound:AVAudioPlayer = AVAudioPlayer()
 var otherAnswer:NSData?
 var othercheck = false
 var onlineMode = false
@@ -134,7 +135,6 @@ class ConnectMode: UIViewController {
     @IBAction func tapButton(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: sender.view)
         if buttonColorPath.contains(point){
-            
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self )
         }else{
             playPage1Music.stop()

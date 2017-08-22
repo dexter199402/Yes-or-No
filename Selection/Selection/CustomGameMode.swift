@@ -11,10 +11,16 @@ import GameKit
 import GCHelper
 import Hero
 
+
 var pressYes = "是"
 var playerDataYes :NSData = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 var pressNo = "否"
 var playerDataNo :NSData = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+
+//是否labelText
+var yesLabelText = "是"
+var noLabelText = "否"
+
 
 var lock = false
 
@@ -43,6 +49,11 @@ var Line2Value = CGFloat()
 var Line3Value = CGFloat()
 
 class CustomGameMode: UIViewController {
+    
+    //是否label
+    @IBOutlet weak var yesLabel: UILabel!
+    @IBOutlet weak var noLabel: UILabel!
+    
     
     //倒數計時條
     @IBOutlet weak var countDownImage: UIImageView!
@@ -113,6 +124,8 @@ class CustomGameMode: UIViewController {
         otherGold.text = "200"
         countDownImage.alpha = 1
         answerCountdownLabel.alpha = 1
+        yesLabelText = "是"
+        noLabelText = "否"
 
         // 更改label監聽器 改變圖片回原本樣子 開始倒數
         NotificationCenter.default.addObserver(self, selector: #selector(labelText), name: NSNotification.Name(rawValue: "LabelText"), object: nil)
@@ -127,7 +140,7 @@ class CustomGameMode: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(otherPow), name: NSNotification.Name(rawValue: "messageCome"), object: nil)
         
         //第一題
-        question1_1()
+        selectionQuestion()
         questionsLabel.text = questionsLabelText
         
         
@@ -333,7 +346,8 @@ class CustomGameMode: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            print(Line1Value)
+            self.yesLabel.text = yesLabelText
+            self.noLabel.text = noLabelText
             self.statsLine()
         }
         
@@ -343,7 +357,8 @@ class CustomGameMode: UIViewController {
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: sender.view)
         if buttonColorPath.contains(point) {
-            
+            //音效
+            buttonSoundFunc()
             if  onlineMode == true {
                 do {
                 if lock != true{
@@ -374,7 +389,7 @@ class CustomGameMode: UIViewController {
             }
             
         }else{
-            
+            buttonSoundFunc()
             if onlineMode == true {
                 do {
                 if lock != true{
@@ -409,6 +424,22 @@ class CustomGameMode: UIViewController {
             result(vv:self)
         }
     }
+    
+    //按鈕音效
+    func buttonSoundFunc()  {
+        //music
+        do{
+            let audioPath = Bundle.main.path(forResource: "button", ofType: "mp3")
+            try buttonSound = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        buttonSound.prepareToPlay()
+        buttonSound.play()
+    }
+    
+    
     
     //泡泡對話
     @IBAction func tapWhiteMan(_ sender: UITapGestureRecognizer) {

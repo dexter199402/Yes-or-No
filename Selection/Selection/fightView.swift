@@ -231,7 +231,6 @@ class fightView: UIViewController {
         }
     }
     func fightViewStats()  {
-        DispatchQueue.main.async {
             
             if playerID == "A" {
                 
@@ -254,7 +253,6 @@ class fightView: UIViewController {
                 self.otherLuckConstraint.constant = -(self.Line23*CGFloat(20-aLuck)/20)
                 
             }
-        }
         UIView.animate(withDuration: 1.0) {
             self.view.layoutIfNeeded()
         }

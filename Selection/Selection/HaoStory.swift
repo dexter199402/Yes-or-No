@@ -485,6 +485,83 @@ func story51_1(){
 }
 
 
+//99.1.  Ａ：兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？
+//選項：躲起來   熱血開戰
+//Ｂ：兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？
+//選項：躲起來   熱血開戰
+//(若兩人都選躲起來)Ａ和Ｂ躲了一天，再偽裝成Ｃ國士兵，趁著混亂逃出了城堡
+//(Ａ選躲起來，Ｂ選熱血開戰)Ｂ衝上去準備決一死戰，回頭一看Ａ卻躲到了床底下，寡不敵眾的Ｂ被當場砍死，而Ａ也很快被抓了出來，幾天後遭到公開處刑
+//(Ａ選熱血開戰，Ｂ選躲起來)Ａ衝上去準備決一死戰，回頭一看Ｂ卻躲到了床底下，寡不敵眾的Ａ被當場砍死，而Ｂ也很快被抓了出來，幾天後遭到公開處刑
+//(若兩人都選熱血開戰)(if Ａ+Ｂ ＡＴＫ>26)Ａ和Ｂ大吼一聲便衝了出去，兩人彷彿開了無雙，人擋殺人 佛擋殺佛，Ｃ國士兵紛紛嚇得四處逃跑，兩人趁隙逃出了城堡
+//
+
+
+func question99_1() {
+    questionID = 99.1
+    if playerID == "A" {
+        questionsLabelText = "兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？"
+    }else if playerID == "B"{
+        questionsLabelText = "兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？"
+    }
+    yesLabelText = "躲起來"
+    noLabelText = "熱血開戰"
+
+}
+func story99_1(){
+    print("99.1")
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)躲了一天，再偽裝成Ｃ國士兵，趁著混亂逃出了城堡"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)躲了一天，再偽裝成Ｃ國士兵，趁著混亂逃出了城堡"
+            statsLabelText = ""
+        }
+        question99_2()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)衝上去準備決一死戰，回頭一看\(aName)卻躲到了床底下，寡不敵眾的\(bName)被當場砍死，而\(aName)也很快被抓了出來，幾天後遭到公開處刑"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)衝上去準備決一死戰，回頭一看\(aName)卻躲到了床底下，寡不敵眾的\(bName)被當場砍死，而\(aName)也很快被抓了出來，幾天後遭到公開處刑"
+            statsLabelText = ""
+        }
+        question99_2()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)衝上去準備決一死戰，回頭一看\(bName)卻躲到了床底下，寡不敵眾的\(aName)被當場砍死，而\(bName)也很快被抓了出來，幾天後遭到公開處刑"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)衝上去準備決一死戰，回頭一看\(bName)卻躲到了床底下，寡不敵眾的\(aName)被當場砍死，而\(bName)也很快被抓了出來，幾天後遭到公開處刑"
+            statsLabelText = ""
+        }
+        question99_2()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)大吼一聲便衝了出去，兩人彷彿開了無雙，人擋殺人 佛擋殺佛，Ｃ國士兵紛紛嚇得四處逃跑，兩人趁隙逃出了城堡"
+            statsLabelText = ""
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)大吼一聲便衝了出去，兩人彷彿開了無雙，人擋殺人 佛擋殺佛，Ｃ國士兵紛紛嚇得四處逃跑，兩人趁隙逃出了城堡"
+            statsLabelText = ""
+        }
+        question99_2()
+    }
+}
+
+//99.2.  Ａ：逃到了Ｃ國邊界，你突然想起Ｃ國國王已死，Ｂ的國家就是最大的敵人了，是否要跟Ｂ決一死戰？
+//Ｂ：逃到了Ｃ國邊界，你突然想起Ｃ國國王已死，Ａ的國家就是最大的敵人了，是否要跟Ａ決一死戰？
+//(選項都是YES)(進入戰鬥)
+
+func question99_2() {
+    questionID = 99.2
+    if playerID == "A" {
+        questionsLabelText = "逃到了Ｃ國邊界，你突然想起Ｃ國國王已死，\(bName)的國家就是最大的敵人了，是否要跟\(bName)決一死戰？"
+    }else if playerID == "B"{
+        questionsLabelText = "逃到了Ｃ國邊界，你突然想起Ｃ國國王已死，\(aName)的國家就是最大的敵人了，是否要跟\(aName)決一死戰？"
+    }
+    yesLabelText = "是"
+    noLabelText = "是"
+}
 
 
 

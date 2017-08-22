@@ -161,16 +161,18 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         nameCheckTimer.fire()
         
         if onlineMode == true {
+            
+            iD1Lock = false
+            iD2Lock = false
+            iD3Lock = false
+            iD4Lock = false
+            iD5Lock = false
+            
             if playerID == "A" {
                 aName = playerName
                 bName = otherPlayerNameString
                 //由Ａ玩家決定問題序列
                 //題目不重複
-                iD1Lock = false
-                iD2Lock = false
-                iD3Lock = false
-                iD4Lock = false
-                iD5Lock = false
                 arrayy = [1,2,3,4,5,6,7,8,9,10,99]
                 //測試
                 qString = "1/2/50/51/99"
@@ -193,6 +195,12 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         }
         
         if onlineMode == false {
+            
+            iD1Lock = false
+            iD2Lock = false
+            iD3Lock = false
+            iD4Lock = false
+            iD5Lock = false
             
             arrayy = [1,2,3,4,5,6,7,8,9,10]
             for _ in 1...5 {

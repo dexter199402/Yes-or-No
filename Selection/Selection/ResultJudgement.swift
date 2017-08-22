@@ -53,20 +53,39 @@ func result(vv:UIViewController)  {
     case 2.34:
         story2_34()
         break
+    case 50.1:
+        story50_1()
+        break
+    case 50.113:
+        story50_113()
+        break
+    case 50.2:
+        story50_2()
+        break
+    case 51.1:
+        story51_1()
+        break
+    case 99.1:
+        story99_1()
+        break
+    case 99.2:
+        goFight(v: vv)
+        break
     default:
         break
     }
-    goStoryView(v: vv)
+    goStoryPageView(v: vv)
 }
 
-func goStoryView(v:UIViewController) {
-    let view=v.storyboard?.instantiateViewController(withIdentifier:"StoryView")
+func goStoryPageView(v:UIViewController) {
+    let view=v.storyboard?.instantiateViewController(withIdentifier:"StoryPageView")
     v.present(view!, animated: true, completion: nil)
-//    let view=v.storyboard?.instantiateViewController(withIdentifier:"fightView")
-//    v.present(view!, animated: true, completion: nil)
 }
 
-
+func goFight(v:UIViewController) {
+    let view=v.storyboard?.instantiateViewController(withIdentifier:"fightView")
+    v.present(view!, animated: true, completion: nil)
+}
 
 
 

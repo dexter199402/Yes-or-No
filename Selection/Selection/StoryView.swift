@@ -17,11 +17,7 @@ var selfComplete = false
 
 var timeUp = Timer()
 
-var timeUpFirstRun = true
-
 class StoryView: UIViewController {
-    
-    
     
     
     @IBOutlet weak var wait: UILabel!
@@ -36,7 +32,7 @@ class StoryView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+
         storyTextLabel.font = UIFont (name: "DFHsiu-W3-WINP-BF", size: 30)
         storyTextLabel.tintColor = UIColor.black
         storyTextLabel.text = storyTextLabelText
@@ -46,8 +42,6 @@ class StoryView: UIViewController {
         
         storyNextBtn.alpha = 0
         let storyTextCount = Double(storyTextLabelText.characters.count)
-        let nextTime = storyTextCount*0.1+20
-        print(nextTime)
         let storyNextTime = storyTextCount*0.1
     
     //按鈕顯示
@@ -58,14 +52,10 @@ class StoryView: UIViewController {
             selfComplete = false
             storyNextBtn.alpha = 0
             
-            //計時器 文字完20秒dismiss
-            timeUp = Timer.scheduledTimer(timeInterval: nextTime, target: self, selector: #selector(StoryView.dismissSelf), userInfo: nil, repeats: true)
-            timeUp.fire()
-            
             nextBtnTimer = Timer.scheduledTimer(timeInterval: storyNextTime, target: self, selector: #selector(self.shwoBtn), userInfo: nil, repeats: true)
             nextBtnTimer.fire()
             
-            NotificationCenter.default.addObserver(self, selector: #selector(self.dismissSelf), name: NSNotification.Name(rawValue: "completeGo"), object: nil)
+            
         }else{
             nextBtnTimer = Timer.scheduledTimer(timeInterval: storyNextTime, target: self, selector: #selector(self.shwoBtn), userInfo: nil, repeats: true)
             nextBtnTimer.fire()
@@ -77,12 +67,8 @@ class StoryView: UIViewController {
         lock = false
         yourAnswer = 8
         answerCountdown.invalidate()
+
         
-    
-        //hero動畫
-        isHeroEnabled = true
-        self.storyTextLabel.heroModifiers = [.translate(y: 130)]
-        self.paperImage.heroModifiers = [.translate(y:100)]
     }
     
     func shwoBtn()  {
@@ -104,23 +90,15 @@ class StoryView: UIViewController {
                 print(error)
             }
             if otherCompleteBtnBool {
-                timeUpFirstRun = false
-                dismissSelf()
+                dis()
             }
         }else{
-            timeUpFirstRun = false
-            dismissSelf()
+            dis()
         }
     }
     
-    
-    func dismissSelf(){
-        if timeUpFirstRun == true {
-            timeUpFirstRun = false
-        }else{
-            self.dismiss(animated: true, completion: nil)
-        }
-        
+    func dis()  {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,7 +109,6 @@ class StoryView: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         timeUp.invalidate()
-        timeUpFirstRun = true
         // 通知customGameMode更改屬性重設.
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelText"), object: nil)
     }

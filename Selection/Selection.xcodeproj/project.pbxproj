@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D50656D91F25F2C700797CCC /* GCHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50656D81F25F2C700797CCC /* GCHelper.framework */; };
 		D517C5D01F2F06FD00E8DAD1 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */; };
+		D526C0601F4AAD5200A3CDFA /* button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D526C05F1F4AAD5200A3CDFA /* button.mp3 */; };
+		D526C0621F4AD52800A3CDFA /* StoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D526C0611F4AD52800A3CDFA /* StoryPageView.swift */; };
+		D526C0841F4AFD3600A3CDFA /* StoryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D526C0831F4AFD3600A3CDFA /* StoryImageView.swift */; };
 		D52CB6B01F1B553A00BA07E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CB6AF1F1B553A00BA07E7 /* AppDelegate.swift */; };
 		D52CB6B21F1B553A00BA07E7 /* ConnectMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CB6B11F1B553A00BA07E7 /* ConnectMode.swift */; };
 		D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D52CB6B31F1B553A00BA07E7 /* Main.storyboard */; };
@@ -35,6 +38,9 @@
 		A67EF924D2BB67C48E43B8CA /* Pods_Selection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Selection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50656D81F25F2C700797CCC /* GCHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCHelper.framework; path = "../../Library/Developer/Xcode/DerivedData/Selection-fcqfxhbruokzvphalzutosfmtzdn/Build/Products/Debug-iphoneos/GCHelper/GCHelper.framework"; sourceTree = "<group>"; };
 		D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		D526C05F1F4AAD5200A3CDFA /* button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button.mp3; sourceTree = "<group>"; };
+		D526C0611F4AD52800A3CDFA /* StoryPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPageView.swift; sourceTree = "<group>"; };
+		D526C0831F4AFD3600A3CDFA /* StoryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryImageView.swift; sourceTree = "<group>"; };
 		D52CB6AC1F1B553A00BA07E7 /* Selection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52CB6AF1F1B553A00BA07E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D52CB6B11F1B553A00BA07E7 /* ConnectMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectMode.swift; sourceTree = "<group>"; };
@@ -131,7 +137,9 @@
 				DFF66F101F20E8A00053DF37 /* SelectPlayerMenu.swift */,
 				DF042F331F2B394F00C7799A /* ResultJudgement.swift */,
 				D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */,
+				D526C0611F4AD52800A3CDFA /* StoryPageView.swift */,
 				D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */,
+				D526C0831F4AFD3600A3CDFA /* StoryImageView.swift */,
 				D5AB09921F4990BC0065D37B /* fightView.swift */,
 				D5AB09941F49BF420065D37B /* gameOver.swift */,
 				D5BF5DEB1F38681900A5B531 /* Story */,
@@ -153,6 +161,7 @@
 			children = (
 				D533B9891F4471AA00099A6A /* show.ttc */,
 				D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */,
+				D526C05F1F4AAD5200A3CDFA /* button.mp3 */,
 				D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */,
 			);
 			name = Model;
@@ -254,6 +263,7 @@
 				D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */,
 				D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */,
 				D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */,
+				D526C0601F4AAD5200A3CDFA /* button.mp3 in Resources */,
 				D533B98A1F4471AA00099A6A /* show.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D526C0841F4AFD3600A3CDFA /* StoryImageView.swift in Sources */,
 				DF042F341F2B394F00C7799A /* ResultJudgement.swift in Sources */,
 				D5BF5DEA1F3867BD00A5B531 /* ChenStory.swift in Sources */,
 				D5BF5DE81F3866D900A5B531 /* HaoStory.swift in Sources */,
@@ -324,6 +335,7 @@
 				D52CB6B21F1B553A00BA07E7 /* ConnectMode.swift in Sources */,
 				D52CB6B01F1B553A00BA07E7 /* AppDelegate.swift in Sources */,
 				D5BF5DE61F3865D600A5B531 /* QuestionFunction.swift in Sources */,
+				D526C0621F4AD52800A3CDFA /* StoryPageView.swift in Sources */,
 				D5AB09951F49BF420065D37B /* gameOver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

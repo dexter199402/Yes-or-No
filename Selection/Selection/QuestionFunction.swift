@@ -33,8 +33,6 @@ func selectionQuestion() {
     } else if iD1Lock == true && iD2Lock == true && iD3Lock == true && iD4Lock == true && iD5Lock == false {
         iD5Lock = true
         questionSwitch(ID:Int(String(questionArray[4]))!)
-    }else{
-        question1_1()
     }
 }
 
@@ -70,6 +68,18 @@ func questionSwitch(ID:Int) {
             print("選到問題\(ID)")
             break
         case 10:
+            print("選到問題\(ID)")
+            break
+        case 50:
+            question50_1()
+            print("選到問題\(ID)")
+            break
+        case 51:
+            question51_1()
+            print("選到問題\(ID)")
+            break
+        case 99:
+            question99_1()
             print("選到問題\(ID)")
             break
         default:
