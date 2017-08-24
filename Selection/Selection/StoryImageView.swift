@@ -9,15 +9,24 @@
 import UIKit
 import GCHelper
 
+var imageString = "vvvvvvvv"
+
 class StoryImageView: UIViewController {
 
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var wait: UILabel!
+    @IBOutlet weak var statsLabel: UILabel!
+    
+    @IBOutlet weak var storyImageViewImage: UIImageView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         wait.alpha = 0
-        
+        statsLabel.text = statsLabelText
+        storyImageViewImage.image = UIImage(named: imageString)
+        storyImageViewImage.alpha = 0.7
     }
 
     @IBAction func completeButton(_ sender: Any) {
@@ -43,6 +52,12 @@ class StoryImageView: UIViewController {
     func dis()  {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

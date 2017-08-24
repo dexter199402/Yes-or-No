@@ -13,13 +13,18 @@ import CLTypingLabel
 
 //故事背景倒數
 var nameCheckTimer = Timer()
-var nameCheckTimerFirstRun = true
 
 var playerName = "吳明寺"
 var otherPlayerName:NSData?
 var otherPlayerNameString : String = NSString(data: otherPlayerName!as Data, encoding: String.Encoding.utf8.rawValue)! as String
 var nameLock = false
 var otherNameLock = false
+
+
+var completeOK = "背景故事"
+var completeOKData :NSData = completeOK.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
+var completeCheck = false
+var otherCompleteCheck = false
 
 let playerNameData :NSData = playerName.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
@@ -36,6 +41,8 @@ var qString = ""
 
 
 
+
+
 class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet weak var checkNameView: UITextView!
     @IBOutlet weak var checkNameViewBackground: UIImageView!
@@ -46,11 +53,20 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     @IBOutlet weak var countDownImage: UIImageView!
     @IBOutlet weak var countDownWidth: NSLayoutConstraint!
     
+    @IBOutlet weak var complete: UIButton!
+    
+    
     var playName = ["小明","菜菜子","羊咩咩","摳哥","老王","印度蛙","天龍人","矮子輔","杰倫","阿象","邱偉豪"]
     
     //名字選擇倒數
     var nameCountDownTimer = Timer()
     var countDownTimerNember = 30
+    
+    //故事背景倒數
+    var goPlayNember = 60
+    
+    
+    
     
     var random:Int = Int()
     
@@ -58,15 +74,18 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        
+        complete.alpha = 0
         yourNameLabel.text = "你的名字"
         yourNameLabel.charInterval = 0.05
         yourNameLabel.centerText = false
+        completeCheck = false
+        otherCompleteCheck = false
         
+        NotificationCenter.default.addObserver(self, selector: #selector(customGame), name: NSNotification.Name(rawValue: "nameComplete"), object: nil)
+        goPlayNember = 60
         
         
         //名字
-        
         
         if onlineMode == true {
            nameCountDownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SelectPlayerMenu.nameCountDown), userInfo: nil, repeats: true)
@@ -104,6 +123,28 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     }
     
     
+    @IBAction func completeBtn(_ sender: Any) {
+        if onlineMode == true {
+            
+            completeCheck = true
+            complete.alpha = 0
+            do {
+                _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: completeOKData as Data,with: .reliable)
+            }catch{
+                print(error)
+            }
+            if otherCompleteCheck == true {
+                customGame()
+            }else{
+                checkNameView.text = "稍等，對方還在看。"
+            }
+        }else{
+            customGame()
+        }
+        
+    }
+    
+    
     @IBAction func okBtn(_ sender: Any) {
        
         if onlineMode == true {
@@ -119,6 +160,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                     playerID = "B"
                 }
                 goPlay()
+   
             }
             else{
                 checkNameView.text = "\n\n\n\n你好"+playerName+"\n等待對方選擇..."
@@ -154,8 +196,9 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     }
     
     func goPlay()  {
-        nameCheckTimer = Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(SelectPlayerMenu.goCustomGameMode), userInfo: nil, repeats: true)
+        nameCheckTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SelectPlayerMenu.goCustomGameMode), userInfo: nil, repeats: true)
         nameCheckTimer.fire()
+        complete.alpha = 1
         if onlineMode == true {
             
             iD1Lock = false
@@ -199,10 +242,13 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             iD5Lock = false
             
             arrayy = [1,2,3,4,5,6,7,8,9,10]
-            for _ in 1...5 {
-                getTheRandomQuestion()
-            }
-            qString = String(getQuestion[0])+"/"+String(getQuestion[1])+"/"+String(getQuestion[2])+"/"+String(getQuestion[3])+"/"+String(getQuestion[4])
+            
+            //測試
+            qString = "1/2/50/51/99"
+//            for _ in 1...5 {
+//                getTheRandomQuestion()
+//            }
+//            qString = String(getQuestion[0])+"/"+String(getQuestion[1])+"/"+String(getQuestion[2])+"/"+String(getQuestion[3])+"/"+String(getQuestion[4])
             if playerID == "A" {
                 aName = playerName
                 let otherName = "電腦人"
@@ -237,20 +283,36 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     
     
     func goCustomGameMode() {
-        if nameCheckTimerFirstRun == true{
-            nameCheckTimerFirstRun = false
-        }else{
-            guard let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode") else {
-                print("沒有view可以轉")
-                return
-            }
-            self.present(view, animated: true, completion: nil)
+        if goPlayNember > 0 {
+            goPlayNember -= 1
+            self.countDownWidth.constant = -(countDownWidth1*CGFloat(60-goPlayNember)/60)
+        }else if goPlayNember <= 0 {
+            nameCheckTimer.invalidate()
+            goPlayNember = 60
+            customGame()
         }
+
+//        if nameCheckTimerFirstRun == true{
+//            nameCheckTimerFirstRun = false
+//        }else{
+//            guard let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode") else {
+//                print("沒有view可以轉")
+//                return
+//            }
+//            self.present(view, animated: true, completion: nil)
+//        }
+    }
+    func customGame()  {
+        guard let view=self.storyboard?.instantiateViewController(withIdentifier:"CustomGameMode") else {
+            print("沒有view可以轉")
+            return
+        }
+        self.present(view, animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         nameCheckTimer.invalidate()
-        nameCheckTimerFirstRun = true
+        nameCountDownTimer.invalidate()
         checkNameView.alpha = 0
         checkNameViewBackground.alpha = 0
         countDownImage.alpha = 1
@@ -283,5 +345,3 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     */
 
 }
-
-

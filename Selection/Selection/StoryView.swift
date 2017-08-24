@@ -22,7 +22,6 @@ class StoryView: UIViewController {
     
     @IBOutlet weak var wait: UILabel!
     @IBOutlet weak var storyTextLabel: CLTypingLabel!
-    @IBOutlet weak var statsLabel: UILabel!
     @IBOutlet weak var paperImage: UIImageView!
     
     override func viewDidLoad() {
@@ -31,7 +30,6 @@ class StoryView: UIViewController {
         storyTextLabel.font = UIFont (name: "DFHsiu-W3-WINP-BF", size: 30)
         storyTextLabel.tintColor = UIColor.black
         storyTextLabel.text = storyTextLabelText
-        statsLabel.text = statsLabelText
         storyTextLabel.charInterval = 1.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(showWait), name: NSNotification.Name(rawValue: "showWait"), object: nil)

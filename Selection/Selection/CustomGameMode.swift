@@ -91,6 +91,17 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var selfPowLabel: UILabel!
     @IBOutlet weak var otherPowpow: UIImageView!
     @IBOutlet weak var otherPowLabel: UILabel!
+    
+    //狀態
+    @IBOutlet weak var selfStatus1: UIImageView!
+    @IBOutlet weak var selfStatus2: UIImageView!
+    @IBOutlet weak var selfStatus3: UIImageView!
+    @IBOutlet weak var otherStatus1: UIImageView!
+    @IBOutlet weak var otherStatus2: UIImageView!
+    @IBOutlet weak var otherStatus3: UIImageView!
+    
+    
+    
     var powpowTime:Timer = Timer()
     var otherPowpowTime:Timer = Timer()
     var firstPow = true
@@ -413,6 +424,19 @@ class CustomGameMode: UIViewController {
         }
         buttonSound.prepareToPlay()
         buttonSound.play()
+    }
+    
+    //狀態顯示
+    @IBAction func selfStatus(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            
+            
+            
+        }else{
+            
+            
+            
+        }
     }
     
     

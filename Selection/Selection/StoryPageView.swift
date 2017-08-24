@@ -31,7 +31,7 @@ class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageVie
         dataSource = self
         
         let storyTextCount = Double(storyTextLabelText.characters.count)
-        nextTime = storyTextCount*0.1+20
+        nextTime = storyTextCount*0.1+60
         print(nextTime)
 
         //起始畫面

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GameKit
 
 
 
@@ -17,6 +18,10 @@ func  question1_1()  {
     }else if playerID == "B"{
         questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(aName)聊天？"
     }
+    //成就
+    let achievement = GKAchievement(identifier: "missioncomplete")
+    achievement.showsCompletionBanner = true
+    GKAchievement.report([achievement], withCompletionHandler: nil)
 }
 func story1_1() {
     if judgeValue == 1 {
@@ -561,7 +566,13 @@ func question99_2() {
     }
     yesLabelText = "是"
     noLabelText = "是"
+    //成就
+    let achievement = GKAchievement(identifier: "missioncomplete")
+    achievement.showsCompletionBanner = true
+    GKAchievement.report([achievement], withCompletionHandler: nil)
+
 }
+
 
 
 

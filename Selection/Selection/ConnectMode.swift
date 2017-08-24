@@ -26,7 +26,7 @@ var otherSkillsBool = false
 
 
 
-class ConnectMode: UIViewController {
+class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     @IBOutlet weak var buttonColor: UIImageView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
@@ -120,7 +120,20 @@ class ConnectMode: UIViewController {
         playPage1Music.volume = musicSliderValue.value
     }
 
-    
+    //成就按鈕
+    @IBAction func gamecenterBtn(_ sender: Any) {
+        
+        let vc = self.view.window?.rootViewController
+        
+        let gcVC = GKGameCenterViewController()
+        
+        vc?.present(gcVC, animated: true, completion: nil)
+        
+        gcVC.gameCenterDelegate = self
+    }
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
     
     
     
@@ -179,6 +192,11 @@ extension ConnectMode: GCHelperDelegate {
                 otherSkillsString = dataString
                 if selfSkillBool {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "skills"), object: nil)
+                }
+            }else if dataString.contains("背景故事") {
+                otherCompleteCheck = true
+                if completeCheck == true {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nameComplete"), object: nil)
                 }
             }
         }
