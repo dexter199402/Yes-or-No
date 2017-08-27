@@ -18,12 +18,12 @@ var skills2StringData :NSData = skills2String.data(using: String.Encoding.utf8, 
 var skills3String = "布"
 var skills3StringData :NSData = skills3String.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
+var playIDAWinBool = false
+
 
 class fightView: UIViewController {
     @IBOutlet weak var selfHPConstraint: NSLayoutConstraint!
     @IBOutlet weak var otherHPContraint: NSLayoutConstraint!
-    @IBOutlet weak var selfName: UILabel!
-    @IBOutlet weak var otherName: UILabel!
     @IBOutlet weak var selfATKConstraint: NSLayoutConstraint!
     @IBOutlet weak var selfLuckContraint: NSLayoutConstraint!
     @IBOutlet weak var otherATKContraint: NSLayoutConstraint!
@@ -41,6 +41,11 @@ class fightView: UIViewController {
     
     @IBOutlet weak var selfSkillsLabel: UILabel!
     @IBOutlet weak var otherSkillsLabel: UILabel!
+    
+    @IBOutlet weak var fightSelfNameLabel: UILabel!
+    @IBOutlet weak var fightOtherNameLabel: UILabel!
+    
+    
     
     
     var fightViewLayoutDid = false
@@ -62,6 +67,18 @@ class fightView: UIViewController {
         selfSkillBool = false
         otherSkillsBool = false
         timeBool = true
+        if playerID == "A" {
+            fightSelfNameLabel.text = aName
+            fightOtherNameLabel.text = bName
+        }else{
+            fightSelfNameLabel.text = bName
+            fightOtherNameLabel.text = aName
+        }
+        skills1Btn.alpha = 1
+        skills2Btn.alpha = 1
+        skills3Btn.alpha = 1
+        
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.settlement), name: NSNotification.Name(rawValue: "skills"), object: nil)
     }
@@ -256,8 +273,24 @@ class fightView: UIViewController {
         UIView.animate(withDuration: 1.0) {
             self.view.layoutIfNeeded()
         }
-        if aHP <= 0 || bHP <= 0 {
-            let v = storyboard?.instantiateViewController(withIdentifier:"gameOver")
+        if aHP <= 0{
+            skills1Btn.alpha = 0
+            skills2Btn.alpha = 0
+            skills3Btn.alpha = 0
+            playIDAWinBool = false
+            goGameOverView()
+        }else if bHP <= 0 {
+            skills1Btn.alpha = 0
+            skills2Btn.alpha = 0
+            skills3Btn.alpha = 0
+            playIDAWinBool = true
+            goGameOverView()
+        }
+    }
+    
+    func goGameOverView()  {
+        DispatchQueue.main.asyncAfter(deadline: .now()+2){
+            let v = self.storyboard?.instantiateViewController(withIdentifier:"gameOver")
             self.present(v!, animated: true, completion: nil)
         }
     }

@@ -26,7 +26,8 @@ class StoryView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         storyTextLabel.font = UIFont (name: "DFHsiu-W3-WINP-BF", size: 30)
         storyTextLabel.tintColor = UIColor.black
         storyTextLabel.text = storyTextLabelText
@@ -36,6 +37,7 @@ class StoryView: UIViewController {
     
 
         // 各項屬性重設
+        wait.backgroundColor = UIColor.clear
         othercheck = false
         otherAnswer = nil
         lock = false
@@ -47,6 +49,7 @@ class StoryView: UIViewController {
     }
     
     func showWait()  {
+        wait.backgroundColor = UIColor.black
         wait.alpha = 0.7
     }
     

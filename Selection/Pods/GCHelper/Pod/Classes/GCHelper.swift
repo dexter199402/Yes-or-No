@@ -53,6 +53,9 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
     fileprivate var authenticated = false {
         didSet {
             print("Authentication changed: player\(authenticated ? " " : " not ")authenticated")
+            
+            //MARK: 改這行
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "wellcome"), object: nil)
         }
     }
     
@@ -118,6 +121,9 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
             GKLocalPlayer.localPlayer().authenticateHandler = { (view, error) in
                 guard error == nil else {
                     print("Authentication error: \(String(describing: error?.localizedDescription))")
+                    
+                    //MARK: 改這行
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "wellcome"), object: nil)
                     return
                 }
                 
@@ -125,6 +131,8 @@ public class GCHelper: NSObject, GKMatchmakerViewControllerDelegate, GKGameCente
             }
         } else {
             print("Already authenticated")
+            //MARK: 改這行
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "wellcome"), object: nil)
         }
     }
     

@@ -24,7 +24,7 @@ var yourAnswer = 9
 var playerID = "noting"
 
 //答案倒數
-var countdownNember = 20
+var countdownNember = 25
 var answerCountdown = Timer()
 
 var aHP = 50
@@ -42,6 +42,7 @@ var countDownImageWidthValue = CGFloat()
 var Line1Value = CGFloat()
 var Line2Value = CGFloat()
 var Line3Value = CGFloat()
+var buttonValue = CGFloat()
 
 class CustomGameMode: UIViewController {
     
@@ -99,6 +100,10 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var otherStatus1: UIImageView!
     @IBOutlet weak var otherStatus2: UIImageView!
     @IBOutlet weak var otherStatus3: UIImageView!
+    @IBOutlet weak var statusViewConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var situationViwe: UIView!
+    
     
     
     
@@ -130,6 +135,8 @@ class CustomGameMode: UIViewController {
         answerCountdownLabel.alpha = 1
         yesLabelText = "是"
         noLabelText = "否"
+        playIDAWinBool = false
+        
         
         // 對方玩家後選監聽器
         NotificationCenter.default.addObserver(self, selector: #selector(otherpley), name: NSNotification.Name(rawValue: "play"), object: nil)
@@ -249,7 +256,11 @@ class CustomGameMode: UIViewController {
         countdownNember = countdownNember - 1
         if lock == false{
             answerCountdownLabel.text = String(format: "%d", countdownNember)
-            self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(20-countdownNember)/20)
+            if countDownUse {
+                self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(15-countdownNember)/15)
+            }else{
+                self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(25-countdownNember)/25)
+            }
             if countdownNember <= 0 {
                 countDownImage.alpha = 0
             }else{
@@ -314,11 +325,24 @@ class CustomGameMode: UIViewController {
             Line1Value = self.selfLine1.frame.height
             Line2Value = self.selfLine2.frame.width
             Line3Value = self.selfLine3.frame.width
+            buttonValue = self.colorButton.frame.height
             autolayoutLoc = true
             self.selfLine1Constraints.constant = -self.selfLine1.frame.height
             self.otherLine1Constraints.constant = -self.otherLine1.frame.height
+            statusViewConstraint.constant = buttonValue*1.2
         }
     }
+    
+    @IBAction func situationView(_ sender: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 2) { 
+            self.situationViwe.alpha = 0
+        }
+    }
+    
+    
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.async {
@@ -331,9 +355,9 @@ class CustomGameMode: UIViewController {
             if onlineMode {
                 answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
                 if self.countDownUse {
-                    countdownNember = 10
+                    countdownNember = 15
                 }else{
-                    countdownNember = 20
+                    countdownNember = 25
                 }
                 print("問題倒數計開始:\(countdownNember)")
                 answerCountdown.fire()
@@ -430,12 +454,15 @@ class CustomGameMode: UIViewController {
     @IBAction func selfStatus(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             
-            
-            
+            statusViewConstraint.constant = 0
+
+        }else if sender.state == .changed {
+            statusViewConstraint.constant = 0
         }else{
-            
-            
-            
+            statusViewConstraint.constant = buttonValue*1.2
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
         }
     }
     

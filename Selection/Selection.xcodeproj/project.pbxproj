@@ -21,6 +21,8 @@
 		D533B9DB1F45B52B00099A6A /* CLTypingLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D533B9DA1F45B52B00099A6A /* CLTypingLabel.framework */; };
 		D54CC6B81F25A49500C2BEEC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54CC6B71F25A49500C2BEEC /* GameKit.framework */; };
 		D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */; };
+		D58E95AE1F4EFD1100C4DA8C /* Gif_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58E95AD1F4EFD1100C4DA8C /* Gif_Swift.swift */; };
+		D58E95B21F4FC85F00C4DA8C /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = D58E95B11F4FC85F00C4DA8C /* loading.gif */; };
 		D5A0D4B31F20D27A00600CD2 /* ButtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */; };
 		D5A0D4B51F20DBA800600CD2 /* CustomGameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */; };
 		D5AB09931F4990BC0065D37B /* fightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AB09921F4990BC0065D37B /* fightView.swift */; };
@@ -52,6 +54,8 @@
 		D533B9DA1F45B52B00099A6A /* CLTypingLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CLTypingLabel.framework; path = "../../Library/Developer/Xcode/DerivedData/Selection-bxeptchhwevltrftwhscujxvevkk/Build/Products/Debug-iphoneos/CLTypingLabel/CLTypingLabel.framework"; sourceTree = "<group>"; };
 		D54CC6B71F25A49500C2BEEC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Morning_Walk.mp3; sourceTree = "<group>"; };
+		D58E95AD1F4EFD1100C4DA8C /* Gif_Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif_Swift.swift; sourceTree = "<group>"; };
+		D58E95B11F4FC85F00C4DA8C /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPath.swift; sourceTree = "<group>"; };
 		D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameMode.swift; sourceTree = "<group>"; };
 		D5AB09921F4990BC0065D37B /* fightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fightView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				D526C0831F4AFD3600A3CDFA /* StoryImageView.swift */,
 				D5AB09921F4990BC0065D37B /* fightView.swift */,
 				D5AB09941F49BF420065D37B /* gameOver.swift */,
+				D58E95AD1F4EFD1100C4DA8C /* Gif_Swift.swift */,
 				D5BF5DEB1F38681900A5B531 /* Story */,
 			);
 			name = Controller;
@@ -159,6 +164,7 @@
 		D5A0D4BD1F20EC9000600CD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D58E95B11F4FC85F00C4DA8C /* loading.gif */,
 				D533B9891F4471AA00099A6A /* show.ttc */,
 				D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */,
 				D526C05F1F4AAD5200A3CDFA /* button.mp3 */,
@@ -263,6 +269,7 @@
 				D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */,
 				D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */,
 				D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */,
+				D58E95B21F4FC85F00C4DA8C /* loading.gif in Resources */,
 				D526C0601F4AAD5200A3CDFA /* button.mp3 in Resources */,
 				D533B98A1F4471AA00099A6A /* show.ttc in Resources */,
 			);
@@ -335,6 +342,7 @@
 				D52CB6B21F1B553A00BA07E7 /* ConnectMode.swift in Sources */,
 				D52CB6B01F1B553A00BA07E7 /* AppDelegate.swift in Sources */,
 				D5BF5DE61F3865D600A5B531 /* QuestionFunction.swift in Sources */,
+				D58E95AE1F4EFD1100C4DA8C /* Gif_Swift.swift in Sources */,
 				D526C0621F4AD52800A3CDFA /* StoryPageView.swift in Sources */,
 				D5AB09951F49BF420065D37B /* gameOver.swift in Sources */,
 			);
@@ -403,7 +411,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -448,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -461,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 35D885F32C26B1925BF6A841 /* Pods-Selection.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C3DCGLZVXC;
 				INFOPLIST_FILE = Selection/Info.plist;
@@ -478,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F08597B25214BF4847FF1321 /* Pods-Selection.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C3DCGLZVXC;
 				INFOPLIST_FILE = Selection/Info.plist;

@@ -11,6 +11,7 @@ import AVFoundation
 import GameKit
 import GCHelper
 
+
 var playPage1Music:AVAudioPlayer = AVAudioPlayer()
 var buttonSound:AVAudioPlayer = AVAudioPlayer()
 var otherAnswer:NSData?
@@ -25,7 +26,6 @@ var otherSkillsBool = false
 
 
 
-
 class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     @IBOutlet weak var buttonColor: UIImageView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
@@ -35,40 +35,26 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     @IBOutlet weak var musicSliderValue: UISlider!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var wellcomeView: UIImageView!
+    @IBOutlet weak var touchStart: UIImageView!
+    
+    
+    @IBOutlet weak var welcomeConstraint: NSLayoutConstraint!
+    @IBOutlet weak var touchStartConstraint: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        wellcomeView.alpha = 1
         //初始值
         onlineMode = false
+        buttonColor.isUserInteractionEnabled = false
+        touchStartImage()
         
         //menu shadow
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
-        
-        
-//        ttf 一覽
-//        for family: String in UIFont.familyNames
-//        {
-//            print("\(family)")
-//            for names: String in UIFont.fontNames(forFamilyName: family)
-//            {
-//                print("== \(names)")
-//            }
-//        }
-        
-        
-        //music
-        do{
-            let audioPath = Bundle.main.path(forResource: "Morning_Walk", ofType: "mp3")
-            try playPage1Music = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
-        }
-        catch{
-            print("\(error)")
-        }
-        playPage1Music.numberOfLoops = -1
-        playPage1Music.prepareToPlay()
-        playPage1Music.play()
+        wellcomeView.loadGif(name: "loading")
         
         //驗證身份，檢查登入
         GCHelper.sharedInstance.authenticateLocalUser()
@@ -81,8 +67,61 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
             }
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(welcome), name: NSNotification.Name(rawValue: "wellcome"), object: nil)
+        
+//        ttf 一覽
+//        for family: String in UIFont.familyNames
+//        {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family)
+//            {
+//                print("== \(names)")
+//            }
+//        }
+        
+        
+        
+        
+        
+        
 
     }
+
+    func touchStartImage()  {
+        touchStart.animationImages = [UIImage(named:"press.001.pgn")!,UIImage(named:"press.002.pgn")!,UIImage(named:"press.003.pgn")!,UIImage(named:"press.004.pgn")!,UIImage(named:"press.005.pgn")!,UIImage(named:"press.006.pgn")!,UIImage(named:"press.007.pgn")!,UIImage(named:"press.008.pgn")!,UIImage(named:"press.009.pgn")!]
+        touchStart.animationDuration = 2
+        touchStart.animationRepeatCount = 0
+        touchStart.startAnimating()
+    }
+    
+
+    
+    func welcome()  {
+        welcomeConstraint.constant = wellcomeView.frame.width
+        touchStartConstraint.constant = 0
+        UIView.animate(withDuration: 1, animations: {
+            self.view.layoutIfNeeded()
+        })
+        //music
+        do{
+            let audioPath = Bundle.main.path(forResource: "Morning_Walk", ofType: "mp3")
+            try playPage1Music = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        playPage1Music.numberOfLoops = -1
+        playPage1Music.prepareToPlay()
+        playPage1Music.play()
+    }
+    @IBAction func touchStartTap(_ sender: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 1) { 
+            self.touchStart.alpha = 0
+        }
+        buttonColor.isUserInteractionEnabled = true
+        touchStart.stopAnimating()
+    }
+
     
     
     @IBAction func backGroundTap(_ sender: UITapGestureRecognizer) {
@@ -148,7 +187,11 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
         if buttonColorPath.contains(point){
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self )
         }else{
-            playPage1Music.stop()
+            if #available(iOS 10.0, *) {
+                playPage1Music.setVolume(0, fadeDuration: 3)
+            } else {
+                playPage1Music.stop()
+            }
             let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "SelectPlayerMenu")
             self.present(vc2!, animated: true, completion: nil)
         }
@@ -224,9 +267,17 @@ extension ConnectMode: GCHelperDelegate {
     /// Method called when a match has been initiated.
     func matchStarted() {
         onlineMode = true
-        playPage1Music.stop()
+        if #available(iOS 10.0, *) {
+            playPage1Music.setVolume(0, fadeDuration: 3)
+        } else {
+            playPage1Music.stop()
+        }
         let vc1=self.storyboard?.instantiateViewController(withIdentifier:"SelectPlayerMenu")
         self.present(vc1!, animated: true, completion: nil)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
     }
     
     //逃生門回到這

@@ -9,7 +9,7 @@
 import UIKit
 import GCHelper
 
-var imageString = "vvvvvvvv"
+var imageString = "vvvvvvvv.jpg"
 
 class StoryImageView: UIViewController {
 
@@ -24,8 +24,10 @@ class StoryImageView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         wait.alpha = 0
+        wait.backgroundColor = UIColor.clear
         statsLabel.text = statsLabelText
         storyImageViewImage.image = UIImage(named: imageString)
+        storyImageViewImage.backgroundColor = UIColor.white
         storyImageViewImage.alpha = 0.7
     }
 
@@ -34,6 +36,7 @@ class StoryImageView: UIViewController {
         if onlineMode {
             selfComplete = true
             completeButton.alpha = 0
+            wait.backgroundColor = UIColor.black
             wait.alpha = 0.6
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showWait"), object: nil)
             do {

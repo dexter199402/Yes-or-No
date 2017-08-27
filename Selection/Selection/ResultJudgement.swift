@@ -78,13 +78,18 @@ func result(vv:UIViewController)  {
 }
 
 func goStoryPageView(v:UIViewController) {
+    
+    DispatchQueue.main.asyncAfter(deadline: .now()+1) {
     let view=v.storyboard?.instantiateViewController(withIdentifier:"StoryPageView")
     v.present(view!, animated: true, completion: nil)
+    }
 }
 
 func goFight(v:UIViewController) {
+    DispatchQueue.main.asyncAfter(deadline: .now()+1) {
     let view=v.storyboard?.instantiateViewController(withIdentifier:"fightView")
     v.present(view!, animated: true, completion: nil)
+    }
 }
 
 

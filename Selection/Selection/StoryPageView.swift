@@ -48,7 +48,6 @@ class StoryPageView: UIPageViewController,UIPageViewControllerDelegate,UIPageVie
     
     func dismissSelf()  {
         DispatchQueue.main.asyncAfter(deadline: .now()+nextTime) {
-//            print("過場dismiss自動計時:\(self.nextTime)")
             self.dismiss(animated: true, completion: nil)
         }
     }
