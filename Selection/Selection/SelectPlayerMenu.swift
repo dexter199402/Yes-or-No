@@ -55,6 +55,11 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     
     @IBOutlet weak var complete: UIButton!
     
+    @IBOutlet weak var waitLabel: UILabel!
+    
+    
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var okBtn: UIButton!
     
     var playName = ["小明","菜菜子","羊咩咩","摳哥","老王","印度蛙","天龍人","矮子輔","杰倫","阿象","邱偉豪"]
     
@@ -80,6 +85,10 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         yourNameLabel.centerText = false
         completeCheck = false
         otherCompleteCheck = false
+        
+        pickerView.alpha = 1
+        okBtn.alpha = 1
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(customGame), name: NSNotification.Name(rawValue: "nameComplete"), object: nil)
         goPlayNember = 60
@@ -136,7 +145,9 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             if otherCompleteCheck == true {
                 customGame()
             }else{
-                checkNameView.text = "稍等，對方還在看。"
+                yourNameLabel.alpha = 0
+                waitLabel.text = "稍等，對方還在看。"
+                waitLabel.alpha = 1
             }
         }else{
             customGame()
@@ -163,10 +174,10 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
    
             }
             else{
-                checkNameView.text = "\n\n\n\n你好"+playerName+"\n等待對方選擇..."
                     UIView.animate(withDuration: 1, animations: {
-                        self.checkNameView.alpha = 1
-                        self.checkNameViewBackground.alpha = 1
+                        self.yourNameLabel.alpha = 0
+                        self.waitLabel.text = "你好\n\(playerName)\n等待對方選擇"
+                        self.waitLabel.alpha = 1
                     })
                 
                 nameCountDownTimer.invalidate()
@@ -186,13 +197,16 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             }else{
                 playerID = "B"
             }
-            UIView.animate(withDuration: 1, animations: { 
-                self.checkNameView.alpha = 1
+            UIView.animate(withDuration: 1, animations: {
+                self.yourNameLabel.alpha = 0
+//                self.checkNameView.alpha = 1
                 self.checkNameViewBackground.alpha = 1
             })
             
             goPlay()
         }
+        pickerView.alpha = 0
+        okBtn.alpha = 0
     }
     
     func goPlay()  {
@@ -260,13 +274,18 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             }
         }
         
-        checkNameView.font = UIFont (name: "DFHsiu-W3-WINP-BF", size: 30)
+        checkNameView.font = UIFont (name: "DFHsiu-W3-WINP-BF", size: 22)
         
 
         UIView.animate(withDuration: 1, animations: {
-            self.checkNameView.text = "\(playerName)，你好\n\n某個年代，某個大陸上有三個國家，幾百年來互相敵對，為了打破僵局，Ａ國與Ｂ國決定合作執行一項計畫，各派出一名間諜潛入Ｃ國，Ａ國間諜的名字是 \(aName)，Ｂ國間諜的名字叫 \(bName)，兩人表面上同心協力，背地裡卻各有心機"
+            if onlineMode {
+                self.checkNameView.text = "\(playerName)\n你好\n對手是\n\(otherPlayerNameString)"
+            }else{
+                self.checkNameView.text = "\(playerName)\n你好\n對手是\n電腦人"
+            }
             self.yourNameLabel.alpha = 0
-            self.checkNameView.alpha = 1
+            self.waitLabel.alpha = 0
+//            self.checkNameView.alpha = 1
             self.checkNameViewBackground.alpha = 1
         })
         

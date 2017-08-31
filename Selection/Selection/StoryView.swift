@@ -9,6 +9,7 @@
 import UIKit
 import CLTypingLabel
 import GCHelper
+import AVFoundation
 
 let completebtnString = "我看完了"
 var completebtnStringData :NSData = completebtnString.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
@@ -46,6 +47,21 @@ class StoryView: UIViewController {
         selfComplete = false
         otherCompleteBtnBool = false
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        pageSound()
+    }
+    func pageSound()  {
+        do{
+            let audioPath = Bundle.main.path(forResource: "page-flip-9", ofType: "wav")
+            try pageFilp = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        pageFilp.prepareToPlay()
+        pageFilp.volume = volumeValue
+        pageFilp.play()
     }
     
     func showWait()  {

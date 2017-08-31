@@ -39,11 +39,22 @@ class fightView: UIViewController {
     
     @IBOutlet weak var skills3Btn: UIButton!
     
-    @IBOutlet weak var selfSkillsLabel: UILabel!
-    @IBOutlet weak var otherSkillsLabel: UILabel!
+    
+    @IBOutlet weak var selfSkillsLabel: UIImageView!
+    @IBOutlet weak var otherSkillsLabel: UIImageView!
+
+    
+    
     
     @IBOutlet weak var fightSelfNameLabel: UILabel!
     @IBOutlet weak var fightOtherNameLabel: UILabel!
+    
+    
+    @IBOutlet weak var selfAttackConstraint: NSLayoutConstraint!
+    @IBOutlet weak var otherAttackConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var selfbl: UIImageView!
+    @IBOutlet weak var otherbl: UIImageView!
     
     
     
@@ -67,6 +78,7 @@ class fightView: UIViewController {
         selfSkillBool = false
         otherSkillsBool = false
         timeBool = true
+        self.view.backgroundColor = UIColor.white
         if playerID == "A" {
             fightSelfNameLabel.text = aName
             fightOtherNameLabel.text = bName
@@ -86,145 +98,257 @@ class fightView: UIViewController {
     
 
     @IBAction func skills1(_ sender: Any) {
-        selfSkillBool = true
-        skills = skills1String
-        do {
-            _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: skills1StringData as Data,with: .reliable)
-        }catch{
-            print(error)
+        
+        if onlineMode {
+            selfSkillBool = true
+            skills = skills1String
+            do {
+                _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: skills1StringData as Data,with: .reliable)
+            }catch{
+                print(error)
+            }
+            if otherSkillsBool {
+                settlement()
+            }
+        }else{
+            skills = skills1String
+            computerSkills()
+            settlement()
         }
         skills1Btn.alpha = 0
         skills2Btn.alpha = 0
         skills3Btn.alpha = 0
-        if otherSkillsBool {
-            settlement()
-        }
-        
     }
     @IBAction func skills2(_ sender: Any) {
-        selfSkillBool = true
-        skills = skills2String
-        do {
-            _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: skills2StringData as Data,with: .reliable)
-        }catch{
-            print(error)
+        
+        if onlineMode {
+            selfSkillBool = true
+            skills = skills2String
+            do {
+                _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: skills2StringData as Data,with: .reliable)
+            }catch{
+                print(error)
+            }
+            if otherSkillsBool {
+                settlement()
+            }
+        }else{
+            skills = skills2String
+            computerSkills()
+            settlement()
         }
         skills1Btn.alpha = 0
         skills2Btn.alpha = 0
         skills3Btn.alpha = 0
-        if otherSkillsBool {
-            settlement()
-        }
         
     }
     @IBAction func skills3(_ sender: Any) {
-        selfSkillBool = true
-        skills = skills3String
-        do {
-            _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: skills3StringData as Data,with: .reliable)
-        }catch{
-            print(error)
+        
+        if onlineMode {
+            selfSkillBool = true
+            skills = skills3String
+            do {
+                _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: skills3StringData as Data,with: .reliable)
+            }catch{
+                print(error)
+            }
+            if otherSkillsBool {
+                settlement()
+            }
+        }else{
+            skills = skills3String
+            computerSkills()
+            settlement()
         }
         skills1Btn.alpha = 0
         skills2Btn.alpha = 0
         skills3Btn.alpha = 0
-        if otherSkillsBool {
-            settlement()
+    }
+    
+    func computerSkills()  {
+        let skill = arc4random_uniform(3)
+        if skill == 0 {
+            otherSkillsString = "剪刀"
+        }else if skill == 1 {
+            otherSkillsString = "石頭"
+        }else if skill == 2 {
+            otherSkillsString = "布"
         }
-        
     }
     
     
     func settlement()  {
         DispatchQueue.main.async {
             
-            otherSkillsBool = false
             if self.skills == "剪刀" && otherSkillsString == "剪刀" {
                 self.selfSkillsLabel.alpha = 1
                 self.otherSkillsLabel.alpha = 1
-                self.selfSkillsLabel.text = "剪刀"
-                self.otherSkillsLabel.text = "剪刀"
+                self.selfSkillsLabel.image = UIImage(named: "attack")
+                self.otherSkillsLabel.image = UIImage(named: "attack")
+                
+                //動畫
+                UIView.animate(withDuration: 0.3) {
+                    self.selfAttackConstraint.constant = self.view.frame.width/3
+                    self.otherAttackConstraint.constant = -self.view.frame.width/3
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        UIView.animate(withDuration: 0.3){
+                        self.selfAttackConstraint.constant = 0
+                        self.otherAttackConstraint.constant = 0
+                        self.view.layoutIfNeeded()
+                        }
+                    }
+                    self.view.layoutIfNeeded()
+                }
+                //
                 
                 self.showSkillsTimeUp.fire()
             }else if self.skills == "石頭" && otherSkillsString == "石頭" {
                 self.selfSkillsLabel.alpha = 1
                 self.otherSkillsLabel.alpha = 1
-                self.selfSkillsLabel.text = "石頭"
-                 self.otherSkillsLabel.text = "石頭"
+                self.selfSkillsLabel.image = UIImage(named: "defense")
+                 self.otherSkillsLabel.image = UIImage(named: "defense")
                 
             }else if self.skills == "布" && otherSkillsString == "布" {
                  self.selfSkillsLabel.alpha = 1
                  self.otherSkillsLabel.alpha = 1
-                 self.selfSkillsLabel.text = "布"
-                 self.otherSkillsLabel.text = "布"
+                 self.selfSkillsLabel.image = UIImage(named: "bandage")
+                 self.otherSkillsLabel.image = UIImage(named: "bandage")
+                
+                
+                aHP += aLuck
+                bHP += bLuck
+                
                 
             }else if  self.skills == "剪刀" && otherSkillsString == "石頭" {
                  self.selfSkillsLabel.alpha = 1
                  self.otherSkillsLabel.alpha = 1
-                 self.selfSkillsLabel.text = "剪刀"
-                 self.otherSkillsLabel.text = "石頭"
+                 self.selfSkillsLabel.image = UIImage(named: "attack")
+                 self.otherSkillsLabel.image = UIImage(named: "defense")
                 
                 if playerID == "A" {
                     aHP -= bATK
                 }else{
                     bHP -= aATK
                 }
+                //動畫
+                UIView.animate(withDuration: 0.3) {
+                    self.selfbl.image = UIImage(named: "bl.png")
+                    self.selfbl.alpha = 1
+                    self.selfAttackConstraint.constant = self.view.frame.width/3
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        UIView.animate(withDuration: 0.3){
+                            self.selfbl.alpha = 0
+                            self.selfAttackConstraint.constant = 0
+                            self.view.layoutIfNeeded()
+                        }
+                    }
+                    self.view.layoutIfNeeded()
+                }
+                //
+                
+                
             } else if self.skills == "剪刀" && otherSkillsString == "布" {
                 self.selfSkillsLabel.alpha = 1
                 self.otherSkillsLabel.alpha = 1
-                self.selfSkillsLabel.text = "剪刀"
-                 self.otherSkillsLabel.text = "布"
+                self.selfSkillsLabel.image = UIImage(named: "attack")
+                 self.otherSkillsLabel.image = UIImage(named: "bandage")
                 
                 if playerID == "A" {
                     bHP -= aATK
                 }else{
                     aHP -= bATK
                 }
+                //動畫
+                UIView.animate(withDuration: 0.3) {
+                    self.otherbl.image = UIImage(named: "bl.png")
+                    self.otherbl.alpha = 1
+                    self.selfAttackConstraint.constant = self.view.frame.width/3
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        UIView.animate(withDuration: 0.3){
+                            self.otherbl.alpha = 0
+                            self.selfAttackConstraint.constant = 0
+                            self.view.layoutIfNeeded()
+                        }
+                    }
+                    self.view.layoutIfNeeded()
+                }
+                //
             }else if  self.skills == "石頭" && otherSkillsString == "剪刀" {
                  self.selfSkillsLabel.alpha = 1
                  self.otherSkillsLabel.alpha = 1
-                 self.selfSkillsLabel.text = "石頭"
-                 self.otherSkillsLabel.text = "剪刀"
+                 self.selfSkillsLabel.image = UIImage(named: "defense")
+                 self.otherSkillsLabel.image = UIImage(named: "attack")
                 
                 if playerID == "A" {
                     bHP -= aATK
                 }else{
                     aHP -= bATK
                 }
+                //動畫
+                UIView.animate(withDuration: 0.3) {
+                    self.otherbl.image = UIImage(named: "bl.png")
+                    self.otherbl.alpha = 1
+                    self.otherAttackConstraint.constant = -self.view.frame.width/3
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        UIView.animate(withDuration: 0.3){
+                            self.otherbl.alpha = 0
+                            self.otherAttackConstraint.constant = 0
+                            self.view.layoutIfNeeded()
+                        }
+                    }
+                    self.view.layoutIfNeeded()
+                }
+                //
             }else if  self.skills == "布" && otherSkillsString == "剪刀" {
                  self.selfSkillsLabel.alpha = 1
                  self.otherSkillsLabel.alpha = 1
-                 self.selfSkillsLabel.text = "布"
-                self.otherSkillsLabel.text = "剪刀"
+                 self.selfSkillsLabel.image = UIImage(named: "bandage")
+                self.otherSkillsLabel.image = UIImage(named: "attack")
                 
                 if playerID == "A" {
                     aHP -= bATK
                 }else{
                     bHP -= aATK
                 }
+                //動畫
+                UIView.animate(withDuration: 0.3) {
+                    self.selfbl.image = UIImage(named: "bl.png")
+                    self.selfbl.alpha = 1
+                    self.otherAttackConstraint.constant = -self.view.frame.width/3
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                        self.selfbl.alpha = 0
+                        UIView.animate(withDuration: 0.3){
+                            self.otherAttackConstraint.constant = 0
+                            self.view.layoutIfNeeded()
+                        }
+                    }
+                    self.view.layoutIfNeeded()
+                }
+                //
             }else if  self.skills == "布" && otherSkillsString == "石頭" {
                  self.selfSkillsLabel.alpha = 1
                  self.otherSkillsLabel.alpha = 1
-                 self.selfSkillsLabel.text = "布"
-                 self.otherSkillsLabel.text = "石頭"
+                 self.selfSkillsLabel.image = UIImage(named: "bandage")
+                 self.otherSkillsLabel.image = UIImage(named: "defense")
                 
                 if playerID == "A" {
-                    bHP -= aATK
+                    aHP += aLuck
                 }else{
-                    aHP -= bATK
+                    bHP += bLuck
                 }
             }else if self.skills == "石頭" && otherSkillsString == "布" {
                 self.selfSkillsLabel.alpha = 1
                 self.otherSkillsLabel.alpha = 1
-                self.selfSkillsLabel.text = "石頭"
-                self.otherSkillsLabel.text = "布"
+                self.selfSkillsLabel.image = UIImage(named: "defense")
+                self.otherSkillsLabel.image = UIImage(named: "bandage")
                 
-                if playerID == "B" {
-                    bHP -= aATK
+                if playerID == "A" {
+                    bHP += bLuck
                 }else{
-                    aHP -= bATK
+                    aHP += aLuck
                 }
             }
+            
             self.showSkillsTimeUp = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector( self.showSKills), userInfo: nil, repeats: true)
             self.showSkillsTimeUp.fire()
             self.fightViewStats()
@@ -248,7 +372,13 @@ class fightView: UIViewController {
         }
     }
     func fightViewStats()  {
-            
+        
+        if aHP >= 50{
+            aHP = 50
+        }
+        if bHP >= 50{
+            bHP = 50
+        }
             if playerID == "A" {
                 
                 self.selfHPConstraint.constant = -(self.hPLine*CGFloat(50-aHP)/50)

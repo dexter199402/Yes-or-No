@@ -14,6 +14,9 @@ import GCHelper
 
 var playPage1Music:AVAudioPlayer = AVAudioPlayer()
 var buttonSound:AVAudioPlayer = AVAudioPlayer()
+var touchStartSound:AVAudioPlayer = AVAudioPlayer()
+var pageFilp:AVAudioPlayer = AVAudioPlayer()
+
 var otherAnswer:NSData?
 var othercheck = false
 var onlineMode = false
@@ -23,11 +26,11 @@ var otherCompleteBtnBool = false
 var selfSkillBool = false
 var otherSkillsString = ""
 var otherSkillsBool = false
+var volumeValue = Float(1.0)
 
 
 
 class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
-    @IBOutlet weak var buttonColor: UIImageView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuBackground: UIImageView!
@@ -43,18 +46,30 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     @IBOutlet weak var touchStartConstraint: NSLayoutConstraint!
     
     
+    @IBOutlet weak var onlineBtnOutlet: UIButton!
+    @IBOutlet weak var computerBtnOutlet: UIButton!
+    
+    @IBOutlet weak var howToPlay: UIImageView!
+    @IBOutlet weak var howToPlayOutlet: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         wellcomeView.alpha = 1
         //初始值
         onlineMode = false
-        buttonColor.isUserInteractionEnabled = false
+        
+        onlineBtnOutlet.isUserInteractionEnabled = false
+        computerBtnOutlet.isUserInteractionEnabled = false
+        self.view.backgroundColor = UIColor.white
+        
+        
         touchStartImage()
         
         //menu shadow
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
-        wellcomeView.loadGif(name: "loading")
+        wellcomeView.loadGif(name: "Preloader_3")
         
         //驗證身份，檢查登入
         GCHelper.sharedInstance.authenticateLocalUser()
@@ -115,13 +130,27 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
         playPage1Music.play()
     }
     @IBAction func touchStartTap(_ sender: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 1) { 
-            self.touchStart.alpha = 0
+        touchStartSoundFunc()
+        self.touchStart.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now()+1){
+            UIView.animate(withDuration: 1) {
+                self.touchStart.alpha = 0
+            }
+            self.onlineBtnOutlet.isUserInteractionEnabled = true
+            self.computerBtnOutlet.isUserInteractionEnabled = true
         }
-        buttonColor.isUserInteractionEnabled = true
-        touchStart.stopAnimating()
     }
 
+    @IBAction func howToPlayUITapGestureRecognizer(_ sender: UITapGestureRecognizer) {
+        
+        
+        onlineBtnOutlet.isUserInteractionEnabled = true
+        computerBtnOutlet.isUserInteractionEnabled = true
+        howToPlayOutlet.isUserInteractionEnabled = true
+        menuBtn.isUserInteractionEnabled = true
+        howToPlay.alpha = 0
+    }
+    
     
     
     @IBAction func backGroundTap(_ sender: UITapGestureRecognizer) {
@@ -133,18 +162,23 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     func menuFunc()  {
         if menuOpen {
             self.leadingConstraint.constant = -190
-            self.menuLeadingConstraint.constant = -20
+            self.menuLeadingConstraint.constant = 0
             menuBtn.setImage(UIImage(named: "menu.png"), for: .normal)
             self.menuBackground.isUserInteractionEnabled = false
-            self.buttonColor.isUserInteractionEnabled = true
+            self.onlineBtnOutlet.isUserInteractionEnabled = true
+            self.computerBtnOutlet.isUserInteractionEnabled = true
+            
             UIView.animate(withDuration: 0.3, animations: {
                 self.menuBackground.alpha = 0
             })
         }else {
             leadingConstraint.constant = 0
-            menuLeadingConstraint.constant = -180
+            menuLeadingConstraint.constant = 180
             menuBtn.setImage(UIImage(named: "backMenu.png"), for: .normal)
-            self.buttonColor.isUserInteractionEnabled = false
+            
+            self.onlineBtnOutlet.isUserInteractionEnabled = false
+            self.computerBtnOutlet.isUserInteractionEnabled = false
+            
             self.menuBackground.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.3, animations: {
                 self.menuBackground.alpha = 0.8
@@ -156,7 +190,9 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
         menuOpen = !menuOpen
     }
     @IBAction func musicSlider(_ sender: UISlider) {
+        volumeValue = musicSliderValue.value
         playPage1Music.volume = musicSliderValue.value
+        touchStartSound.volume = musicSliderValue.value
     }
 
     //成就按鈕
@@ -176,26 +212,54 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     
     
     
-    override func viewDidLayoutSubviews() {
-    //按鈕範圍
-        buttonPath(path: buttonColor)
-    }
+
 
     //MARK: 點擊按鈕了
-    @IBAction func tapButton(_ sender: UITapGestureRecognizer) {
-        let point = sender.location(in: sender.view)
-        if buttonColorPath.contains(point){
+    
+    @IBAction func onlineModeBtn(_ sender: Any) {
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self )
-        }else{
-            if #available(iOS 10.0, *) {
-                playPage1Music.setVolume(0, fadeDuration: 3)
-            } else {
-                playPage1Music.stop()
-            }
-            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "SelectPlayerMenu")
-            self.present(vc2!, animated: true, completion: nil)
-        }
     }
+    @IBAction func computerModeBtn(_ sender: Any) {
+        if #available(iOS 10.0, *) {
+            playPage1Music.setVolume(0, fadeDuration: 3)
+        } else {
+            playPage1Music.stop()
+        }
+        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "SelectPlayerMenu")
+        self.present(vc2!, animated: true, completion: nil)
+    }
+
+    
+    @IBAction func howToPlay(_ sender: Any) {
+        
+        howToPlay.alpha = 1
+        
+        onlineBtnOutlet.isUserInteractionEnabled = false
+        computerBtnOutlet.isUserInteractionEnabled = false
+        howToPlayOutlet.isUserInteractionEnabled = false
+        menuBtn.isUserInteractionEnabled = false
+        
+    }
+    
+    
+
+    
+    
+    func touchStartSoundFunc()  {
+        do{
+            let audioPath = Bundle.main.path(forResource: "touchStart", ofType: "mp3")
+            try touchStartSound = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        touchStartSound.prepareToPlay()
+        touchStartSound.play()
+    }
+    
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

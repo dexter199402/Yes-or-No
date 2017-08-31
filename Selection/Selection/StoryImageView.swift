@@ -8,8 +8,8 @@
 
 import UIKit
 import GCHelper
+import AVFoundation
 
-var imageString = "vvvvvvvv.jpg"
 
 class StoryImageView: UIViewController {
 
@@ -26,9 +26,6 @@ class StoryImageView: UIViewController {
         wait.alpha = 0
         wait.backgroundColor = UIColor.clear
         statsLabel.text = statsLabelText
-        storyImageViewImage.image = UIImage(named: imageString)
-        storyImageViewImage.backgroundColor = UIColor.white
-        storyImageViewImage.alpha = 0.7
     }
 
     @IBAction func completeButton(_ sender: Any) {
@@ -56,6 +53,21 @@ class StoryImageView: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        pageSound()
+    }
+    func pageSound()  {
+        do{
+            let audioPath = Bundle.main.path(forResource: "page-flip-9", ofType: "wav")
+            try pageFilp = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        pageFilp.prepareToPlay()
+        pageFilp.volume = volumeValue
+        pageFilp.play()
+    }
     
     
     

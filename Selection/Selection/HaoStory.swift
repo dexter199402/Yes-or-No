@@ -298,7 +298,7 @@ func story50_1(){
             statsLabelText = "對方\nHP+1"
         }
         abChange(aH: 1, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
-        question50_2()
+        question50_113()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "你揭穿了他。他把水偷偷換成了尿。然而這逃不過你的眼睛，你打了他一巴掌。"
@@ -318,7 +318,7 @@ func story50_1(){
             statsLabelText = "HP+1"
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 1, bA: 0, bL: 0, bG: 0)
-        question50_2()
+        question50_113()
     }
 }
 

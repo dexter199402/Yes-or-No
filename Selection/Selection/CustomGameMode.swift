@@ -44,6 +44,8 @@ var Line2Value = CGFloat()
 var Line3Value = CGFloat()
 var buttonValue = CGFloat()
 
+var backGroundImage = "road.jpg"
+
 class CustomGameMode: UIViewController {
     
     @IBOutlet weak var yesLabel: UILabel!
@@ -102,7 +104,13 @@ class CustomGameMode: UIViewController {
     @IBOutlet weak var otherStatus3: UIImageView!
     @IBOutlet weak var statusViewConstraint: NSLayoutConstraint!
     
+    
+    
+    //背景
+    @IBOutlet weak var situationBackground: UIImageView!
     @IBOutlet weak var situationViwe: UIView!
+    
+    
     
     
     
@@ -339,29 +347,40 @@ class CustomGameMode: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.yesLabel.text = yesLabelText
-            self.noLabel.text = noLabelText
+        
+        self.yesLabel.text = yesLabelText
+        self.noLabel.text = noLabelText
+        DispatchQueue.main.async{
             self.statsLine()
-            
-            self.questionsLabel.text = questionsLabelText
-            self.colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
-            if onlineMode {
-                answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
-                if self.countDownUse {
-                    countdownNember = 15
-                }else{
-                    countdownNember = 25
-                }
-                print("問題倒數計開始:\(countdownNember)")
-                answerCountdown.fire()
+        }
+        UIView.animate(withDuration: 1, animations: {
+            self.situationBackground.alpha = 0
+        })
+        backgroundViewChange()
+        self.backImage.image = UIImage(named: backGroundImage)
+        
+        self.questionsLabel.text = questionsLabelText
+        self.colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
+        if onlineMode {
+            answerCountdown = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
+            if self.countDownUse {
+                countdownNember = 15
+            }else{
+                countdownNember = 25
             }
+            print("問題倒數計開始:\(countdownNember)")
+            answerCountdown.fire()
+        }
+        
+    }
+    func backgroundViewChange()  {
+        DispatchQueue.main.asyncAfter(deadline: .now()+1){
+            self.situationBackground.image = UIImage(named: backGroundImage)
+            UIView.animate(withDuration: 1, animations: {
+                self.situationBackground.alpha = 1
+            })
         }
     }
 //    判斷按下的按鈕
@@ -369,11 +388,11 @@ class CustomGameMode: UIViewController {
         let point = sender.location(in: sender.view)
         if buttonColorPath.contains(point) {
             //音效
-            buttonSoundFunc()
             if  onlineMode == true {
                 do {
                 if lock != true{
                     countDownUse = false
+                    buttonSoundFunc()
 //                上傳是的Data
                 _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerDataYes as Data, with: .reliable)
                     print("是")
@@ -390,7 +409,7 @@ class CustomGameMode: UIViewController {
             if onlineMode == false {
                 print("是")
                 yourAnswer = 1
-                
+                buttonSoundFunc()
                 let r = arc4random_uniform(2)
                 if r == 1 {
                     otherAnswer = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
@@ -404,6 +423,7 @@ class CustomGameMode: UIViewController {
             if onlineMode == true {
                 do {
                 if lock != true{
+                    buttonSoundFunc()
                     countDownUse = false
 //                上傳否的Data
                 _ = try GCHelper.sharedInstance.match.sendData(toAllPlayers: playerDataNo as Data, with: .reliable)
@@ -421,7 +441,7 @@ class CustomGameMode: UIViewController {
             if onlineMode == false {
                 print("否")
                 yourAnswer = 0
-                
+                buttonSoundFunc()
                 let r = arc4random_uniform(2)
                 if r == 1 {
                     otherAnswer = pressYes.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
@@ -436,16 +456,17 @@ class CustomGameMode: UIViewController {
         }
     }
     
-    //按鈕音效
     func buttonSoundFunc()  {
         //music
         do{
-            let audioPath = Bundle.main.path(forResource: "button", ofType: "mp3")
+            let audioPath = Bundle.main.path(forResource: "choose", ofType: "mp3")
             try buttonSound = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
         }
         catch{
             print("\(error)")
         }
+        buttonSound.volume = volumeValue
+        print(volumeValue)
         buttonSound.prepareToPlay()
         buttonSound.play()
     }
