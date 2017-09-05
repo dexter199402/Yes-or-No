@@ -49,6 +49,7 @@ class StoryView: UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
+        storyTextLabel = nil
         pageSound()
     }
     func pageSound()  {

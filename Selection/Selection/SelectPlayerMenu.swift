@@ -39,10 +39,6 @@ var arrayy = [1,2,3,4,5,6,7,8,9,10]
 var getQuestion = [Int]()
 var qString = ""
 
-
-
-
-
 class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     @IBOutlet weak var checkNameView: UITextView!
     @IBOutlet weak var checkNameViewBackground: UIImageView!
@@ -69,8 +65,6 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     
     //故事背景倒數
     var goPlayNember = 60
-    
-    
     
     
     var random:Int = Int()
@@ -336,6 +330,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         checkNameViewBackground.alpha = 0
         countDownImage.alpha = 1
         yourNameLabel.alpha = 1
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -350,6 +345,9 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
     
     
 

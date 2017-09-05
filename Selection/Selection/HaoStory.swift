@@ -10,7 +10,6 @@ import Foundation
 import GameKit
 
 
-
 func  question1_1()  {
     questionID = 1.1
     if playerID == "A" {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D50656D91F25F2C700797CCC /* GCHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50656D81F25F2C700797CCC /* GCHelper.framework */; };
+		D513B0B11F5944AF00007AA8 /* Heart_Break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D513B0B01F5944AF00007AA8 /* Heart_Break.mp3 */; };
+		D513B0B31F59496E00007AA8 /* Not_Without_the_Rest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D513B0B21F59496E00007AA8 /* Not_Without_the_Rest.mp3 */; };
 		D517C5D01F2F06FD00E8DAD1 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */; };
 		D526C0621F4AD52800A3CDFA /* StoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D526C0611F4AD52800A3CDFA /* StoryPageView.swift */; };
 		D526C0841F4AFD3600A3CDFA /* StoryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D526C0831F4AFD3600A3CDFA /* StoryImageView.swift */; };
@@ -41,6 +43,8 @@
 		35D885F32C26B1925BF6A841 /* Pods-Selection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Selection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Selection/Pods-Selection.debug.xcconfig"; sourceTree = "<group>"; };
 		A67EF924D2BB67C48E43B8CA /* Pods_Selection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Selection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50656D81F25F2C700797CCC /* GCHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCHelper.framework; path = "../../Library/Developer/Xcode/DerivedData/Selection-fcqfxhbruokzvphalzutosfmtzdn/Build/Products/Debug-iphoneos/GCHelper/GCHelper.framework"; sourceTree = "<group>"; };
+		D513B0B01F5944AF00007AA8 /* Heart_Break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Heart_Break.mp3; sourceTree = "<group>"; };
+		D513B0B21F59496E00007AA8 /* Not_Without_the_Rest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Not_Without_the_Rest.mp3; sourceTree = "<group>"; };
 		D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		D526C0611F4AD52800A3CDFA /* StoryPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPageView.swift; sourceTree = "<group>"; };
 		D526C0831F4AFD3600A3CDFA /* StoryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryImageView.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */,
 				D5422AB71F52980400B74096 /* choose.mp3 */,
 				D5422AB81F52980400B74096 /* touchStart.mp3 */,
+				D513B0B01F5944AF00007AA8 /* Heart_Break.mp3 */,
+				D513B0B21F59496E00007AA8 /* Not_Without_the_Rest.mp3 */,
 				D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */,
 			);
 			name = Model;
@@ -272,6 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D52CB6BA1F1B553A00BA07E7 /* LaunchScreen.storyboard in Resources */,
+				D513B0B11F5944AF00007AA8 /* Heart_Break.mp3 in Resources */,
+				D513B0B31F59496E00007AA8 /* Not_Without_the_Rest.mp3 in Resources */,
 				D5422ABA1F52980400B74096 /* touchStart.mp3 in Resources */,
 				D5422AB91F52980400B74096 /* choose.mp3 in Resources */,
 				D5422ABE1F52FF8E00B74096 /* page-flip-9.wav in Resources */,

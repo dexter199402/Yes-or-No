@@ -16,6 +16,8 @@ var statsLabelText = "這是變化"
 var judgeValue = 0
 var questionID = 0.0
 
+var aCurseNumber = 5
+var bCurseNumber = 5
 
 
 func result(vv:UIViewController)  {
@@ -74,6 +76,11 @@ func result(vv:UIViewController)  {
     default:
         break
     }
+    
+    if aCurse || bCurse {
+        curseFunc()
+    }
+    
     goStoryPageView(v: vv)
 }
 
@@ -90,6 +97,30 @@ func goFight(v:UIViewController) {
     let view=v.storyboard?.instantiateViewController(withIdentifier:"fightView")
     v.present(view!, animated: true, completion: nil)
     }
+}
+
+
+
+func curseFunc()  {
+    
+    if aCurse {
+        if aCurseNumber > 0  {
+            aCurseNumber -= 1
+            abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        }else{
+            aCurseNumber = 5
+            aCurse = false
+        }
+    }else if bCurse {
+        if bCurseNumber > 0  {
+            bCurseNumber -= 1
+            abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
+        }else{
+            bCurseNumber = 5
+            bCurse = false
+        }
+    }
+    
 }
 
 

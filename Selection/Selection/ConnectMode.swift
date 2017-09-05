@@ -16,6 +16,7 @@ var playPage1Music:AVAudioPlayer = AVAudioPlayer()
 var buttonSound:AVAudioPlayer = AVAudioPlayer()
 var touchStartSound:AVAudioPlayer = AVAudioPlayer()
 var pageFilp:AVAudioPlayer = AVAudioPlayer()
+var themeMusic:AVAudioPlayer = AVAudioPlayer()
 
 var otherAnswer:NSData?
 var othercheck = false
@@ -93,12 +94,7 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
 //                print("== \(names)")
 //            }
 //        }
-        
-        
-        
-        
-        
-        
+  
 
     }
 
@@ -222,6 +218,9 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     @IBAction func computerModeBtn(_ sender: Any) {
         if #available(iOS 10.0, *) {
             playPage1Music.setVolume(0, fadeDuration: 3)
+            DispatchQueue.main.asyncAfter(deadline: .now()+3){
+                playPage1Music.stop()
+            }
         } else {
             playPage1Music.stop()
         }
@@ -344,8 +343,21 @@ extension ConnectMode: GCHelperDelegate {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        wellcomeView = nil
+        touchStart = nil
+    }
+    
     //逃生門回到這
     @IBAction func backFirstView (_segue: UIStoryboardSegue){
         
+        if #available(iOS 10.0, *) {
+            playPage1Music.play()
+            playPage1Music.volume = 0
+            playPage1Music.setVolume(volumeValue, fadeDuration: 3)
+        } else {
+            playPage1Music.play()
+        }
     }
+    
 }

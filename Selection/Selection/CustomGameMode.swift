@@ -45,6 +45,7 @@ var Line3Value = CGFloat()
 var buttonValue = CGFloat()
 
 var backGroundImage = "road.jpg"
+var situationViewLabelString = "你到了哪裡？"
 
 class CustomGameMode: UIViewController {
     
@@ -109,6 +110,8 @@ class CustomGameMode: UIViewController {
     //背景
     @IBOutlet weak var situationBackground: UIImageView!
     @IBOutlet weak var situationViwe: UIView!
+    @IBOutlet weak var situationViewLabel: UILabel!
+    
     
     
     
@@ -155,6 +158,7 @@ class CustomGameMode: UIViewController {
         //訊息來了監聽
         NotificationCenter.default.addObserver(self, selector: #selector(otherPow), name: NSNotification.Name(rawValue: "messageCome"), object: nil)
         
+        
         selectionQuestion()
         questionsLabel.text = questionsLabelText
         
@@ -167,8 +171,36 @@ class CustomGameMode: UIViewController {
         
         //人物動畫
         manAnimation()
-
         
+    }
+    
+    func themeMusicFunc()  {
+        if questionID == 1.1 {
+            
+            musicSelection(musicName:"Heart_Break")
+            
+        }else if questionID == 2.1 {
+            musicSelection(musicName: "Not_Without_the_Rest")
+        }
+        //背景順便
+        self.situationViwe.alpha = 1
+        
+        backgroundViewChange()
+        self.backImage.image = UIImage(named: backGroundImage)
+        
+    }
+    func musicSelection(musicName:String)  {
+        do{
+            let audioPath = Bundle.main.path(forResource: musicName, ofType: "mp3")
+            try themeMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch{
+            print("\(error)")
+        }
+        themeMusic.volume = volumeValue
+        themeMusic.numberOfLoops = -1
+        themeMusic.prepareToPlay()
+        themeMusic.play()
     }
     
 
@@ -249,11 +281,11 @@ class CustomGameMode: UIViewController {
     
     //人物動畫
     func manAnimation() {
-        whiteMan.animationImages = [UIImage(named:"一般裝態白1.png")!,UIImage(named:"一般裝態白2.png")!,UIImage(named:"一般裝態白3.png")!,UIImage(named:"一般裝態白2.png")!]
+        whiteMan.animationImages = [UIImage(named:"一般裝態黑1.png")!,UIImage(named:"一般裝態黑2.png")!,UIImage(named:"一般裝態黑3.png")!,UIImage(named:"一般裝態黑2.png")!]
         whiteMan.animationDuration = 1
         whiteMan.animationRepeatCount = 0
         whiteMan.startAnimating()
-        blackMan.animationImages = [UIImage(named:"一般裝態黑1.png")!,UIImage(named:"一般裝態黑2.png")!,UIImage(named:"一般裝態黑3.png")!,UIImage(named:"一般裝態黑2.png")!]
+        blackMan.animationImages = [UIImage(named:"一般裝態紅1.png")!,UIImage(named:"一般裝態紅2.png")!,UIImage(named:"一般裝態紅3.png")!,UIImage(named:"一般裝態紅2.png")!]
         blackMan.animationDuration = 1
         blackMan.animationRepeatCount = 0
         blackMan.startAnimating()
@@ -344,6 +376,15 @@ class CustomGameMode: UIViewController {
     @IBAction func situationView(_ sender: UITapGestureRecognizer) {
         UIView.animate(withDuration: 2) { 
             self.situationViwe.alpha = 0
+            self.situationViewLabel.alpha = 0
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showCurseStatus()
+        if selectionquestionBool {
+            themeMusicFunc()
+            selectionquestionBool = false
         }
     }
     
@@ -355,11 +396,8 @@ class CustomGameMode: UIViewController {
         DispatchQueue.main.async{
             self.statsLine()
         }
-        UIView.animate(withDuration: 1, animations: {
-            self.situationBackground.alpha = 0
-        })
-        backgroundViewChange()
-        self.backImage.image = UIImage(named: backGroundImage)
+        
+        
         
         self.questionsLabel.text = questionsLabelText
         self.colorButton.image = UIImage.animatedImageNamed("按鈕原圖.png", duration: 1)
@@ -375,11 +413,18 @@ class CustomGameMode: UIViewController {
         }
         
     }
+
+    
+    
     func backgroundViewChange()  {
+        self.situationBackground.alpha = 0
+        self.situationViewLabel.alpha = 0
         DispatchQueue.main.asyncAfter(deadline: .now()+1){
             self.situationBackground.image = UIImage(named: backGroundImage)
+            self.situationViewLabel.text = situationViewLabelString
             UIView.animate(withDuration: 1, animations: {
                 self.situationBackground.alpha = 1
+                self.situationViewLabel.alpha = 1
             })
         }
     }
@@ -471,13 +516,19 @@ class CustomGameMode: UIViewController {
         buttonSound.play()
     }
     
+    
+    
+    @IBOutlet weak var selfStatusLabel: UILabel!
+    @IBOutlet weak var otherStatusLabel: UILabel!
+    
     //狀態顯示
     @IBAction func selfStatus(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             
+            showCurseStatus()
             statusViewConstraint.constant = 0
-
         }else if sender.state == .changed {
+            
             statusViewConstraint.constant = 0
         }else{
             statusViewConstraint.constant = buttonValue*1.2
@@ -486,6 +537,52 @@ class CustomGameMode: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    //curse狀態顯示
+    func showCurseStatus()  {
+        
+        if aCurse {
+            
+            if playerID == "A" {
+                selfStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(aCurseNumber)回合"
+                selfStatus3.alpha = 1
+            }else if playerID == "B"{
+                otherStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(aCurseNumber)回合"
+                otherStatus3.alpha = 1
+            }
+            
+        }else if bCurse {
+        
+            if playerID == "A" {
+                otherStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(bCurseNumber)回合"
+                otherStatus3.alpha = 1
+            }else if playerID == "B" {
+                selfStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(bCurseNumber)回合"
+                selfStatus3.alpha = 1
+            }
+        
+        }else if aCurse == false {
+            if playerID == "A" {
+                selfStatusLabel.text = ""
+                selfStatus3.alpha = 0
+            }else if playerID == "B" {
+                otherStatusLabel.text = ""
+                otherStatus3.alpha = 0
+            }
+        }else if bCurse == false {
+            if playerID == "A" {
+                otherStatusLabel.text = ""
+                otherStatus3.alpha = 0
+            }else if playerID == "B" {
+                selfStatusLabel.text = ""
+                selfStatus3.alpha = 0
+            }
+        }
+        
+        
+        
+    }
+    
+    
     
     
     
@@ -585,6 +682,8 @@ class CustomGameMode: UIViewController {
 
     func gameOver() {
         //前一場屬性重設
+        
+        themeMusic.stop()
         
         answerCountdown.invalidate()
         playerID = "noting"

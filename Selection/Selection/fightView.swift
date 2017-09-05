@@ -227,8 +227,10 @@ class fightView: UIViewController {
                 
                 if playerID == "A" {
                     aHP -= bATK
+                    bHP -= aATK/2
                 }else{
                     bHP -= aATK
+                    aHP -= bATK/2
                 }
                 //動畫
                 UIView.animate(withDuration: 0.3) {
@@ -281,8 +283,10 @@ class fightView: UIViewController {
                 
                 if playerID == "A" {
                     bHP -= aATK
+                    aHP -= bATK/2
                 }else{
                     aHP -= bATK
+                    bHP -= aATK/2
                 }
                 //動畫
                 UIView.animate(withDuration: 0.3) {
@@ -420,6 +424,7 @@ class fightView: UIViewController {
     
     func goGameOverView()  {
         DispatchQueue.main.asyncAfter(deadline: .now()+2){
+            themeMusic.stop()
             let v = self.storyboard?.instantiateViewController(withIdentifier:"gameOver")
             self.present(v!, animated: true, completion: nil)
         }

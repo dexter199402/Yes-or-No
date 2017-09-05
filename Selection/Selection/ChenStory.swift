@@ -8,7 +8,8 @@
 
 import Foundation
 var storyLock = false
-var curse = false
+var aCurse = false
+var bCurse = false
 
 func question2_1() {
     questionID = 2.1
@@ -282,11 +283,11 @@ func story2_31(){
             if playerID == "A" {
                 storyTextLabelText = "\(aName)舉起石頭砸向祭壇，但\(bName)卻只在旁邊看著，祭壇因此沒有被摧毀，突然間祭壇竄出一團黑霧進入\(aName)的體內，他吸收了奇怪的霧氣後，森林的陰氣瞬間消失，恢復了原樣，村民們高興地把兩人拋在空中，並送了兩人許多金幣"
                 statsLabelText = "ＨＰ+1  ＡＴＫ+1  ＬＵＣＫ+1  ＧＯＬＤ+300  受到詛咒\n對方\nＧＯＬＤ+300"
-                curse = true
             }else if playerID == "B" {
                 storyTextLabelText = "\(aName)舉起石頭砸向祭壇，但\(bName)卻只在旁邊看著，祭壇因此沒有被摧毀，突然間祭壇竄出一團黑霧進入\(aName)的體內，他吸收了奇怪的霧氣後，森林的陰氣瞬間消失，恢復了原樣，村民們高興地把兩人拋在空中，並送了兩人許多金幣"
                 statsLabelText = "ＧＯＬＤ+300\n對方\nＨＰ+1  ＡＴＫ+1  ＬＵＣＫ+1  ＧＯＬＤ+300  受到詛咒"
             }
+            aCurse = true
             //數值變化
             abChange(aH: 1, aA: 1, aL: 1, aG: 300, bH: 0, bA: 0, bL: 0, bG: 300)
             selectionQuestion()
@@ -298,8 +299,8 @@ func story2_31(){
             }else if playerID == "B" {
                 storyTextLabelText = "\(bName)舉起石頭砸向祭壇，但\(aName)卻只在旁邊看著，祭壇因此沒有被摧毀，突然間祭壇竄出一團黑霧進入\(bName)的體內，他吸收了奇怪的霧氣後，森林的陰氣瞬間消失，恢復了原樣，村民們高興地把兩人拋在空中，並送了兩人許多金幣"
                 statsLabelText = "ＨＰ+1  ＡＴＫ+1  ＬＵＣＫ+1  ＧＯＬＤ+300  受到詛咒\n對方\nＧＯＬＤ+300"
-                curse = true
             }
+            bCurse = true
             //數值變化
             abChange(aH: 0, aA: 0, aL: 0, aG: 300, bH: 1, bA: 1, bL: 1, bG: 300)
             selectionQuestion()
@@ -396,11 +397,12 @@ func story2_34(){
         if playerID == "A" {
             storyTextLabelText = "\(aName)舉起石頭砸向祭壇，但\(bName)卻只在旁邊看著，祭壇因此沒有被摧毀，突然間祭壇竄出一團黑霧進入\(aName)的體內，他吸收了奇怪的霧氣後，森林的陰氣瞬間消失，恢復了原樣，兩人也離開了這個區域"
             statsLabelText = "ＨＰ+1  ＡＴＫ+1  ＬＵＣＫ+1  受到詛咒\n對方\nＡＴＫ-1"
-            curse = true
+            
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)舉起石頭砸向祭壇，但\(bName)卻只在旁邊看著，祭壇因此沒有被摧毀，突然間祭壇竄出一團黑霧進入\(aName)的體內，他吸收了奇怪的霧氣後，森林的陰氣瞬間消失，恢復了原樣，兩人也離開了這個區域"
             statsLabelText = "ＡＴＫ-1\n對方\nＨＰ+1  ＡＴＫ+1  ＬＵＣＫ+1  受到詛咒"
         }
+        aCurse = true
         //數值變化
         abChange(aH: 1, aA: 1, aL: 1, aG: 0, bH: 0, bA: -1, bL: 0, bG: 0)
         selectionQuestion()
@@ -413,8 +415,8 @@ func story2_34(){
         }else if playerID == "B" {
             storyTextLabelText = "\(bName)舉起石頭砸向祭壇，但\(aName)卻只在旁邊看著，祭壇因此沒有被摧毀，突然間祭壇竄出一團黑霧進入\(bName)的體內，他吸收了奇怪的霧氣後，森林的陰氣瞬間消失，恢復了原樣，兩人也離開了這個區域"
             statsLabelText = "ＨＰ+1  ＡＴＫ+1  ＬＵＣＫ+1  受到詛咒\n對方\nＡＴＫ-1"
-            curse = true
         }
+        bCurse = true
         //數值變化
         abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: 1, bA: 1, bL: 1, bG: 0)
         selectionQuestion()

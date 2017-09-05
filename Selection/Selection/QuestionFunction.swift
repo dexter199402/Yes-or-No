@@ -13,7 +13,7 @@ var iD2Lock = false
 var iD3Lock = false
 var iD4Lock = false
 var iD5Lock = false
-
+var selectionquestionBool = false
 
 func selectionQuestion() {
     
@@ -35,6 +35,7 @@ func selectionQuestion() {
         iD5Lock = true
         questionSwitch(ID:Int(String(questionArray[4]))!)
     }
+    selectionquestionBool = true
 }
 
 func questionSwitch(ID:Int) {
@@ -116,4 +117,12 @@ func judge()  {
         judgeValue = 4
         print("4")
     }
+    
+    if aCurse {
+        abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+    }else if bCurse {
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
+    }
+    
+        
 }
