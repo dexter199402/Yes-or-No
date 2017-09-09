@@ -14,7 +14,7 @@ var questionsLabelText = "這是題目"
 var storyTextLabelText = "這是結果"
 var statsLabelText = "這是變化"
 var judgeValue = 0
-var questionID = 0.0
+var questionID:Float = Float()
 
 var aCurseNumber = 5
 var bCurseNumber = 5

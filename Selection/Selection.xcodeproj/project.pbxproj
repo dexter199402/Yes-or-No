@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D50656D91F25F2C700797CCC /* GCHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50656D81F25F2C700797CCC /* GCHelper.framework */; };
-		D513B0B11F5944AF00007AA8 /* Heart_Break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D513B0B01F5944AF00007AA8 /* Heart_Break.mp3 */; };
 		D513B0B31F59496E00007AA8 /* Not_Without_the_Rest.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D513B0B21F59496E00007AA8 /* Not_Without_the_Rest.mp3 */; };
 		D517C5D01F2F06FD00E8DAD1 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */; };
 		D526C0621F4AD52800A3CDFA /* StoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D526C0611F4AD52800A3CDFA /* StoryPageView.swift */; };
@@ -25,7 +24,6 @@
 		D5422ABC1F52E25A00B74096 /* Preloader_3.gif in Resources */ = {isa = PBXBuildFile; fileRef = D5422ABB1F52E25A00B74096 /* Preloader_3.gif */; };
 		D5422ABE1F52FF8E00B74096 /* page-flip-9.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5422ABD1F52FF8E00B74096 /* page-flip-9.wav */; };
 		D54CC6B81F25A49500C2BEEC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D54CC6B71F25A49500C2BEEC /* GameKit.framework */; };
-		D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */; };
 		D58E95AE1F4EFD1100C4DA8C /* Gif_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58E95AD1F4EFD1100C4DA8C /* Gif_Swift.swift */; };
 		D5A0D4B31F20D27A00600CD2 /* ButtonPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */; };
 		D5A0D4B51F20DBA800600CD2 /* CustomGameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */; };
@@ -34,6 +32,11 @@
 		D5BF5DE61F3865D600A5B531 /* QuestionFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */; };
 		D5BF5DE81F3866D900A5B531 /* HaoStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE71F3866D900A5B531 /* HaoStory.swift */; };
 		D5BF5DEA1F3867BD00A5B531 /* ChenStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF5DE91F3867BD00A5B531 /* ChenStory.swift */; };
+		D5C2178D1F63DE6B00FF28CF /* 1_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C2178C1F63DE6B00FF28CF /* 1_1.mp3 */; };
+		D5C2178F1F63E38A00FF28CF /* 2_31.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C2178E1F63E38A00FF28CF /* 2_31.mp3 */; };
+		D5C217911F63ED3C00FF28CF /* 100_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C217901F63ED3C00FF28CF /* 100_1.mp3 */; };
+		D5C217931F63F50D00FF28CF /* 99.1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C217921F63F50D00FF28CF /* 99.1.mp3 */; };
+		D5C217951F63FD5400FF28CF /* 主選單.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C217941F63FD5400FF28CF /* 主選單.mp3 */; };
 		D702B8FFE17977DB7F51C77C /* Pods_Selection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67EF924D2BB67C48E43B8CA /* Pods_Selection.framework */; };
 		DF042F341F2B394F00C7799A /* ResultJudgement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF042F331F2B394F00C7799A /* ResultJudgement.swift */; };
 		DFF66F111F20E8A00053DF37 /* SelectPlayerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF66F101F20E8A00053DF37 /* SelectPlayerMenu.swift */; };
@@ -43,7 +46,6 @@
 		35D885F32C26B1925BF6A841 /* Pods-Selection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Selection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Selection/Pods-Selection.debug.xcconfig"; sourceTree = "<group>"; };
 		A67EF924D2BB67C48E43B8CA /* Pods_Selection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Selection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50656D81F25F2C700797CCC /* GCHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GCHelper.framework; path = "../../Library/Developer/Xcode/DerivedData/Selection-fcqfxhbruokzvphalzutosfmtzdn/Build/Products/Debug-iphoneos/GCHelper/GCHelper.framework"; sourceTree = "<group>"; };
-		D513B0B01F5944AF00007AA8 /* Heart_Break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Heart_Break.mp3; sourceTree = "<group>"; };
 		D513B0B21F59496E00007AA8 /* Not_Without_the_Rest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Not_Without_the_Rest.mp3; sourceTree = "<group>"; };
 		D517C5CF1F2F06FD00E8DAD1 /* StoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		D526C0611F4AD52800A3CDFA /* StoryPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryPageView.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		D5422ABB1F52E25A00B74096 /* Preloader_3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Preloader_3.gif; sourceTree = "<group>"; };
 		D5422ABD1F52FF8E00B74096 /* page-flip-9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "page-flip-9.wav"; sourceTree = "<group>"; };
 		D54CC6B71F25A49500C2BEEC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Morning_Walk.mp3; sourceTree = "<group>"; };
 		D58E95AD1F4EFD1100C4DA8C /* Gif_Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif_Swift.swift; sourceTree = "<group>"; };
 		D5A0D4B21F20D27A00600CD2 /* ButtonPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPath.swift; sourceTree = "<group>"; };
 		D5A0D4B41F20DBA800600CD2 /* CustomGameMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGameMode.swift; sourceTree = "<group>"; };
@@ -71,6 +72,11 @@
 		D5BF5DE51F3865D600A5B531 /* QuestionFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionFunction.swift; sourceTree = "<group>"; };
 		D5BF5DE71F3866D900A5B531 /* HaoStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaoStory.swift; sourceTree = "<group>"; };
 		D5BF5DE91F3867BD00A5B531 /* ChenStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChenStory.swift; sourceTree = "<group>"; };
+		D5C2178C1F63DE6B00FF28CF /* 1_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1_1.mp3; sourceTree = "<group>"; };
+		D5C2178E1F63E38A00FF28CF /* 2_31.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2_31.mp3; sourceTree = "<group>"; };
+		D5C217901F63ED3C00FF28CF /* 100_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 100_1.mp3; sourceTree = "<group>"; };
+		D5C217921F63F50D00FF28CF /* 99.1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 99.1.mp3; sourceTree = "<group>"; };
+		D5C217941F63FD5400FF28CF /* 主選單.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "主選單.mp3"; sourceTree = "<group>"; };
 		DF042F331F2B394F00C7799A /* ResultJudgement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultJudgement.swift; sourceTree = "<group>"; };
 		DFF66F101F20E8A00053DF37 /* SelectPlayerMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPlayerMenu.swift; sourceTree = "<group>"; };
 		F08597B25214BF4847FF1321 /* Pods-Selection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Selection.release.xcconfig"; path = "Pods/Target Support Files/Pods-Selection/Pods-Selection.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,10 +181,13 @@
 				D5422ABB1F52E25A00B74096 /* Preloader_3.gif */,
 				D533B9891F4471AA00099A6A /* show.ttc */,
 				D5422ABD1F52FF8E00B74096 /* page-flip-9.wav */,
-				D55CACBC1F3F331200BAA66B /* Morning_Walk.mp3 */,
+				D5C217921F63F50D00FF28CF /* 99.1.mp3 */,
+				D5C2178C1F63DE6B00FF28CF /* 1_1.mp3 */,
+				D5C217901F63ED3C00FF28CF /* 100_1.mp3 */,
+				D5C217941F63FD5400FF28CF /* 主選單.mp3 */,
+				D5C2178E1F63E38A00FF28CF /* 2_31.mp3 */,
 				D5422AB71F52980400B74096 /* choose.mp3 */,
 				D5422AB81F52980400B74096 /* touchStart.mp3 */,
-				D513B0B01F5944AF00007AA8 /* Heart_Break.mp3 */,
 				D513B0B21F59496E00007AA8 /* Not_Without_the_Rest.mp3 */,
 				D52CB6B61F1B553A00BA07E7 /* Assets.xcassets */,
 			);
@@ -278,12 +287,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D52CB6BA1F1B553A00BA07E7 /* LaunchScreen.storyboard in Resources */,
-				D513B0B11F5944AF00007AA8 /* Heart_Break.mp3 in Resources */,
+				D5C2178D1F63DE6B00FF28CF /* 1_1.mp3 in Resources */,
 				D513B0B31F59496E00007AA8 /* Not_Without_the_Rest.mp3 in Resources */,
+				D5C2178F1F63E38A00FF28CF /* 2_31.mp3 in Resources */,
 				D5422ABA1F52980400B74096 /* touchStart.mp3 in Resources */,
+				D5C217931F63F50D00FF28CF /* 99.1.mp3 in Resources */,
+				D5C217951F63FD5400FF28CF /* 主選單.mp3 in Resources */,
 				D5422AB91F52980400B74096 /* choose.mp3 in Resources */,
 				D5422ABE1F52FF8E00B74096 /* page-flip-9.wav in Resources */,
-				D55CACBD1F3F331200BAA66B /* Morning_Walk.mp3 in Resources */,
+				D5C217911F63ED3C00FF28CF /* 100_1.mp3 in Resources */,
 				D5422ABC1F52E25A00B74096 /* Preloader_3.gif in Resources */,
 				D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */,
 				D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */,

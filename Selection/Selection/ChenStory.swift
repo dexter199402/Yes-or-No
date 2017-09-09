@@ -15,6 +15,8 @@ var cityalertB = false
 var king = false
 func question2_1() {
     questionID = 2.1
+    backGroundImage = "2_1.jpg"
+    situationViewLabelString = "你到了分岔路"
     if playerID == "A" {
         questionsLabelText = "旅途中來到了一條岔路，左邊通往一個風平浪靜的小村莊，右邊通向詭異的森林，不時傳來尖叫聲，樹上還被人寫了個慘字，是否往左邊安全的前進？"
     }else if playerID == "B"{
@@ -76,6 +78,9 @@ func story2_1(){
 }
 func question2_2() {
     questionID = 2.2
+    selectionquestionBool = true
+    backGroundImage = "2_2.jpg"
+    situationViewLabelString = "你到了村莊"
     if playerID == "A" {
         questionsLabelText = "傍晚回到了村莊中，你發現旅館老闆的女兒非常漂亮，是否要去搭訕？"
     }else if playerID == "B"{
@@ -253,6 +258,9 @@ func story2_3(){
 }
 func question2_31() {
     questionID = 2.31
+    backGroundImage = "2_31.jpg"
+    situationViewLabelString = "你到了森林"
+    selectionquestionBool = true
     if storyLock == true {
         if playerID == "A" {
             questionsLabelText = "來到森林裡的祭壇，上面供奉著奇奇怪怪的頭骨及液體，是否要不顧一切把祭壇砸爛？"
@@ -376,6 +384,8 @@ func story2_31(){
 }
 func question2_34() {
     questionID = 2.34
+    backGroundImage = "2_31.jpg"
+    selectionquestionBool = true
     if playerID == "A" {
         questionsLabelText = "兩人互相解開對方的繩子，發現正在一座詭異的祭壇前，上面供奉著奇奇怪怪的頭骨及液體，是否要不顧一切把祭壇砸爛？"
     }else if playerID == "B"{
@@ -442,6 +452,9 @@ func story2_34(){
 
 func question3_1() {
     questionID = 3.1
+    backGroundImage = "road.jpg"
+    situationViewLabelString = "你到了路上"
+    selectionquestionBool = true
     if playerID == "A" {
         questionsLabelText = "走著走著看到一群Ｃ國的巡邏士兵迎面走來，是否要繞遠路避開？"
     }else if playerID == "B"{
@@ -679,7 +692,7 @@ func story3_4(){
         //數值變化
         abChange(aH: 0, aA: 1, aL: 1, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
         //下個問題
-        question101_1()
+        question102_1()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "當巡邏士兵接近時，\(bName)突然舉起\(aName)的手大叫：“警察叔叔 就是這個人！”，士兵們立馬把\(aName)抓了起來，丟進了附近的監獄"
@@ -691,7 +704,7 @@ func story3_4(){
         //數值變化
         abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: 0, bA: 1, bL: 1, bG: 0)
         //下個問題
-        question102_1()
+        question101_1()
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "\(aName)和\(bName)身為有品的紳士，絕對不會做出這種出賣同伴的事，必須要想別的方法通過"
@@ -829,6 +842,9 @@ func story3_11(){
 
 func question100_1() {
     questionID = 100.1
+    selectionquestionBool = true
+    backGroundImage = "100_1.jpg"
+    situationViewLabelString = "你被關進監獄"
     if playerID == "A" {
         questionsLabelText = "你的牢房空無一物，只有一個被關到漏尿的怪老頭，老頭說他以前是Ｃ國的國王，拜託越獄時帶上它，是否答應？"
     }else if playerID == "B"{
@@ -1083,12 +1099,14 @@ func story100_14(){
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "想都不用想，你果斷出賣了\(bName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
-            statsLabelText = "ＨＰ+5\n對方\n???"
+            statsLabelText = "ＨＰ+5 被跟蹤狀態\n對方\n???"
         }else if playerID == "B" {
             storyTextLabelText = "想都不用想，你果斷出賣了\(aName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
-            statsLabelText = "ＨＰ+5\n對方\n???"
+            statsLabelText = "ＨＰ+5 被跟蹤狀態\n對方\n???"
         }
         //數值變化
+        cityalertA = true
+        cityalertB = true
         abChange(aH: 5, aA: 0, aL: 0, aG: 0, bH: 5, bA: 0, bL: 0, bG: 0)
         //帶入下個問題
         selectionQuestion()
@@ -1098,21 +1116,23 @@ func story100_14(){
             statsLabelText = "ＨＰ+5\n對方\n???"
         }else if playerID == "B" {
             storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(aName)繼續踏上旅途"
-            statsLabelText = "ＨＰ-3\n對方\n???"
+            statsLabelText = "ＨＰ-3 被跟蹤狀態\n對方\n???"
         }
         //數值變化
         abChange(aH: 5, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
         //下個問題
+        cityalertB = true
         selectionQuestion()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(bName)繼續踏上旅途"
-            statsLabelText = "ＨＰ-3\n對方\n???"
+            statsLabelText = "ＨＰ-3 被跟蹤狀態\n對方\n???"
         }else if playerID == "B" {
             storyTextLabelText = "想都不用想，你果斷出賣了\(aName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
             statsLabelText = "ＨＰ+5\n對方\n???"
         }
         //數值變化
+        cityalertA = true
         abChange(aH: -3, aA: 0, aL: 0, aG: 0, bH: 5, bA: 0, bL: 0, bG: 0)
         //下個問題
         selectionQuestion()
@@ -1134,6 +1154,14 @@ func story100_14(){
 
 func question101_1() {
     questionID = 101.1
+    selectionquestionBool = true
+    if playerID == "A" {
+        backGroundImage = "100_1.jpg"
+        situationViewLabelString = "你被關進監獄"
+    }else{
+        backGroundImage = "1012.jpg"
+        situationViewLabelString = "你到了監獄外頭"
+    }
     if playerID == "A" {
         questionsLabelText = "只有你一個被關進監獄，\(bName)卻在外面逍遙，有夠火大，要不要跟Ｃ國交換條件，出賣\(bName)的情報來讓他們釋放你？"
     }else if playerID == "B"{
@@ -1198,10 +1226,18 @@ func story101_1(){
 
 func question102_1() {
     questionID = 102.1
+    selectionquestionBool = true
     if playerID == "B" {
-        questionsLabelText = "只有你一個被關進監獄，\(bName)卻在外面逍遙，有夠火大，要不要跟Ｃ國交換條件，出賣\(bName)的情報來讓他們釋放你？"
+        backGroundImage = "100_1.jpg"
+        situationViewLabelString = "你被關進監獄"
+    }else{
+        backGroundImage = "1012.jpg"
+        situationViewLabelString = "你到了監獄外頭"
+    }
+    if playerID == "B" {
+        questionsLabelText = "只有你一個被關進監獄，\(aName)卻在外面逍遙，有夠火大，要不要跟Ｃ國交換條件，出賣\(bName)的情報來讓他們釋放你？"
     }else if playerID == "A"{
-        questionsLabelText = "\(aName)現在被關在監獄裡，你要不要在外面想辦法幫助他出獄？"
+        questionsLabelText = "\(bName)現在被關在監獄裡，你要不要在外面想辦法幫助他出獄？"
     }
 }
 func story102_1(){

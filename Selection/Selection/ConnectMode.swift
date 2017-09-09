@@ -115,7 +115,7 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
         })
         //music
         do{
-            let audioPath = Bundle.main.path(forResource: "Morning_Walk", ofType: "mp3")
+            let audioPath = Bundle.main.path(forResource: "主選單", ofType: "mp3")
             try playPage1Music = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
         }
         catch{
@@ -213,9 +213,11 @@ class ConnectMode: UIViewController,GKGameCenterControllerDelegate {
     //MARK: 點擊按鈕了
     
     @IBAction func onlineModeBtn(_ sender: Any) {
+        onlineMode = true
         GCHelper.sharedInstance.findMatchWithMinPlayers(2, maxPlayers: 2, viewController: self, delegate: self )
     }
     @IBAction func computerModeBtn(_ sender: Any) {
+        onlineMode = false
         if #available(iOS 10.0, *) {
             playPage1Music.setVolume(0, fadeDuration: 3)
             DispatchQueue.main.asyncAfter(deadline: .now()+3){

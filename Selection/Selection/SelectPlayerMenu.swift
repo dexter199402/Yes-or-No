@@ -222,7 +222,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
                 //題目不重複
                 arrayy = [1,2,3,4,5,6,7,8,9,10,99]
                 //測試
-                qString = "3/2/1/50/99"
+                qString = "1/2/3/51/99"
                 //隨機選問題
 //                qString = ""
 //                for _ in 1...5 {
@@ -252,7 +252,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
             arrayy = [1,2,3,4,5,6,7,8,9,10]
             
             //測試
-            qString = "1/2/3/50/99"
+            qString = "1/2/3/51/99"
 //            for _ in 1...5 {
 //                getTheRandomQuestion()
 //            }

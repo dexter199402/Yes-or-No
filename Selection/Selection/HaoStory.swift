@@ -12,15 +12,18 @@ import GameKit
 
 func  question1_1()  {
     questionID = 1.1
+    selectionquestionBool = true
+    backGroundImage = "road.jpg"
+    situationViewLabelString = "你到了路上"
     if playerID == "A" {
         questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(bName)聊天？"
     }else if playerID == "B"{
         questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(aName)聊天？"
     }
     //成就
-    let achievement = GKAchievement(identifier: "missioncomplete")
-    achievement.showsCompletionBanner = true
-    GKAchievement.report([achievement], withCompletionHandler: nil)
+//    let achievement = GKAchievement(identifier: "missioncomplete")
+//    achievement.showsCompletionBanner = true
+//    GKAchievement.report([achievement], withCompletionHandler: nil)
 }
 func story1_1() {
     if judgeValue == 1 {
@@ -271,6 +274,8 @@ func story1_3(){
 
 func question50_1() {
     questionID = 50.1
+    selectionquestionBool = true
+    backGroundImage = "road.jpg"
     if playerID == "A" {
         questionsLabelText = "這傢伙怎麼突然要給我水喝，是否要接受他的心意？"
     }else if playerID == "B"{
@@ -502,6 +507,9 @@ func story51_1(){
 
 func question99_1() {
     questionID = 99.1
+    selectionquestionBool = true
+    backGroundImage = "99_1.jpg"
+    situationViewLabelString = "完成暗殺任務但..."
     if playerID == "A" {
         questionsLabelText = "兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？"
     }else if playerID == "B"{
@@ -509,7 +517,6 @@ func question99_1() {
     }
     yesLabelText = "躲起來"
     noLabelText = "熱血開戰"
-
 }
 func story99_1(){
     print("99.1")

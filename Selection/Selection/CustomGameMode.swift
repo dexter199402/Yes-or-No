@@ -175,13 +175,28 @@ class CustomGameMode: UIViewController {
     }
     
     func themeMusicFunc()  {
-        if questionID == 1.1 {
+        if questionID == 1.1 || questionID == 3.1 || questionID == 50.1 {
             
-            musicSelection(musicName:"Heart_Break")
+            musicSelection(musicName:"1_1")
             
         }else if questionID == 2.1 {
             musicSelection(musicName: "Not_Without_the_Rest")
+        }else if questionID == 2.31 || questionID == 2.34{
+            musicSelection(musicName: "2_31")
+        }else if questionID == 100.1 {
+            musicSelection(musicName: "100_1")
+        }else if questionID == 101.1 {
+            if playerID == "A" {
+                musicSelection(musicName: "100_1")
+            }
+        }else if questionID == 102.1 {
+            if playerID == "B" {
+                musicSelection(musicName: "100_1")
+            }
+        }else if questionID == 99.1 {
+            musicSelection(musicName: "99.1")
         }
+        
         //背景順便
         self.situationViwe.alpha = 1
         
@@ -540,46 +555,98 @@ class CustomGameMode: UIViewController {
     //curse狀態顯示
     func showCurseStatus()  {
         
+        var aCurseString = ""
+        var bCurseString = ""
+        var cityalertAString = ""
+        var cityalertBString = ""
+        
         if aCurse {
             
+            aCurseString = "詛咒：肯定不是好效果"
+            
             if playerID == "A" {
-                selfStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(aCurseNumber)回合"
                 selfStatus3.alpha = 1
             }else if playerID == "B"{
-                otherStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(aCurseNumber)回合"
                 otherStatus3.alpha = 1
             }
+        }else{
             
-        }else if bCurse {
-        
+            aCurseString = ""
+            
             if playerID == "A" {
-                otherStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(bCurseNumber)回合"
-                otherStatus3.alpha = 1
-            }else if playerID == "B" {
-                selfStatusLabel.text = "詛咒狀態:\n效果每回合HP-1\n效果:\(bCurseNumber)回合"
-                selfStatus3.alpha = 1
-            }
-        
-        }else if aCurse == false {
-            if playerID == "A" {
-                selfStatusLabel.text = ""
                 selfStatus3.alpha = 0
-            }else if playerID == "B" {
-                otherStatusLabel.text = ""
+            }else if playerID == "B"{
                 otherStatus3.alpha = 0
-            }
-        }else if bCurse == false {
-            if playerID == "A" {
-                otherStatusLabel.text = ""
-                otherStatus3.alpha = 0
-            }else if playerID == "B" {
-                selfStatusLabel.text = ""
-                selfStatus3.alpha = 0
             }
         }
         
+        if bCurse {
+            
+            bCurseString = "詛咒：肯定不是好效果"
+            
+            if playerID == "B" {
+                selfStatus3.alpha = 1
+            }else if playerID == "A"{
+                otherStatus3.alpha = 1
+            }
+        }else{
+            
+            bCurseString = ""
+            
+            if playerID == "B" {
+                selfStatus3.alpha = 0
+            }else if playerID == "A"{
+                otherStatus3.alpha = 0
+            }
+        }
         
+        if cityalertA {
+            
+            cityalertAString = "跟蹤：你感到有雙眼鏡注視著你"
+            
+            if playerID == "A" {
+                selfStatus2.alpha = 1
+            }else if playerID == "B"{
+                otherStatus2.alpha = 1
+            }
+        }else{
+            
+            cityalertAString = ""
+            
+            if playerID == "A" {
+                selfStatus2.alpha = 0
+            }else if playerID == "B"{
+                otherStatus2.alpha = 0
+            }
+        }
         
+        if cityalertB {
+            
+            cityalertBString = "跟蹤：你感到有雙眼鏡注視著你"
+            
+            if playerID == "B" {
+                selfStatus2.alpha = 1
+            }else if playerID == "A"{
+                otherStatus2.alpha = 1
+            }
+        }else{
+            
+            cityalertBString = ""
+            
+            if playerID == "B" {
+                selfStatus2.alpha = 0
+            }else if playerID == "A"{
+                otherStatus2.alpha = 0
+            }
+        }
+        
+        if playerID == "A" {
+            selfStatusLabel.text = "\n\(cityalertAString)\n\(aCurseString)"
+            otherStatusLabel.text = "\n\(cityalertBString)\n\(bCurseString)"
+        }else{
+            selfStatusLabel.text = "\n\(cityalertBString)\n\(bCurseString)"
+            otherStatusLabel.text = "\n\(cityalertAString)\n\(aCurseString)"
+        }
     }
     
     
@@ -694,12 +761,8 @@ class CustomGameMode: UIViewController {
         blackMan.stopAnimating()
         answerCountdownLabel.alpha = 1
         getQuestion = [Int]()
-        let alert = UIAlertController(title: "GameOver", message: "遊戲結束了按OK繼續", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-            self.performSegue(withIdentifier: "backFirstView", sender: self)
-        }
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
+        let v = self.storyboard?.instantiateViewController(withIdentifier:"gameOver")
+        self.present(v!, animated: true, completion: nil)
     }
     
     
