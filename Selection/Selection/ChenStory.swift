@@ -10,7 +10,9 @@ import Foundation
 var storyLock = false
 var aCurse = false
 var bCurse = false
-
+var cityalertA = false
+var cityalertB = false
+var king = false
 func question2_1() {
     questionID = 2.1
     if playerID == "A" {
@@ -438,6 +440,824 @@ func story2_34(){
 
 
 
+func question3_1() {
+    questionID = 3.1
+    if playerID == "A" {
+        questionsLabelText = "走著走著看到一群Ｃ國的巡邏士兵迎面走來，是否要繞遠路避開？"
+    }else if playerID == "B"{
+        questionsLabelText = "走著走著看到一群Ｃ國的巡邏士兵迎面走來，是否要繞遠路避開？"
+    }
+}
+func story3_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "那群士兵看到你們鬼鬼祟祟的行為馬上追了上來，\(aName)和\(bName)決定跑給他們追"
+            statsLabelText = "ＨＰ-2 ＬＵＣＫ-1\n對方\nＨＰ-2 ＬＵＣＫ-1"
+        }else if playerID == "B" {
+            storyTextLabelText = "那群士兵看到你們鬼鬼祟祟的行為馬上追了上來，\(aName)和\(bName)決定跑給他們追"
+            statsLabelText = "ＨＰ-2 ＬＵＣＫ-1\n對方\nＨＰ-2 ＬＵＣＫ-1"
+        }
+        //數值變化
+        abChange(aH: -1, aA: 0, aL: -1, aG: 0, bH: -1, bA: 0, bL: -1, bG: 0)
+        //帶入下個問題
+        question3_11()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)想跑，但\(bName)拒絕逃走，意見不統一的他們要想別的方法通過"
+            statsLabelText = "ＡＴＫ-2\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)想跑，但\(bName)拒絕逃走，意見不統一的他們要想別的方法通過"
+            statsLabelText = "\n對方\nＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: 0, aA: -2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        question3_2()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)想跑，但\(aName)拒絕逃走，意見不統一的他們要想別的方法通過"
+            statsLabelText = "\n對方\nＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)想跑，但\(aName)拒絕逃走，意見不統一的他們要想別的方法通過"
+            statsLabelText = "ＡＴＫ-2\n對方\n"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: -2, bL: 0, bG: 0)
+        //下個問題
+        question3_2()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)認為逃跑不符合我們高大威猛的形象，他們要想別的方法通過"
+            statsLabelText = "ＡＴＫ+1 ＬＵＣＫ+1\n對方\nＡＴＫ+1 ＬＵＣＫ+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)認為逃跑不符合我們高大威猛的形象，他們要想別的方法通過"
+            statsLabelText = "ＡＴＫ+1 ＬＵＣＫ+1\n對方\nＡＴＫ+1 ＬＵＣＫ+1"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 1, aL: 1, aG: 0, bH: 0, bA: 1, bL: 1, bG: 0)
+        //下個問題
+        question3_2()
+    }
+}
+
+func question3_2() {
+    questionID = 3.2
+    if playerID == "A" {
+        questionsLabelText = "前方迎面走來一群Ｃ國的巡邏士兵，是否要先下手為強，跟他們拼了？"
+    }else if playerID == "B"{
+        questionsLabelText = "前方迎面走來一群Ｃ國的巡邏士兵，是否要先下手為強，跟他們拼了？"
+    }
+}
+func story3_2(){
+    if judgeValue == 1 {
+        if aATK + bATK >= 23 {
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)和\(bName)選擇開打，輕輕鬆鬆搞定了士兵，不過巡邏兵被襲擊的事傳開後，Ｃ國的戒備上升了一些"
+                statsLabelText = "ＡＴＫ+2 ＧＯＬＤ+100 跟蹤狀態\n對方\nＡＴＫ+2 ＧＯＬＤ+100 跟蹤狀態"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)和\(bName)選擇開打，輕輕鬆鬆搞定了士兵，不過巡邏兵被襲擊的事傳開後，Ｃ國的戒備上升了一些"
+                statsLabelText = "ＡＴＫ+2 ＧＯＬＤ+100 跟蹤狀態\n對方\nＡＴＫ+2 ＧＯＬＤ+100 跟蹤狀態"
+            }
+            //數值變化
+            abChange(aH: 0, aA: 2, aL: 0, aG: 100, bH: 0, bA: 2, bL: 0, bG: 100)
+            cityalertA = true
+            cityalertB = true
+            //帶入下個問題
+            selectionQuestion()
+        }else{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)和\(bName)實在太弱了，連巡邏士兵都打不過，兩人被以暴徒名義抓了起來，丟進了附近的監獄中"
+                statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)和\(bName)實在太弱了，連巡邏士兵都打不過，兩人被以暴徒名義抓了起來，丟進了附近的監獄中"
+                statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+            }
+            //數值變化
+            abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+            //帶入下個問題
+            question100_1()
+        }
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)準備戰鬥，但\(bName)已經嚇尿了拒絕戰鬥，你們必須想別的方法通過"
+            statsLabelText = "\n對方\nＨＰ-2 ＡＴＫ-1"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)準備戰鬥，但\(bName)已經嚇尿了拒絕戰鬥，你們必須想別的方法通過"
+            statsLabelText = "ＨＰ-2 ＡＴＫ-1\n對方\n"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -2, bA: -1, bL: 0, bG: 0)
+        //下個問題
+        question3_3()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)準備戰鬥，但\(aName)已經嚇尿了拒絕戰鬥，你們必須想別的方法通過"
+            statsLabelText = "ＨＰ-2 ＡＴＫ-1\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)準備戰鬥，但\(aName)已經嚇尿了拒絕戰鬥，你們必須想別的方法通過"
+            statsLabelText = "\n對方\nＨＰ-2 ＡＴＫ-1"
+        }
+        //數值變化
+        abChange(aH: -2, aA: -1, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        question3_3()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)很有自知之明，不去招惹士兵們，並想別的方法通過"
+            statsLabelText = "ＨＰ+1 ＬＵＣＫ+1\n對方\nＨＰ+1 ＬＵＣＫ+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)很有自知之明，不去招惹士兵們，並想別的方法通過"
+            statsLabelText = "ＨＰ+1 ＬＵＣＫ+1\n對方\nＨＰ+1 ＬＵＣＫ+1"
+        }
+        //數值變化
+        abChange(aH: 1, aA: 0, aL: 1, aG: 0, bH: 1, bA: 0, bL: 1, bG: 0)
+        //下個問題
+        question3_3()
+    }
+}
+
+func question3_3() {
+    questionID = 3.3
+    if playerID == "A" {
+        questionsLabelText = "前方迎面走來一群Ｃ國的巡邏士兵，是否要假裝沒事通過他們身旁？"
+    }else if playerID == "B"{
+        questionsLabelText = "前方迎面走來一群Ｃ國的巡邏士兵，是否要假裝沒事通過他們身旁？"
+    }
+}
+func story3_3(){
+    if judgeValue == 1 {
+        if aLuck + bLuck >= 24{
+            if playerID == "A" {
+                storyTextLabelText = "跟士兵擦身而過時，\(aName)和\(bName)隱藏住了自己的霸氣，帶頭的士兵看了他們一眼就離開了"
+                statsLabelText = "ＨＰ+2\n對方\nＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "跟士兵擦身而過時，\(aName)和\(bName)隱藏住了自己的霸氣，帶頭的士兵看了他們一眼就離開了"
+                statsLabelText = "ＨＰ+2\n對方\nＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: 2, bA: 0, bL: 0, bG: 0)
+            //帶入下個問題
+            selectionQuestion()
+        }else{
+            
+            if playerID == "A" {
+                storyTextLabelText = "跟士兵擦身而過時，\(aName)和\(bName)隱藏不住自己的霸氣，帶頭的士兵感應到他們是危險人物，將他們抓了起來，丟進了附近的監獄中"
+                statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+            }else if playerID == "B" {
+                storyTextLabelText = "跟士兵擦身而過時，\(aName)和\(bName)隱藏不住自己的霸氣，帶頭的士兵感應到他們是危險人物，將他們抓了起來，丟進了附近的監獄中"
+                statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+            }
+            abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+            question100_1()
+        }
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)想發揮他的奧斯卡演技瞞過去，但\(bName)拒絕裝傻通過，必須要想別的方法通過"
+            statsLabelText = "\n對方\nＬＵＣＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)想發揮他的奧斯卡演技瞞過去，但\(bName)拒絕裝傻通過，必須要想別的方法通過"
+            statsLabelText = "ＬＵＣＫ-2\n對方\n"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: -2, bG: 0)
+        //下個問題
+        question3_4()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)想發揮他的奧斯卡演技瞞過去，但\(aName)拒絕裝傻通過，必須要想別的方法通過"
+            statsLabelText = "ＬＵＣＫ-2\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)想發揮他的奧斯卡演技瞞過去，但\(aName)拒絕裝傻通過，必須要想別的方法通過"
+            statsLabelText = "\n對方\nＬＵＣＫ-2"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: -2, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        question3_4()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)覺得裝傻通過一定會被發現，必須要想別的方法通過"
+            statsLabelText = "\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)覺得裝傻通過一定會被發現，必須要想別的方法通過"
+            statsLabelText = "\n對方\n"
+        }
+        //數值變化
+        //下個問題
+        question3_4()
+    }
+}
+func question3_4() {
+    questionID = 3.4
+    if playerID == "A" {
+        questionsLabelText = "前方迎面走來一群Ｃ國的巡邏士兵，是否要利用這個機會陷害Ｂ？"
+    }else if playerID == "B"{
+        questionsLabelText = "前方迎面走來一群Ｃ國的巡邏士兵，是否要利用這個機會陷害Ｂ？"
+    }
+}
+func story3_4(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "當巡邏士兵接近時，\(aName)和\(bName)互相指著對方大叫：“警察叔叔 就是這個人！”，士兵們立馬把這兩個可疑的傢伙抓了起來，丟進了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "當巡邏士兵接近時，\(aName)和\(bName)互相指著對方大叫：“警察叔叔 就是這個人！”，士兵們立馬把這兩個可疑的傢伙抓了起來，丟進了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+        //帶入下個問題
+        question100_1()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "當巡邏士兵接近時，\(aName)突然舉起\(bName)的手大叫：“警察叔叔 就是這個人！”，士兵們立馬把\(bName)抓了起來，丟進了附近的監獄"
+            statsLabelText = "ＡＴＫ+1 ＬＵＣＫ+1\n對方\nＨＰ=1 ＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "當巡邏士兵接近時，\(aName)突然舉起\(bName)的手大叫：“警察叔叔 就是這個人！”，士兵們立馬把\(bName)抓了起來，丟進了附近的監獄"
+            statsLabelText = "ＡＴＫ+1 ＬＵＣＫ+1\n對方\nＨＰ=1 ＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 1, aL: 1, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+        //下個問題
+        question101_1()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "當巡邏士兵接近時，\(bName)突然舉起\(aName)的手大叫：“警察叔叔 就是這個人！”，士兵們立馬把\(aName)抓了起來，丟進了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＡＴＫ+1 ＬＵＣＫ+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "當巡邏士兵接近時，\(bName)突然舉起\(aName)的手大叫：“警察叔叔 就是這個人！”，士兵們立馬把\(aName)抓了起來，丟進了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＡＴＫ+1 ＬＵＣＫ+1"
+        }
+        //數值變化
+        abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: 0, bA: 1, bL: 1, bG: 0)
+        //下個問題
+        question102_1()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)身為有品的紳士，絕對不會做出這種出賣同伴的事，必須要想別的方法通過"
+            statsLabelText = "\n對方\n"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)身為有品的紳士，絕對不會做出這種出賣同伴的事，必須要想別的方法通過"
+            statsLabelText = "ＬＵＣＫ+1\n對方\nＬＵＣＫ+1"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 1, aG: 0, bH: 0, bA: 0, bL: 1, bG: 0)
+        //下個問題
+        question3_5()
+    }
+}
+func question3_5() {
+    questionID = 3.5
+    if playerID == "A" {
+        questionsLabelText = "怎麼樣都不能跟\(bName)討論出一個辦法通過，還要再跟他爭辯下去嗎"
+    }else if playerID == "B"{
+        questionsLabelText = "怎麼樣都不能跟\(aName)討論出一個辦法通過，還要再跟他爭辯下去嗎"
+    }
+}
+func story3_5(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "就在\(aName)和\(bName)激烈爭辯怎麼躲過士兵的時候，沒發現士兵已經到了眼前，聽到他們可疑的對話的士兵把他們抓了起來，丟進了監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "就在\(aName)和\(bName)激烈爭辯怎麼躲過士兵的時候，沒發現士兵已經到了眼前，聽到他們可疑的對話的士兵把他們抓了起來，丟進了監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: -(aHP-1), bA: -2, bL: 0, bG: 0)
+        //帶入下個問題
+        question100_1()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "就在\(aName)大聲爭辯怎麼躲過士兵的時候，\(bName)發現士兵已經到了眼前，趕快躲了起來，聽到\(aName)可疑的對話的士兵則把他抓了起來，丟進了監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＬＵＣＫ+1"
+        }else if playerID == "B" {
+            storyTextLabelText = "就在\(aName)大聲爭辯怎麼躲過士兵的時候，\(bName)發現士兵已經到了眼前，趕快躲了起來，聽到\(aName)可疑的對話的士兵則把他抓了起來，丟進了監獄"
+            statsLabelText = "ＬＵＣＫ+1\n對方\nＨＰ=1 ＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 1, bG: 0)
+        //下個問題
+        question101_1()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "就在\(bName)大聲爭辯怎麼躲過士兵的時候，\(aName)發現士兵已經到了眼前，趕快躲了起來，聽到\(bName)可疑的對話的士兵則把他抓了起來，丟進了監獄"
+            statsLabelText = "ＬＵＣＫ+1\n對方\nＨＰ=1 ＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "就在\(bName)大聲爭辯怎麼躲過士兵的時候，\(aName)發現士兵已經到了眼前，趕快躲了起來，聽到\(bName)可疑的對話的士兵則把他抓了起來，丟進了監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＬＵＣＫ+1"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 1, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+        //下個問題
+        question102_1()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "兩個人也不討論，也沒有動作，呆站在原地，士兵經過時看了一眼，以為是兩個傻瓜，沒理他們就離開了"
+            statsLabelText = "ＡＴＫ-1 ＬＵＣＫ-1\n對方\nＡＴＫ-1 ＬＵＣＫ-1"
+        }else if playerID == "B" {
+            storyTextLabelText = "兩個人也不討論，也沒有動作，呆站在原地，士兵經過時看了一眼，以為是兩個傻瓜，沒理他們就離開了"
+            statsLabelText = "ＡＴＫ-1 ＬＵＣＫ-1\n對方\nＡＴＫ-1 ＬＵＣＫ-1"
+        }
+        //數值變化
+        abChange(aH: 0, aA: -1, aL: -1, aG: 0, bH: 0, bA: -1, bL: -1, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+func question3_11() {
+    questionID = 3.11
+    if playerID == "A" {
+        questionsLabelText = "身上金幣太重了跑不快，是否丟掉一些錢減輕重量？"
+    }else if playerID == "B"{
+        questionsLabelText = "身上金幣太重了跑不快，是否丟掉一些錢減輕重量？"
+    }
+}
+func story3_11(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)和\(bName)丟掉一些金幣，Ｃ國的士兵都忙著撿錢，他們趁機平安地通過了"
+            statsLabelText = "ＧＯＬＤ-200\n對方\nＧＯＬＤ-200"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)和\(bName)丟掉一些金幣，Ｃ國的士兵都忙著撿錢，他們趁機平安地通過了"
+            statsLabelText = "ＧＯＬＤ-200\n對方\nＧＯＬＤ-200"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: -200, bH: 0, bA: 0, bL: 0, bG: -200)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)丟掉了一些金幣，跑得飛快，\(bName)跑太慢被士兵抓到，並以妨礙公務的罪名被丟到了附近的監獄"
+            statsLabelText = "ＧＯＬＤ-200\n對方\nＨＰ=1 ＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)丟掉了一些金幣，跑得飛快，\(bName)跑太慢被士兵抓到，並以妨礙公務的罪名被丟到了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＧＯＬＤ-200"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: -200, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+        //下個問題
+        question102_1()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)丟掉了一些金幣，跑得飛快，\(aName)跑太慢被士兵抓到，並以妨礙公務的罪名被丟到了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＧＯＬＤ-200"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)丟掉了一些金幣，跑得飛快，\(aName)跑太慢被士兵抓到，並以妨礙公務的罪名被丟到了附近的監獄"
+            statsLabelText = "ＧＯＬＤ-200\n對方\nＨＰ=1 ＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: -200)
+        //下個問題
+        question101_1()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "兩人跑太慢，被士兵追上，並以妨礙公務的罪名被丟進了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "兩人跑太慢，被士兵追上，並以妨礙公務的罪名被丟進了附近的監獄"
+            statsLabelText = "ＨＰ=1 ＡＴＫ-2\n對方\nＨＰ=1 ＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: -(aHP-1), aA: -2, aL: 0, aG: 0, bH: -(bHP-1), bA: -2, bL: 0, bG: 0)
+        //下個問題
+        question100_1()
+    }
+}
+
+
+func question100_1() {
+    questionID = 100.1
+    if playerID == "A" {
+        questionsLabelText = "你的牢房空無一物，只有一個被關到漏尿的怪老頭，老頭說他以前是Ｃ國的國王，拜託越獄時帶上它，是否答應？"
+    }else if playerID == "B"{
+        questionsLabelText = "你的牢房空無一物，只有一個用作廁所的坑，是否要忍住惡臭搜索茅坑？"
+    }
+}
+func story100_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "你答應帶著老頭一起逃脫，老頭則告訴你一條前人挖的越獄通道，並把詳細的越獄計畫告訴你"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你將手伸進茅坑，居然撈出一把鑰匙"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //帶入下個問題
+        question100_11()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "你答應帶著老頭一起逃脫，老頭則告訴你一條前人挖的越獄通道，並把詳細的越獄計畫告訴你"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你決定什麼也不做，休息了一天"
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 20, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        question100_12()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "帶著這個老頭絕對逃不走的，於是你便拒絕了他，休息了一天"
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你將手伸進茅坑，居然撈出一把鑰匙"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 20, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        question100_13()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "帶著這個老頭絕對逃不走的，於是你便拒絕了他，休息了一天"
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你決定什麼也不做，休息了一天"
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 20, aA: 0, aL: 0, aG: 0, bH: 20, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        question100_14()
+    }
+}
+
+func question100_11() {
+    questionID = 100.11
+    if playerID == "A" {
+        questionsLabelText = "你知道了秘密通道後，打算趁早開溜，但問題來了，你是否真的要將這老頭一起帶走呢？"
+    }else if playerID == "B"{
+        questionsLabelText = "你發現這竟然是把萬能鑰匙，可以隨時開溜，逃跑時要不要找到\(aName)一起走？"
+    }
+}
+func story100_11(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "帶上老人一起走讓你多消耗了許多體力，逃出去後，老人向你道謝後就離開了，之後與Ｂ會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+3\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你好心去到\(aName)的牢房，沒想到他已經逃走，你因此浪費了許多時間和體力，逃出去後與\(aName)會合，再次踏上了旅程"
+            statsLabelText = "ＨＰ+3\n對方\n???"
+        }
+        //數值變化
+        king = true
+        abChange(aH: 3, aA: 0, aL: 0, aG: 0, bH: 3, bA: 0, bL: 0, bG: 0)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "帶上老人一起走讓你多消耗了許多體力，逃出去後，老人向你道謝後就離開了，之後與Ｂ會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+3\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "誰管他呢，你抓緊時間逃了出去，逃出去後發現\(aName)已經逃了出來，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }
+        //數值變化
+        king = true
+        abChange(aH: 3, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)使出了過河拆橋，沒有累贅的你輕鬆逃了出去，之後與\(bName)會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你好心去到\(aName)的牢房，沒想到他已經逃走，你因此浪費了許多時間和體力，逃出去後與\(aName)會合，再次踏上了旅程"
+            statsLabelText = "ＨＰ+3\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 3, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)使出了過河拆橋，沒有累贅的你輕鬆逃了出去，之後與\(bName)會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "誰管他呢，你抓緊時間逃了出去，逃出去後發現\(aName)已經逃了出來，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+10\n對方\n"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+func question100_12() {
+    questionID = 100.12
+    if playerID == "A" {
+        questionsLabelText = "你知道了秘密通道後，打算趁早開溜，但問題來了，你是否真的要將這老頭一起帶走呢？"
+    }else if playerID == "B"{
+        questionsLabelText = "過了幾天，你被獄卒抓去問話，被告知如果出賣Ａ的情報就可以被釋放，是否要同意這個提案？"
+    }
+}
+func story100_12(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "帶上老人一起走讓你多消耗了許多體力，逃出去後，老人向你道謝後就離開了，之後與\(bName)會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "想都不用想，你果斷出賣了\(aName)的情報給Ｃ國，而你也順利被釋放了，跟\(aName)繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "帶上老人一起走讓你多消耗了許多體力，逃出去後，老人向你道謝後就離開了，之後與\(bName)會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(aName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)使出了過河拆橋，沒有累贅的你輕鬆逃了出去，之後與\(bName)會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "想都不用想，你果斷出賣了\(aName)的情報給Ｃ國，而你也順利被釋放了，跟\(aName)繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)使出了過河拆橋，沒有累贅的你輕鬆逃了出去，之後與\(bName)會合，你們再次踏上了旅程"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "我怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(aName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+func question100_13() {
+    questionID = 100.13
+    if playerID == "A" {
+        questionsLabelText = "過了幾天，你被抓去問話，被告知如果出賣\(bName)的情報就可以被釋放，是否要同意這個提案？"
+    }else if playerID == "B"{
+        questionsLabelText = "你發現這竟然是把萬能鑰匙，可以隨時開溜，逃跑時要不要找到\(aName)一起走？"
+    }
+}
+func story100_13(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "呵呵，想都不用想，你果斷出賣了\(bName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你好心去到\(aName)的牢房，沒想到他已經逃走，你因此浪費了許多時間和體力，逃出去後與\(aName)會合，再次踏上了旅程，但是不知為啥之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ-3 跟蹤狀態\n對方\n???"
+        }
+        //數值變化
+        cityalertB = true
+        //帶入下個問題
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "呵呵，想都不用想，你果斷出賣了\(bName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "誰管他呢，你抓緊時間逃了出去，逃出去後發現\(aName)已經逃了出來，你們再次踏上了旅程，但是不知為啥之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+5 跟蹤狀態\n對方\n???"
+        }
+        //數值變化
+        cityalertB = true
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 5, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "我怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被關回了牢房，沒想到晚上\(bName)居然來救你出去，你們手牽手一起逃離了監獄"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)看到你的出現，感動得痛哭流涕，你們手牽手一起逃離了監獄"
+            statsLabelText = "ＨＰ+10\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 10, aA: 0, aL: 0, aG: 0, bH: 10, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "我怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(bName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-5\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "誰管他呢，你抓緊時間逃了出去，逃出去後與\(aName)會合，再次踏上了旅程"
+            statsLabelText = "ＨＰ+5\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: -5, aA: 0, aL: 0, aG: 0, bH: 5, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+func question100_14() {
+    questionID = 100.14
+    if playerID == "A" {
+        questionsLabelText = "過了幾天，你被獄卒抓去問話，告訴你如果出賣\(bName)的情報就可以被釋放，是否要同意這個提案？"
+    }else if playerID == "B"{
+        questionsLabelText = "過了幾天，你被獄卒抓去問話，告訴你如果出賣\(aName)的情報就可以被釋放，是否要同意這個提案？"
+    }
+}
+func story100_14(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "想都不用想，你果斷出賣了\(bName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+5\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "想都不用想，你果斷出賣了\(aName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+5\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 5, aA: 0, aL: 0, aG: 0, bH: 5, bA: 0, bL: 0, bG: 0)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "想都不用想，你果斷出賣了\(bName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+5\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(aName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 5, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(bName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "想都不用想，你果斷出賣了\(aName)的情報給Ｃ國，而你也順利被釋放了，繼續踏上旅途，但是之後無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+5\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 0, aL: 0, aG: 0, bH: 5, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(bName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你怎麼可能會做出這種出賣夥伴的事呢？你拒絕了這個提案後，被嚴刑銬打了三天三夜，才終於被釋放了，與\(aName)繼續踏上旅途"
+            statsLabelText = "ＨＰ-3\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+
+func question101_1() {
+    questionID = 101.1
+    if playerID == "A" {
+        questionsLabelText = "只有你一個被關進監獄，\(bName)卻在外面逍遙，有夠火大，要不要跟Ｃ國交換條件，出賣\(bName)的情報來讓他們釋放你？"
+    }else if playerID == "B"{
+        questionsLabelText = "\(aName)現在被關在監獄裡，你要不要在外面想辦法幫助他出獄？"
+    }
+}
+func story101_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "Ｃ國同意了這個條件，你雖然被釋放了，繼續踏上旅途，但是之後無論跟\(bName)到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你花了身上所有的錢買通了獄卒，進監獄救出了\(aName)，但不知為何他很快就被釋放出來了，莫非\(aName)跟Ｃ國做了什麼骯髒的交易....？"
+            statsLabelText = "ＧＯＬＤ=0 跟蹤狀態\n對方\n???"
+        }
+        //數值變化
+        cityalertB = true
+        abChange(aH: 20, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: -bGold)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "Ｃ國同意了這個條件，你雖然被釋放了，繼續踏上旅途，但是之後無論跟\(bName)到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "誰管他呢，你果斷丟下\(aName)準備出發，但不知為何他很快就被釋放出來了，莫非\(aName)跟Ｃ國做了什麼骯髒的交易....？"
+            statsLabelText = "ＬＵＣＫ+2 跟蹤狀態\n對方\n???"
+        }
+        //數值變化
+        cityalertB = true
+        abChange(aH: 20, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 2, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "你堅決不出賣同伴，被關回牢房裡，正要放棄治療的時候，\(bName)居然偽裝成獄卒進來救你，你痛哭流涕的感謝他，兩個人手牽手一起逃出去繼續踏上旅途"
+            statsLabelText = "ＨＰ+25\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "你花了身上所有的錢買通了獄卒，進監獄救出了\(aName)，雖然花光了錢，不過看到\(aName)痛哭流涕的感謝你，你反而感覺心情大好"
+            statsLabelText = "ＡＴＫ+3  ＬＵＣＫ+3  ＧＯＬＤ=0\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 25, aA: 0, aL: 0, aG: 0, bH: 0, bA: 3, bL: 3, bG: -bGold)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "你堅決不出賣同伴，被關回牢房裡，正要放棄治療的時候，竟然被釋放了，你滿頭問號，但很快就發現原來是Ｃ國的陰謀，之後的旅程無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+25 跟蹤狀態\n對方\n???"
+        }else if playerID == "B" {
+            storyTextLabelText = "誰管他呢，你果斷丟下\(aName)準備出發，但不知為何他很快就被釋放出來了，莫非\(aName)跟Ｃ國做了什麼骯髒的交易....？"
+            statsLabelText = "ＬＵＣＫ+2\n對方\n???"
+        }
+        //數值變化
+        cityalertA = true
+        abChange(aH: 25, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 3, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+
+func question102_1() {
+    questionID = 102.1
+    if playerID == "B" {
+        questionsLabelText = "只有你一個被關進監獄，\(bName)卻在外面逍遙，有夠火大，要不要跟Ｃ國交換條件，出賣\(bName)的情報來讓他們釋放你？"
+    }else if playerID == "A"{
+        questionsLabelText = "\(aName)現在被關在監獄裡，你要不要在外面想辦法幫助他出獄？"
+    }
+}
+func story102_1(){
+    if judgeValue == 1 {
+        if playerID == "B" {
+            storyTextLabelText = "Ｃ國同意了這個條件，你雖然被釋放了，繼續踏上旅途，但是之後無論跟\(bName)到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }else if playerID == "A" {
+            storyTextLabelText = "你花了身上所有的錢買通了獄卒，進監獄救出了\(aName)，但不知為何他很快就被釋放出來了，莫非\(aName)跟Ｃ國做了什麼骯髒的交易....？"
+            statsLabelText = "ＧＯＬＤ=0 跟蹤狀態\n對方\n???"
+        }
+        //數值變化
+        cityalertA = true
+        abChange(aH: 0, aA: 0, aL: 0, aG: -aGold, bH: 20, bA: 0, bL: 0, bG: 0)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "B" {
+            storyTextLabelText = "Ｃ國同意了這個條件，你雖然被釋放了，繼續踏上旅途，但是之後無論跟\(bName)到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+20\n對方\n???"
+        }else if playerID == "A" {
+            storyTextLabelText = "誰管他呢，你果斷丟下\(aName)準備出發，但不知為何他很快就被釋放出來了，莫非\(aName)跟Ｃ國做了什麼骯髒的交易....？"
+            statsLabelText = "ＬＵＣＫ+2 跟蹤狀態\n對方\n???"
+        }
+        //數值變化
+        cityalertA = true
+        abChange(aH: 0, aA: 0, aL: 2, aG: 0, bH: 20, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "B" {
+            storyTextLabelText = "你堅決不出賣同伴，被關回牢房裡，正要放棄治療的時候，\(bName)居然偽裝成獄卒進來救你，你痛哭流涕的感謝他，兩個人手牽手一起逃出去繼續踏上旅途"
+            statsLabelText = "ＨＰ+25\n對方\n???"
+        }else if playerID == "A" {
+            storyTextLabelText = "你花了身上所有的錢買通了獄卒，進監獄救出了\(aName)，雖然花光了錢，不過看到\(aName)痛哭流涕的感謝你，你反而感覺心情大好"
+            statsLabelText = "ＡＴＫ+3  ＬＵＣＫ+3  ＧＯＬＤ=0\n對方\n???"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 3, aL: 3, aG: -aGold, bH: 25, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "B" {
+            storyTextLabelText = "你堅決不出賣同伴，被關回牢房裡，正要放棄治療的時候，竟然被釋放了，你滿頭問號，但很快就發現原來是Ｃ國的陰謀，之後的旅程無論到哪裡，都好像被人盯著一樣...."
+            statsLabelText = "ＨＰ+25 跟蹤狀態\n對方\n???"
+        }else if playerID == "A" {
+            storyTextLabelText = "誰管他呢，你果斷丟下\(aName)準備出發，但不知為何他很快就被釋放出來了，莫非\(aName)跟Ｃ國做了什麼骯髒的交易....？"
+            statsLabelText = "ＬＵＣＫ+2\n對方\n???"
+        }
+        //數值變化
+        cityalertB = true
+        abChange(aH: 0, aA: 0, aL: 3, aG: 0, bH: 25, bA: 0, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
 
 
 
