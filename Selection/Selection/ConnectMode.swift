@@ -324,7 +324,7 @@ extension ConnectMode: GCHelperDelegate {
     /// Method called when the match has ended.
     func matchEnded() {
         // 通知 customGameMode遊戲結束了
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GameOver"), object: nil)
         onlineMode = false
         
     }

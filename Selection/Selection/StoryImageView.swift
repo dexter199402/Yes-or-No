@@ -16,6 +16,9 @@ class StoryImageView: UIViewController {
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var wait: UILabel!
     @IBOutlet weak var statsLabel: UILabel!
+    @IBOutlet weak var otherStatsLabel: UILabel!
+    @IBOutlet weak var selfNameLabel: UILabel!
+    @IBOutlet weak var otherNameLebel: UILabel!
     
     @IBOutlet weak var storyImageViewImage: UIImageView!
     
@@ -26,6 +29,14 @@ class StoryImageView: UIViewController {
         wait.alpha = 0
         wait.backgroundColor = UIColor.clear
         statsLabel.text = statsLabelText
+        otherStatsLabel.text = otherStatsLabelText
+        if playerID == "A"{
+            selfNameLabel.text = "\(aName)"
+            otherNameLebel.text = "\(bName)"
+        }else{
+            selfNameLabel.text = "\(bName)"
+            otherNameLebel.text = "\(aName)"
+        }
     }
 
     @IBAction func completeButton(_ sender: Any) {

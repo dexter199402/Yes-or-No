@@ -12,7 +12,10 @@ import UIKit
 
 var questionsLabelText = "這是題目"
 var storyTextLabelText = "這是結果"
+
 var statsLabelText = "這是變化"
+var otherStatsLabelText = "他人變化"
+
 var judgeValue = 0
 var questionID:Float = Float()
 

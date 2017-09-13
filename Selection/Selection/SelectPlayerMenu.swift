@@ -57,7 +57,7 @@ class SelectPlayerMenu: UIViewController,UIPickerViewDelegate,UIPickerViewDataSo
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var okBtn: UIButton!
     
-    var playName = ["小明","菜菜子","羊咩咩","摳哥","老王","印度蛙","天龍人","矮子輔","杰倫","阿象","邱偉豪"]
+    var playName = ["小明","隔壁老王","教官","好人","上班族","女神","勇者","大魔王","大法師","8+9","肥宅","學長","學姊","學弟","學妹"]
     
     //名字選擇倒數
     var nameCountDownTimer = Timer()

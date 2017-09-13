@@ -15,8 +15,8 @@ var playerDataYes :NSData = pressYes.data(using: String.Encoding.utf8, allowLoss
 var pressNo = "否"
 var playerDataNo :NSData = pressNo.data(using: String.Encoding.utf8, allowLossyConversion: false)! as NSData
 
-var yesLabelText = "是"
-var noLabelText = "否"
+var yesLabelText = "YES"
+var noLabelText = "NO"
 
 
 var lock = false
@@ -144,8 +144,8 @@ class CustomGameMode: UIViewController {
         otherGold.text = "200"
         countDownImage.alpha = 1
         answerCountdownLabel.alpha = 1
-        yesLabelText = "是"
-        noLabelText = "否"
+        yesLabelText = "YES"
+        noLabelText = "NO"
         playIDAWinBool = false
         
         
@@ -175,7 +175,7 @@ class CustomGameMode: UIViewController {
     }
     
     func themeMusicFunc()  {
-        if questionID == 1.1 || questionID == 3.1 || questionID == 50.1 {
+        if questionID == 1.1 || questionID == 3.1 || questionID == 50.1 || questionID == 51.1 {
             
             musicSelection(musicName:"1_1")
             
