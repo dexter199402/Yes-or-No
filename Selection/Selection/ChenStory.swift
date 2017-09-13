@@ -13,6 +13,8 @@ var bCurse = false
 var cityalertA = false
 var cityalertB = false
 var king = false
+var bloodA = false
+var bloodB = false
 func question2_1() {
     questionID = 2.1
     backGroundImage = "2_1.jpg"
@@ -838,6 +840,640 @@ func story3_11(){
         question100_1()
     }
 }
+
+
+func question20_1() {
+    questionID = 20.1
+    if playerID == "A" {
+        questionsLabelText = "遊行隊伍旁邊有一團人揮舞著標語在抗議，是否要趁機加入抗議群眾破壞這場慶典？"
+    }else if playerID == "B"{
+        questionsLabelText = "\(aName)看起來似乎想要破壞慶典製造混亂，是否同意他這個做法？"
+    }
+    backGroundImage = "背景圖.jpg"
+    situationViewLabelString = "經歷曲折的冒險，終於來到了Ｃ國首都，國王就在這裡的城堡中，進到了城中，發現Ｃ國正好在舉辦嘉年華遊行"
+    selectionquestionBool = true
+}
+func story20_1(){
+    if king == true{
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，\(bName)也跟著一起行動，他們一個人大吼大叫，一個人放出煙霧魔法，一時之間場面大亂...."
+                statsLabelText = "ＨＰ-5\nＡＴＫ+1\nＬＵＣＫ+1\nＧＯＬＤ+200"
+                otherStatsLabelText = "ＨＰ-2 ＧＯＬＤ+200"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，\(bName)也一起行動，他們一個人大吼大叫，一個人放出煙霧魔法，一時之間場面大亂...."
+                statsLabelText = "ＨＰ-2 ＧＯＬＤ+200"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+1\nＬＵＣＫ+1\nＧＯＬＤ+200"
+            }
+            //數值變化
+            abChange(aH: -5, aA: 1, aL: 1, aG: 200, bH: -2, bA: 0, bL: 0, bG: 200)
+            //帶入下個問題
+            question20_11()
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，但\(bName)因為不想太招搖默默的看著。最後儘管\(aName)瘋狂的吼叫鬧事，但還是沒有產生什麼效果"
+                statsLabelText = "ＨＰ-7\nＡＴＫ+1"
+                otherStatsLabelText = "ＬＵＣＫ+2\nＧＯＬＤ+100"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，但\(bName)因為不想太招搖默默的看著。最後儘管\(aName)瘋狂的吼叫鬧事，但還是沒有產生什麼效果"
+                statsLabelText = "ＬＵＣＫ+2\nＧＯＬＤ+100"
+                otherStatsLabelText = "ＨＰ-7\nＡＴＫ+1"
+                
+            }
+            //數值變化
+            abChange(aH: -7, aA: 1, aL: 1, aG: 100, bH: 0, bA: 0, bL: 2, bG: 100)
+            //下個問題
+            question20_12()
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是停手了，\(bName)覺得他是個膽小鬼，鄙視的看著他，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＡＴＫ-3\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是停手了，\(bName)覺得他是個膽小鬼，鄙視的看著他，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＧＯＬＤ+300"
+                otherStatsLabelText = "ＡＴＫ-3\nＧＯＬＤ+300"
+            }
+            //數值變化
+            abChange(aH: 0, aA: -3, aL: 1, aG: 300, bH: 0, bA: 0, bL: 0, bG: 300)
+            //下個問題
+            question20_13()
+        }else if judgeValue == 4{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是收手了，\(bName)也因為不想太招搖而沒有動作，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＧＯＬＤ+300"
+                otherStatsLabelText = "ＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是收手了，\(bName)也因為不想太招搖而沒有動作，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＧＯＬＤ+300"
+                otherStatsLabelText = "ＧＯＬＤ+300"
+            }
+            //數值變化
+            abChange(aH: 0, aA: 0, aL: 0, aG: 300, bH: 0, bA: 0, bL: 0, bG: 300)
+            //下個問題
+            question20_13()
+        }
+    }else{
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，\(bName)也跟著一起行動，他們一個人大吼大叫，一個人放出煙霧魔法，一時之間場面大亂...."
+                statsLabelText = "ＨＰ-5\nＡＴＫ+1\nＬＵＣＫ+1\nＧＯＬＤ+200"
+                otherStatsLabelText = "ＨＰ-2 ＧＯＬＤ+200"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，\(bName)也一起行動，他們一個人大吼大叫，一個人放出煙霧魔法，一時之間場面大亂...."
+                statsLabelText = "ＨＰ-2 ＧＯＬＤ+200"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+1\nＬＵＣＫ+1\nＧＯＬＤ+200"
+            }
+            //數值變化
+            abChange(aH: -5, aA: 1, aL: 1, aG: 200, bH: -2, bA: 0, bL: 0, bG: 200)
+            //帶入下個問題
+            question21_1()
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，但\(bName)因為不想太招搖默默的看著。最後儘管\(aName)瘋狂的吼叫鬧事，但還是沒有產生什麼效果"
+                statsLabelText = "ＨＰ-7 ＡＴＫ+1"
+                otherStatsLabelText = "ＬＵＣＫ+2\nＧＯＬＤ+100"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)混入抗議群眾想破壞慶典，但\(bName)因為不想太招搖默默的看著。最後儘管\(aName)瘋狂的吼叫鬧事，但還是沒有產生什麼效果"
+                statsLabelText = "ＬＵＣＫ+2\nＧＯＬＤ+100"
+                otherStatsLabelText = "ＨＰ-7\nＡＴＫ+1"
+                
+            }
+            //數值變化
+            abChange(aH: -7, aA: 1, aL: 1, aG: 100, bH: 0, bA: 0, bL: 2, bG: 100)
+            //下個問題
+            question20_12()
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是收手了，\(bName)覺得他是個膽小鬼，鄙視的看著他，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＡＴＫ-3\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是收手了，\(bName)覺得他是個膽小鬼，鄙視的看著他，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＧＯＬＤ+300"
+                otherStatsLabelText = "ＡＴＫ-3\nＧＯＬＤ+300"
+            }
+            //數值變化
+            abChange(aH: 0, aA: -3, aL: 1, aG: 300, bH: 0, bA: 0, bL: 0, bG: 300)
+            //下個問題
+            question20_13()
+        }else if judgeValue == 4{
+            if playerID == "A" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是收手了，\(bName)也因為不想太招搖而沒有動作，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＧＯＬＤ+300"
+                otherStatsLabelText = "ＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "\(aName)想了想，不想成為破壞慶典的王八蛋，還是收手了，\(bName)也因為不想太招搖而沒有動作，最後，抗議沒有成功，Ｃ國仍然如往常一樣和平"
+                statsLabelText = "ＧＯＬＤ+300"
+                otherStatsLabelText = "ＧＯＬＤ+300"
+            }
+            //數值變化
+            abChange(aH: 0, aA: 0, aL: 0, aG: 300, bH: 0, bA: 0, bL: 0, bG: 300)
+            //下個問題
+            question20_13()
+        }
+    }
+}
+
+
+func question20_11() {
+    questionID = 20.11
+    if playerID == "A" {
+        questionsLabelText = "成功製造混亂後，你赫然發現抗議的集團首腦，居然是先前在監獄中救出的怪老頭，老頭告訴你他是前任國王，被現任國王政變奪權，只要你肯加入他們的組織，就會幫助你的暗殺任務，是否要答應？"
+    }else if playerID == "B"{
+        questionsLabelText = "成功製造混亂後，才知道原來抗議的組織首腦是前任國王，被現任國王政變奪權，並邀請你加入他們的組織，他們會幫助你的暗殺任務，是否要答應？"
+    }
+    backGroundImage = "背景圖.jpg"
+    situationViewLabelString = ""
+    selectionquestionBool = false
+}
+func story20_11(){
+    if judgeValue == 1 {
+        let hp1 = Int (arc4random_uniform(8)+2)
+        let hp2 = Int (arc4random_uniform(8)+2)
+        let atk1 = Int (arc4random_uniform(4)+1)
+        let atk2 = Int (arc4random_uniform(4)+1)
+        let luck1 = Int (arc4random_uniform(4)+1)
+        let luck2 = Int (arc4random_uniform(4)+1)
+        if playerID == "A" {
+            storyTextLabelText = "你認為這條件不錯，選擇加入，沒想到加入組織需要繳交\(aGold)元護持金，你不甘願的付了之後，一群法師模樣的人出現，在你身上放了魔法，突然Bang!!!一聲，你的能力值有了明顯的提升"
+            statsLabelText = "ＨＰ+\(hp1) ＡＴＫ+\(atk1) ＬＵＣＫ+\(luck1) ＧＯＬＤ-\(aGold)"
+            otherStatsLabelText = "ＨＰ+\(hp2)\nＡＴＫ+\(atk2)\nＬＵＣＫ+\(luck2)\nＧＯＬＤ-\(bGold)"
+        }else if playerID == "B" {
+            storyTextLabelText = "你認為這條件不錯，選擇加入，沒想到加入組織需要繳交\(bGold)元護持金，你不甘願的付了之後，一群法師模樣的人出現，在你身上放了魔法，突然Bang!!!一聲，你的能力值有了明顯的提升"
+            statsLabelText = "ＨＰ+\(hp2) ＡＴＫ+\(atk2) ＬＵＣＫ+\(luck2) ＧＯＬＤ-\(bGold)"
+            otherStatsLabelText = "ＨＰ+\(hp1)\nＡＴＫ+\(atk1)\nＬＵＣＫ+\(luck1)\nＧＯＬＤ-\(aGold)"
+        }
+        //數值變化
+        abChange(aH: hp1, aA: atk1, aL: luck1, aG: -aGold, bH: hp2, bA: atk2, bL: luck2, bG: -bGold)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        let hp1 = Int (arc4random_uniform(8)+2)
+        
+        let atk1 = Int (arc4random_uniform(4)+1)
+        
+        let luck1 = Int (arc4random_uniform(4)+1)
+        
+        if playerID == "A" {
+            storyTextLabelText = "你認為這條件不錯，選擇加入，沒想到加入組織需要繳交\(aGold)元護持金，你不甘願的付了之後，一群法師模樣的人出現，在你身上放了魔法，突然Bang!!!一聲，你的能力值有了明顯的提升"
+            statsLabelText = "ＨＰ+\(hp1)\nＡＴＫ+\(atk1)\nＬＵＣＫ+\(luck1)\nＧＯＬＤ-\(aGold)"
+            otherStatsLabelText = "ＧＯＬＤ+200"
+        }else if playerID == "B" {
+            storyTextLabelText = "在不清楚對方的底細前，不能隨便答應，你拒絕加入，卻看到\(aName)已經跟著他們走了，當再次見到\(aName)時，他不知為何獲得了強大的力量"
+            statsLabelText = "ＧＯＬＤ+200"
+            otherStatsLabelText = "ＨＰ+\(hp1)\nＡＴＫ+\(atk1)\nＬＵＣＫ+\(luck1)\nＧＯＬＤ-\(aGold)"
+            
+        }
+        //數值變化
+        abChange(aH: hp1, aA: atk1, aL: luck1, aG: -aGold, bH: 0, bA: 0, bL: 0, bG: 200)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        let hp2 = Int (arc4random_uniform(8)+2)
+        
+        let atk2 = Int (arc4random_uniform(4)+1)
+        
+        let luck2 = Int (arc4random_uniform(4)+1)
+        if playerID == "A" {
+            storyTextLabelText = "在不清楚對方的底細前，不能隨便答應，你拒絕加入，卻看到\(bName)已經跟著他們走了，當再次見到\(bName)時，他不知為何獲得了強大的力量"
+            statsLabelText = "ＧＯＬＤ+200"
+            otherStatsLabelText = "ＨＰ+\(hp2)\nＡＴＫ+\(atk2)\nＬＵＣＫ+\(luck2)\nＧＯＬＤ-\(bGold)"
+        }else if playerID == "B" {
+            storyTextLabelText = "你認為這條件不錯，選擇加入，沒想到加入組織需要繳交\(bGold)元護持金，你不甘願的付了之後，一群法師模樣的人出現，在你身上放了魔法，突然Bang!!!一聲，你的能力值有了明顯的提升"
+            statsLabelText = "ＨＰ+\(hp2)\nＡＴＫ+\(atk2)\nＬＵＣＫ+\(luck2)\nＧＯＬＤ-\(bGold)"
+            otherStatsLabelText = "ＧＯＬＤ+200"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 200, bH: hp2, bA: atk2, bL: luck2, bG: -bGold)
+        //下個問題
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "在不清楚對方的底細前，不能隨便答應，你拒絕加入，\(aName)也拒絕了，你們再次往城堡前進"
+            statsLabelText = "ＧＯＬＤ+200"
+            otherStatsLabelText = "ＧＯＬＤ+200"
+        }else if playerID == "B" {
+            storyTextLabelText = "在不清楚對方的底細前，不能隨便答應，你拒絕加入，\(aName)也拒絕了，你們再次往城堡前進"
+            statsLabelText = "ＧＯＬＤ+200"
+            otherStatsLabelText = "ＧＯＬＤ+200"
+        }
+        //數值變化
+        abChange(aH: 0, aA: 0, aL: 0, aG: 200, bH: 0, bA: 0, bL: 0, bG: 200)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+func question20_12() {
+    questionID = 20.12
+    if playerID == "A" {
+        questionsLabelText = "製造混亂沒有成功，但你發現抗議的集團首腦，居然是先前在監獄中救出的怪老頭，老頭為了感謝你這兩次的幫忙，邀請你到他們的秘密基地去，是否要去？"
+    }else if playerID == "B"{
+        questionsLabelText = "製造混亂沒有成功，要不要乾脆加入嘉年華會，好好休息一下？"
+    }
+    backGroundImage = "背景圖.jpg"
+    situationViewLabelString = "背景說明"
+    selectionquestionBool = false
+}
+func story20_12(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "一到他們的基地，馬上看到一群人披著紫色斗篷跪著膜拜那個老頭，你感覺氣氛不對要跑時，卻被成員們團團包圍，最後付了一大筆錢才脫困"
+            statsLabelText = "ＨＰ-4\nＡＴＫ+1\nＧＯＬＤ-300"
+            otherStatsLabelText = "ＨＰ+4\nＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "你把什麼鬼任務拋到腦後，好好的放鬆了一天"
+            statsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            otherStatsLabelText = "ＨＰ-4\nＡＴＫ+1\nＧＯＬＤ-300"
+        }
+        //數值變化
+        abChange(aH: -4, aA: 1, aL: 0, aG: -300, bH: 4, bA: -2, bL: 0, bG: 0)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "一到他們的基地，馬上看到一群人披著紫色斗篷跪著膜拜那個老頭，你感覺氣氛不對要跑時，卻被成員們團團包圍，最後付了一大筆錢才脫困"
+            statsLabelText = "ＨＰ-4\nＡＴＫ+1\nＧＯＬＤ-300"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }else if playerID == "B" {
+            storyTextLabelText = "沒有時間可以浪費了，你利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ-4\nＡＴＫ+1\nＧＯＬＤ-300"
+            
+        }
+        //數值變化
+        abChange(aH: -4, aA: 1, aL: 0, aG: -300, bH: -3, bA: 4, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "沒時間接受別人招待了，你拒絕老頭後，利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ+4\nＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "你把什麼鬼任務拋到腦後，好好的放鬆了一天"
+            statsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 4, aL: 0, aG: 0, bH: 4, bA: -2, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "沒時間接受別人招待了，你拒絕老頭後，利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }else if playerID == "B" {
+            storyTextLabelText = "沒有時間可以浪費了，你利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 4, aL: 0, aG: 0, bH: -3, bA: 4, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+
+
+
+func question20_13() {
+    questionID = 20.13
+    if playerID == "A" {
+        questionsLabelText = "嘉年華慶典順利進行，要不要乾脆加入他們，好好放鬆一天？"
+    }else if playerID == "B"{
+        questionsLabelText = "製造混亂沒有成功，要不要乾脆加入嘉年華會，好好休息一下？"
+    }
+    backGroundImage = "背景圖.jpg"
+    situationViewLabelString = "背景說明"
+    selectionquestionBool = false
+}
+func story20_13(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "你把什麼鬼任務拋到腦後，好好的放鬆了一天"
+            statsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            otherStatsLabelText = "ＨＰ+4\nＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "你把什麼鬼任務拋到腦後，好好的放鬆了一天"
+            statsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            otherStatsLabelText = "ＨＰ+4\nＡＴＫ-2"
+        }
+        //數值變化
+        abChange(aH: 4, aA: -2, aL: 0, aG: 0, bH: 4, bA: -2, bL: 0, bG: 0)
+        //帶入下個問題
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "你把什麼鬼任務拋到腦後，好好的放鬆了一天"
+            statsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }else if playerID == "B" {
+            storyTextLabelText = "沒有時間可以浪費了，你利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            
+        }
+        //數值變化
+        abChange(aH: 4, aA: -2, aL: 0, aG: 0, bH: -3, bA: 4, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "沒有時間可以浪費了，你利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ+4\nＡＴＫ-2"
+        }else if playerID == "B" {
+            storyTextLabelText = "你把什麼鬼任務拋到腦後，好好的放鬆了一天"
+            statsLabelText = "ＨＰ+4\nＡＴＫ-2"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 4, aL: 0, aG: 0, bH: 4, bA: -2, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "沒有時間可以浪費了，你利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }else if playerID == "B" {
+            storyTextLabelText = "沒有時間可以浪費了，你利用時間進行了各種鍛鍊，為暗殺任務做準備"
+            statsLabelText = "ＨＰ-3\nＡＴＫ+4"
+            otherStatsLabelText = "ＨＰ-3\nＡＴＫ+4"
+        }
+        //數值變化
+        abChange(aH: -3, aA: 4, aL: 0, aG: 0, bH: -3, bA: 4, bL: 0, bG: 0)
+        //下個問題
+        selectionQuestion()
+    }
+}
+
+func question21_1() {
+    questionID = 21.1
+    if playerID == "A" {
+        questionsLabelText = "整個嘉年華會亂成一團，是否變本加厲的四處去破壞？"
+    }else if playerID == "B"{
+        questionsLabelText = "整個嘉年華會亂成一團，是否變本加厲的四處去破壞？"
+    }
+    backGroundImage = "背景圖.jpg"
+    situationViewLabelString = "背景說明"
+    selectionquestionBool = false
+}
+func story21_1(){
+    if cityalertA == true && cityalertB == true{
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+            }else if playerID == "B" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+            }
+            //數值變化
+            bloodA = true
+            bloodB = true
+            abChange(aH: -5, aA: 2, aL: -2, aG: 200, bH: -5, bA: 2, bL: -2, bG: 200)
+            //帶入下個問題
+            selectionQuestion()
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200"
+                
+            }
+            //數值變化
+            bloodA = true
+            abChange(aH: -5, aA: 2, aL: -2, aG: 200, bH: -5, bA: 2, bL: -2, bG: 200)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+            }else if playerID == "B" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            bloodB = true
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: -5, bA: 2, bL: -2, bG: 200)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 4{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+        }}else if cityalertA == true && cityalertB == false{
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+            }
+            //數值變化
+            bloodA = true
+            abChange(aH: -5, aA: 2, aL: -2, aG: 200, bH: 0, bA: 3, bL: 1, bG: 300)
+            //帶入下個問題
+            selectionQuestion()
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                
+            }
+            //數值變化
+            bloodA = true
+            abChange(aH: -5, aA: 2, aL: -2, aG: 200, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 0, aA: 3, aL: 1, aG: 300, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 4{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+            
+        }}else if cityalertA == false && cityalertB == true{
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+            }else if playerID == "B" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+            }
+            //數值變化
+            bloodB = true
+            abChange(aH: 0, aA: 3, aL: 1, aG: 300, bH: -5, bA: 2, bL: -2, bG: 200)
+            //帶入下個問題
+            selectionQuestion()
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                
+            }
+            //數值變化
+            abChange(aH: 0, aA: 3, aL: 1, aG: 300, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+            }else if playerID == "B" {
+                storyTextLabelText = "你正要大鬧一場，但你忘了自己早已被Ｃ國士兵盯上，正在你大肆破壞的時候，衝出兩個士兵，你不得以只好開打，雖然擊敗了對手，但自己也受了傷"
+                statsLabelText = "ＨＰ-5\nＡＴＫ+2\nＬＵＣＫ-2\nＧＯＬＤ+200\n受傷狀態"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            bloodB = true
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: -5, bA: 2, bL: -2, bG: 200)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 4{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+        }} else if cityalertA == false && cityalertB == false{
+        if judgeValue == 1 {
+            if playerID == "A" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+            }
+            //數值變化
+            abChange(aH: 0, aA: 3, aL: 1, aG: 300, bH: 0, bA: 3, bL: 1, bG: 300)
+            //帶入下個問題
+            selectionQuestion()
+        }else if judgeValue == 2{
+            if playerID == "A" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                
+            }
+            //數值變化
+            abChange(aH: 0, aA: 3, aL: 1, aG: 300, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 3{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+            }else if playerID == "B" {
+                storyTextLabelText = "你到處破壞，使城中混亂再次升級，提升了暗殺國王的成功機率"
+                statsLabelText = "ＡＴＫ+3\nＬＵＣＫ+1\nＧＯＬＤ+300"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: 0, bA: 3, bL: 1, bG: 300)
+            //下個問題
+            selectionQuestion()
+        }else if judgeValue == 4{
+            if playerID == "A" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }else if playerID == "B" {
+                storyTextLabelText = "這樣的混亂已經夠了，你為了不要讓自己太招搖，暫時找了個地方休息了一天"
+                statsLabelText = "ＨＰ+2"
+                otherStatsLabelText = "ＨＰ+2"
+            }
+            //數值變化
+            abChange(aH: 2, aA: 0, aL: 0, aG: 0, bH: 2, bA: 0, bL: 0, bG: 0)
+            //下個問題
+            selectionQuestion()
+            
+        }
+    }}
+
+
+
+
+
+
+
+
 
 
 func question100_1() {
