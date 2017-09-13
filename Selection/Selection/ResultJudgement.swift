@@ -22,6 +22,9 @@ var questionID:Float = Float()
 var aCurseNumber = 5
 var bCurseNumber = 5
 
+var bloodANumber = 5
+var bloodBNumber = 5
+
 
 func result(vv:UIViewController)  {
     
@@ -109,6 +112,18 @@ func result(vv:UIViewController)  {
     case 51.1:
         story51_1()
         break
+    case 52.1:
+        story52_1()
+        break
+    case 52.2:
+        story52_2()
+        break
+    case 52.3:
+        story52_3()
+        break
+    case 98.1:
+        story98_1()
+        break
     case 99.1:
         story99_1()
         break
@@ -119,7 +134,7 @@ func result(vv:UIViewController)  {
         break
     }
     
-    if aCurse || bCurse {
+    if aCurse || bCurse || bloodA || bloodB {
         curseFunc()
     }
     
@@ -148,20 +163,46 @@ func curseFunc()  {
     if aCurse {
         if aCurseNumber > 0  {
             aCurseNumber -= 1
-            abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+            abChange(aH: 0, aA: -1, aL: -1, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
         }else{
             aCurseNumber = 5
             aCurse = false
         }
-    }else if bCurse {
+    }
+    
+    if bCurse {
         if bCurseNumber > 0  {
             bCurseNumber -= 1
-            abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
+            abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: -1, bL: -1, bG: 0)
         }else{
             bCurseNumber = 5
             bCurse = false
         }
     }
+    
+    if bloodA {
+        
+        if bloodANumber > 0  {
+            bloodANumber -= 1
+            abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        }else{
+            bloodANumber = 5
+            bloodA = false
+        }
+    }
+    
+    if bloodB {
+        
+        if bloodBNumber > 0  {
+            bloodBNumber -= 1
+            abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
+        }else{
+            bloodBNumber = 5
+            bloodB = false
+        }
+
+    }
+    
     
 }
 

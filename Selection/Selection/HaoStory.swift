@@ -387,39 +387,47 @@ func story50_113(){
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "當\(aName)伸出腳時\(bName)突然走道\(aName)面前道歉，\(aName)沒有絆到\(bName)，覺得可惜。"
-            statsLabelText = "Luck-1\n對方\nLuck+1"
+            statsLabelText = "Luck-1"
+            otherStatsLabelText = "Luck+1"
         }else if playerID == "B" {
             storyTextLabelText = "當\(aName)伸出腳時\(bName)突然走道\(aName)面前道歉，\(aName)沒有絆到\(bName)，覺得可惜。"
-            statsLabelText = "Luck+1\n對方\nLuck-1"
+            statsLabelText = "Luck+1"
+            otherStatsLabelText = "Luck-1"
         }
         abChange(aH: 0, aA: 0, aL: -1, aG: 0, bH: 0, bA: 0, bL: 1, bG: 0)
         question50_2()
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "\(aName)無情的絆倒了\(bName)，跌倒的\(bName)坐在地上幫自己呼呼。"
-            statsLabelText = "Luck+1\n對方\nHP-1"
+            statsLabelText = "Luck+1"
+            otherStatsLabelText = "HP-1"
         }else if playerID == "B" {
             storyTextLabelText = "\(bName)失去了道歉的機會，這時\(aName)出腳絆倒了\(bName)。"
-            statsLabelText = "HP-1\n對方\nLuck+1"
+            statsLabelText = "HP-1"
+            otherStatsLabelText = "Luck+1"
         }
         abChange(aH: 0, aA: 0, aL: 1, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
         question50_2()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "\(aName)大方地原諒了\(bName)，\(bName)也慎重的重新道歉一次，旅程繼續。"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)大方地原諒了\(bName)，\(bName)也慎重的重新道歉一次，旅程繼續。"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }
         question50_2()
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "\(aName)給了\(bName)一個道歉的機會，但\(bName)並不領情，屌兒啷噹的做著鬼臉。"
-            statsLabelText = "Luck-2\n對方\nLuck+2"
+            statsLabelText = "Luck-2"
+            otherStatsLabelText = "Luck+2"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)給了\(bName)一個道歉的機會，但\(bName)並不領情，屌兒啷噹的做著鬼臉。"
-            statsLabelText = "Luck+2\n對方\nLuck-2"
+            statsLabelText = "Luck+2"
+            otherStatsLabelText = "Luck-2"
         }
         abChange(aH: 0, aA: 0, aL: -2, aG: 0, bH: 0, bA: 0, bL: 2, bG: 0)
         question50_2()
@@ -439,10 +447,12 @@ func story50_2(){
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "\(aName)和\(bName)走在路上突然同時開口唱歌，兩人咒罵著對方為何要跟他一起唱歌，覺得噁心。"
-            statsLabelText = "LP-1 ATK-1 Luck-1\n對方\nLP-1 ATK-1 Luck-1"
+            statsLabelText = "HP-1\nATK-1\nLuck-1"
+            otherStatsLabelText = "LP-1\nATK-1\nLuck-1"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)和\(bName)走在路上突然同時開口唱歌，兩人咒罵著對方為何要跟他一起唱歌，覺得噁心。"
-            statsLabelText = "LP-1 ATK-1 Luck-1\n對方\nLP-1 ATK-1 Luck-1"
+            statsLabelText = "LP-1\nATK-1\nLuck-1"
+            otherStatsLabelText = "HP-1\nATK-1\nLuck-1"
         }
         abChange(aH: -1, aA: -1, aL: -1, aG: 0, bH: -1, bA: -1, bL: -1, bG: 0)
         selectionQuestion()
@@ -450,29 +460,35 @@ func story50_2(){
         if playerID == "A" {
             storyTextLabelText = "\(aName)突然開口唱歌，儘管\(bName)在旁咒罵著說閉嘴別再唱，但是\(aName)仍然唱的很陶醉。"
             statsLabelText = "ATK+2"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)突然開口唱歌，儘管\(bName)在旁咒罵著說閉嘴別再唱，但是\(aName)仍然唱的很陶醉。"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "ATK+2"
         }
         abChange(aH: 0, aA: 2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
         selectionQuestion()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "\(bName)突然開口唱歌，儘管\(aName)在旁咒罵著說閉嘴別再唱，但是\(bName)仍然唱的很陶醉。"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "ＡＴＫ＋2"
         }else if playerID == "B" {
             storyTextLabelText = "\(bName)突然開口唱歌，儘管\(aName)在旁咒罵著說閉嘴別再唱，但是\(bName)仍然唱的很陶醉。"
             statsLabelText = "ATK+2"
+            otherStatsLabelText = "沒有變化"
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 00, bH: 0, bA: 2, bL: 0, bG: 0)
         selectionQuestion()
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "你還是覺得很無聊"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
             storyTextLabelText = "你還是覺得很無聊"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }
         selectionQuestion()
     }
@@ -489,73 +505,505 @@ func question51_1() {
     
     questionID = 51.1
     if playerID == "A" {
-        questionsLabelText = "前方有個村莊失火了要去幫忙媽"
+        questionsLabelText = "前方有個村莊失火了要去幫忙嗎"
     }else if playerID == "B"{
-        questionsLabelText = "前方有個村莊失火了要去幫忙媽"
+        questionsLabelText = "前方有個村莊失火了要去幫忙嗎"
     }
 }
 func story51_1(){
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "\(aName)和\(bName)，一起去村莊裡幫忙滅火，平分了村名的獎賞。"
-            statsLabelText = "雙方\nGold+50"
+            statsLabelText = "Gold+50"
+            otherStatsLabelText  = "Gold+50"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)和\(bName)，一起去村莊裡幫忙滅火，平分了村名的獎賞。"
-            statsLabelText = "雙方\nGold+50"
+            statsLabelText = "Gold+50"
+            otherStatsLabelText = "Gold+50"
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 50, bH: 0, bA: 0, bL: 0, bG: 50)
         //帶入下個問題
-        selectionQuestion()
+        question52_1()
         //
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "你孤身前往火場幫忙，\(bName)只是在一旁觀看，村名感激你的幫忙給了點Gold，但你也受傷了。"
-            statsLabelText = "HP-2 Gold+100"
+            statsLabelText = "HP-2\nGold+100"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
             storyTextLabelText = "你看著\(aName)獨自衝進火場，幫忙滅火得到獎賞，但也受傷了。"
-            statsLabelText = "對方\nHP-2 Gold+100"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "HP-2\nGold+100"
         }
         abChange(aH: -2, aA: 0, aL: 0, aG: 100, bH: 0, bA: 0, bL: 0, bG: 0)
         //下個問題
-        selectionQuestion()
+        question52_1()
         //
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "你看著\(bName)獨自衝進火場，幫忙滅火得到獎賞，但也受傷了。"
-            statsLabelText = "對方\nHP-2 Gold+100"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "HP-2\nGold+100"
         }else if playerID == "B" {
             storyTextLabelText = "你孤身前往火場幫忙，\(aName)只是在一旁觀看，村名感激你的幫忙給了點Gold，但你也受傷了。"
-            statsLabelText = "HP-2 Gold+100"
+            statsLabelText = "HP-2\nGold+100"
+            otherStatsLabelText = "沒有變化"
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -2, bA: 0, bL: 0, bG: 100)
         //下個問題
-        selectionQuestion()
+        question52_1()
         //
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "你們兩個都決定不出手幫忙，路過村莊時看得太入迷不小心跌倒，而且還一起跌倒。"
-            statsLabelText = "雙方\nHP-1"
+            statsLabelText = "HP-1"
+            otherStatsLabelText = "HP-1"
         }else if playerID == "B" {
             storyTextLabelText = "你們兩個都決定不出手幫忙，路過村莊時看得太入迷不小心跌倒，而且還一起跌倒。"
-            statsLabelText = "雙方\nHP-1"
+            statsLabelText = "HP-1"
+            otherStatsLabelText = "HP-1"
         }
         abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
         //下個問題
-        selectionQuestion()
+        question52_1()
         //
     }
 }
 
 
-//99.1.  Ａ：兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？
-//選項：躲起來   熱血開戰
-//Ｂ：兩人以為神不知鬼不覺，沒想到竟然已經被士兵包圍了，只要活著回去任務就成功了，要怎麼逃走呢？
-//選項：躲起來   熱血開戰
-//(若兩人都選躲起來)Ａ和Ｂ躲了一天，再偽裝成Ｃ國士兵，趁著混亂逃出了城堡
-//(Ａ選躲起來，Ｂ選熱血開戰)Ｂ衝上去準備決一死戰，回頭一看Ａ卻躲到了床底下，寡不敵眾的Ｂ被當場砍死，而Ａ也很快被抓了出來，幾天後遭到公開處刑
-//(Ａ選熱血開戰，Ｂ選躲起來)Ａ衝上去準備決一死戰，回頭一看Ｂ卻躲到了床底下，寡不敵眾的Ａ被當場砍死，而Ｂ也很快被抓了出來，幾天後遭到公開處刑
-//(若兩人都選熱血開戰)(if Ａ+Ｂ ＡＴＫ>26)Ａ和Ｂ大吼一聲便衝了出去，兩人彷彿開了無雙，人擋殺人 佛擋殺佛，Ｃ國士兵紛紛嚇得四處逃跑，兩人趁隙逃出了城堡
-//
+func question52_1() {
+    questionID = 52.1
+    if playerID == "A" {
+        questionsLabelText = "架子上有一瓶生命藥水可以補充血量 7點 要價300元，要購買嗎？"
+    }else if playerID == "B"{
+        questionsLabelText = "架子上有一瓶生命藥水可以補充血量 7點 要價300元，要購買嗎？"
+    }
+    backGroundImage = "52_1.jpg"
+    situationViewLabelString = "在執行最終任務之前你們決定先到商店補充一點裝備"
+    selectionquestionBool = true
+}
+func story52_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            
+            if aGold >= 300 && bGold >= 300{
+                storyTextLabelText = "你們兩個都購買了生命藥水"
+                statsLabelText = "HP+7\nGold-300"
+                otherStatsLabelText = "HP+7\nGold-300"
+                abChange(aH: 7, aA: 0, aL: 0, aG: -300, bH: 7, bA: 0, bL: 0, bG: -300)
+            }else if aGold >= 300 && bGold < 300{
+                storyTextLabelText = "你們兩個都想買生命藥水但是\(bName)根本不夠錢，老闆不甩他。"
+                statsLabelText = "HP+7\nGold-300"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 7, aA: 0, aL: 0, aG: -300, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else if aGold < 300 && bGold >= 300 {
+                storyTextLabelText = "你們兩個都想買生命藥水但是\(aName)根本不夠錢，老闆不甩他。"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "HP+7\nGold-300"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 7, bA: 0, bL: 0, bG: -300)
+            }else if aGold < 300 && bGold < 300 {
+                storyTextLabelText = "你們兩個都沒有錢，可以不要鬧嗎"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+            
+        }else if playerID == "B" {
+            if aGold >= 300 && bGold >= 300{
+                storyTextLabelText = "你們兩個都購買了生命藥水"
+                otherStatsLabelText = "HP+7\nGold-300"
+                statsLabelText = "HP+7\nGold-300"
+                abChange(aH: 7, aA: 0, aL: 0, aG: -300, bH: 7, bA: 0, bL: 0, bG: -300)
+            }else if aGold >= 300 && bGold < 300{
+                storyTextLabelText = "你們兩個都想買生命藥水但是\(bName)根本不夠錢，老闆不甩他。"
+                otherStatsLabelText = "HP+7\nGold-300"
+                statsLabelText = "沒有變化"
+                abChange(aH: 7, aA: 0, aL: 0, aG: -300, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else if aGold < 300 && bGold >= 300 {
+                storyTextLabelText = "你們兩個都想買生命藥水但是\(aName)根本不夠錢，老闆不甩他。"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "HP+7\nGold-300"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 7, bA: 0, bL: 0, bG: -300)
+            }else if aGold < 300 && bGold < 300 {
+                storyTextLabelText = "你們兩個都沒有錢，可以不要鬧嗎"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        question52_2()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            if aGold >= 300 {
+                storyTextLabelText = "\(aName)買了生命藥水"
+                statsLabelText = "HP+7\nGold-300"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 7, aA: 0, aL: 0, aG: -300, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else {
+                storyTextLabelText = "\(aName)沒錢還想買"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+        }else if playerID == "B" {
+            if aGold >= 300 {
+                storyTextLabelText = "\(aName)買了生命藥水"
+                otherStatsLabelText = "HP+7\nGold-300"
+                statsLabelText = "沒有變化"
+                abChange(aH: 7, aA: 0, aL: 0, aG: -300, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else {
+                storyTextLabelText = "\(aName)沒錢還想買"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        question52_2()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            if bGold >= 300 {
+                storyTextLabelText = "\(bName)買了生命藥水"
+                otherStatsLabelText = "HP+7\nGold-300"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 7, bA: 0, bL: 0, bG: 300)
+            }else {
+                storyTextLabelText = "\(bName)沒錢還想買"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+        }else if playerID == "B" {
+            if bGold >= 300 {
+                storyTextLabelText = "\(bName)買了生命藥水"
+                statsLabelText = "HP+7\nGold-300"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 7, bA: 0, bL: 0, bG: 300)
+            }else {
+                storyTextLabelText = "\(bName)沒錢還想買"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        question52_2()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "兩人都沒有要買藥水"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }else if playerID == "B" {
+            storyTextLabelText = "兩人都沒有要買藥水"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }
+        question52_2()
+    }
+}
+
+
+func question52_2() {
+    questionID = 52.2
+    if playerID == "A" {
+        questionsLabelText = "架子上有一瓶力量藥水可以增加ATK 5點 要價250元，要購買嗎？"
+    }else if playerID == "B"{
+        questionsLabelText = "架子上有一瓶力量藥水可以增加ATK 5點 要價250元，要購買嗎？"
+    }
+}
+func story52_2(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            
+            if aGold >= 250 && bGold >= 250{
+                storyTextLabelText = "你們兩個都購買了力量藥水"
+                statsLabelText = "ATK+5\nGold-250"
+                otherStatsLabelText = "ATK+5\nGold-250"
+                abChange(aH: 0, aA: 5, aL: 0, aG: -250, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else if aGold >= 250 && bGold < 250{
+                storyTextLabelText = "你們兩個都想買力量藥水但是\(bName)根本不夠錢，老闆不甩他。"
+                statsLabelText = "ATK+5\nGold-250"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 5, aL: 0, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else if aGold < 250 && bGold >= 250 {
+                storyTextLabelText = "你們兩個都想買力量藥水但是\(aName)根本不夠錢，老闆不甩他。"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "ATK+5\nGold-250"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else if aGold < 250 && bGold < 250 {
+                storyTextLabelText = "你們兩個都沒有錢，可以不要鬧嗎"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+            
+        }else if playerID == "B" {
+            if aGold >= 250 && bGold >= 250{
+                storyTextLabelText = "你們兩個都購買了力量藥水"
+                otherStatsLabelText = "ATK+5\nGold-250"
+                statsLabelText = "ATK+5\nGold-250"
+                abChange(aH: 0, aA: 5, aL: 0, aG: -250, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else if aGold >= 250 && bGold < 250{
+                storyTextLabelText = "你們兩個都想買力量藥水但是\(bName)根本不夠錢，老闆不甩他。"
+                otherStatsLabelText = "ATK+5\nGold-250"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 5, aL: 0, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else if aGold < 250 && bGold >= 250 {
+                storyTextLabelText = "你們兩個都想買力量藥水但是\(aName)根本不夠錢，老闆不甩他。"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "ATK+5\nGold-250"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else if aGold < 250 && bGold < 250 {
+                storyTextLabelText = "你們兩個都沒有錢，可以不要鬧嗎"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        question52_3()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            if aGold >= 250 {
+                storyTextLabelText = "\(aName)買了力量藥水"
+                statsLabelText = "ATK+5\nGold-250"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 5, aL: 0, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else {
+                storyTextLabelText = "\(aName)沒錢還想買"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+        }else if playerID == "B" {
+            if aGold >= 250 {
+                storyTextLabelText = "\(aName)買了力量藥水"
+                otherStatsLabelText = "ATK+5\nGold-250"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 5, aL: 0, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else {
+                storyTextLabelText = "\(aName)沒錢還想買"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        question52_3()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            if bGold >= 250 {
+                storyTextLabelText = "\(bName)買了力量藥水"
+                otherStatsLabelText = "ATK+5\nGold-250"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else {
+                storyTextLabelText = "\(bName)沒錢還想買"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+        }else if playerID == "B" {
+            if bGold >= 300 {
+                storyTextLabelText = "\(bName)買了力量藥水"
+                statsLabelText = "ATK+5\nGold-250"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else {
+                storyTextLabelText = "\(bName)沒錢還想買"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        question52_3()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "兩人都沒有要買藥水"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }else if playerID == "B" {
+            storyTextLabelText = "兩人都沒有要買藥水"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }
+        question52_3()
+    }
+}
+
+
+
+func question52_3() {
+    questionID = 52.3
+    if playerID == "A" {
+        questionsLabelText = "架子上有一瓶幸運藥水可以增加Luck 5點 要價250元，要購買嗎？"
+    }else if playerID == "B"{
+        questionsLabelText = "架子上有一瓶幸運藥水可以增加Luck 5點 要價250元，要購買嗎？"
+    }
+}
+func story52_3(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            
+            if aGold >= 250 && bGold >= 250{
+                storyTextLabelText = "你們兩個都購買了幸運藥水"
+                statsLabelText = "Luck+5\nGold-250"
+                otherStatsLabelText = "Luck+5\nGold-250"
+                abChange(aH: 0, aA: 0, aL: 5, aG: -250, bH: 0, bA: 0, bL: 5, bG: -250)
+            }else if aGold >= 250 && bGold < 250{
+                storyTextLabelText = "你們兩個都想買幸運藥水但是\(bName)根本不夠錢，老闆不甩他。"
+                statsLabelText = "Luck+5\nGold-250"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 5, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else if aGold < 250 && bGold >= 250 {
+                storyTextLabelText = "你們兩個都想買幸運藥水但是\(aName)根本不夠錢，老闆不甩他。"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "Luck+5\nGold-250"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 5, bG: -250)
+            }else if aGold < 250 && bGold < 250 {
+                storyTextLabelText = "你們兩個都沒有錢，可以不要鬧嗎"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+            
+        }else if playerID == "B" {
+            if aGold >= 250 && bGold >= 250{
+                storyTextLabelText = "你們兩個都購買了幸運藥水"
+                otherStatsLabelText = "Luck+5\nGold-250"
+                statsLabelText = "Luck+5\nGold-250"
+                abChange(aH: 0, aA: 0, aL: 5, aG: -250, bH: 0, bA: 0, bL: 5, bG: -250)
+            }else if aGold >= 250 && bGold < 250{
+                storyTextLabelText = "你們兩個都想買幸運藥水但是\(bName)根本不夠錢，老闆不甩他。"
+                otherStatsLabelText = "Luck+5\nGold-250"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 5, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else if aGold < 250 && bGold >= 250 {
+                storyTextLabelText = "你們兩個都想買幸運藥水但是\(aName)根本不夠錢，老闆不甩他。"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "Luck+5\nGold-250"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 5, bL: 0, bG: -250)
+            }else if aGold < 250 && bGold < 250 {
+                storyTextLabelText = "你們兩個都沒有錢，可以不要鬧嗎"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        selectionQuestion()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            if aGold >= 250 {
+                storyTextLabelText = "\(aName)買了幸運藥水"
+                statsLabelText = "Luck+5\nGold-250"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 5, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else {
+                storyTextLabelText = "\(aName)沒錢還想買"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+        }else if playerID == "B" {
+            if aGold >= 250 {
+                storyTextLabelText = "\(aName)買了幸運藥水"
+                otherStatsLabelText = "luck+5\nGold-250"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 5, aG: -250, bH: 0, bA: 0, bL: 0, bG: 0)
+            }else {
+                storyTextLabelText = "\(aName)沒錢還想買"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        selectionQuestion()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            if bGold >= 250 {
+                storyTextLabelText = "\(bName)買了幸運藥水"
+                otherStatsLabelText = "Luck+5\nGold-250"
+                statsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 5, bG: -250)
+            }else {
+                storyTextLabelText = "\(bName)沒錢還想買"
+                statsLabelText = "沒有變化"
+                otherStatsLabelText = "沒有變化"
+            }
+        }else if playerID == "B" {
+            if bGold >= 300 {
+                storyTextLabelText = "\(bName)買了幸運藥水"
+                statsLabelText = "Luck+5\nGold-250"
+                otherStatsLabelText = "沒有變化"
+                abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 5, bG: -250)
+            }else {
+                storyTextLabelText = "\(bName)沒錢還想買"
+                otherStatsLabelText = "沒有變化"
+                statsLabelText = "沒有變化"
+            }
+        }
+        selectionQuestion()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "兩人都沒有要買藥水"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }else if playerID == "B" {
+            storyTextLabelText = "兩人都沒有要買藥水"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }
+        selectionQuestion()
+    }
+}
+
+func question98_1() {
+    
+    questionID = 98.1
+    if playerID == "A" {
+        questionsLabelText = "有兩個守衛在戒備，只要通過這關就能完成任務了，你們要怎麼做？"
+    }else if playerID == "B" {
+        questionsLabelText = "有兩個守衛在戒備，只要通過這關就能完成任務了，你們要怎麼做？"
+    }
+    yesLabelText = "一人擺平一個"
+    noLabelText = "我把風你上"
+    backGroundImage = "背景圖.jpg"
+    situationViewLabelString = "當天夜裡，你們偷偷溜進城堡，來到國王房前"
+    selectionquestionBool = true
+}
+func story98_1(){
+    if judgeValue == 1 {
+        if playerID == "A" {
+            storyTextLabelText = "你們很有默契的一人打倒一個守衛，順利的刺殺熟睡中的國王，並取得了重要機密。"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }else if playerID == "B" {
+            storyTextLabelText =  "你們很有默契的一人打倒一個守衛，順利的刺殺熟睡中的國王，並取得了重要機密。"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
+        }
+        question99_1()
+    }else if judgeValue == 2{
+        if playerID == "A" {
+            storyTextLabelText = "\(aName)傻傻的相信\(bName)會跟他一起上，結果一個人單挑兩個守衛，\(bName)看這受傷的\(aName)偷笑"
+            statsLabelText = "HP-3"
+            otherStatsLabelText = "沒有變化"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(aName)傻傻的相信\(bName)會跟他一起上，結果一個人單挑兩個守衛，\(bName)看這受傷的\(aName)偷笑"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "HP-3"
+        }
+        abChange(aH: -3, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
+        question99_1()
+    }else if judgeValue == 3{
+        if playerID == "A" {
+            storyTextLabelText = "\(bName)傻傻的相信\(aName)會跟他一起上，結果一個人單挑兩個守衛，\(aName)看這受傷的\(bName)偷笑"
+            otherStatsLabelText = "HP-3"
+            statsLabelText = "沒有變化"
+        }else if playerID == "B" {
+            storyTextLabelText = "\(bName)傻傻的相信\(aName)會跟他一起上，結果一個人單挑兩個守衛，\(aName)看這受傷的\(bName)偷笑"
+            otherStatsLabelText = "沒有變化"
+            statsLabelText = "HP-3"
+        }
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -3, bA: 0, bL: 0, bG: 0)
+        question99_1()
+    }else if judgeValue == 4{
+        if playerID == "A" {
+            storyTextLabelText = "你們兩推拖著誰要去，然而被守衛發現了，守衛過來把你們兩個打一頓，好險最後你們還是打贏了守衛。"
+            statsLabelText = "HP-5"
+            otherStatsLabelText = "HP-5"
+        }else if playerID == "B" {
+            storyTextLabelText = "你們兩推拖著誰要去，然而被守衛發現了，守衛過來把你們兩個打一頓，好險最後你們還是打贏了守衛。"
+            statsLabelText = "HP-5"
+            otherStatsLabelText = "HP-5"
+        }
+        abChange(aH: -5, aA: 0, aL: 0, aG: 0, bH: -5, bA: 0, bL: 0, bG: 0)
+        question99_1()
+    }
+}
+
+
+
 
 
 func question99_1() {
@@ -570,7 +1018,6 @@ func question99_1() {
     }
     
     reportScore(score: 100)
-    
     yesLabelText = "躲起來"
     noLabelText = "熱血開戰"
 }
@@ -579,37 +1026,48 @@ func story99_1(){
     if judgeValue == 1 {
         if playerID == "A" {
             storyTextLabelText = "\(aName)和\(bName)躲了一天，再偽裝成Ｃ國士兵，趁著混亂逃出了城堡"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)和\(bName)躲了一天，再偽裝成Ｃ國士兵，趁著混亂逃出了城堡"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }
         question99_2()
     }else if judgeValue == 2{
         if playerID == "A" {
-            storyTextLabelText = "\(bName)衝上去準備決一死戰，回頭一看\(aName)卻躲到了床底下，寡不敵眾的\(bName)被當場砍死，而\(aName)也很快被抓了出來，幾天後遭到公開處刑"
-            statsLabelText = ""
+            storyTextLabelText = "\(bName)衝上去準備決一死戰，回頭一看\(aName)卻躲到了一旁，寡不敵眾的\(bName)被當場砍的半死，所幸最後兩人都逃了出來"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "HP-10"
+            
         }else if playerID == "B" {
-            storyTextLabelText = "\(bName)衝上去準備決一死戰，回頭一看\(aName)卻躲到了床底下，寡不敵眾的\(bName)被當場砍死，而\(aName)也很快被抓了出來，幾天後遭到公開處刑"
-            statsLabelText = ""
+            storyTextLabelText = "\(bName)衝上去準備決一死戰，回頭一看\(aName)卻躲到了一旁，寡不敵眾的\(bName)被當場砍的半死，所幸最後兩人都逃了出來"
+            statsLabelText = "HP-10"
+            otherStatsLabelText = "沒有變化"
         }
+        abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -10, bA: 0, bL: 0, bG: 0)
         question99_2()
     }else if judgeValue == 3{
         if playerID == "A" {
-            storyTextLabelText = "\(aName)衝上去準備決一死戰，回頭一看\(bName)卻躲到了床底下，寡不敵眾的\(aName)被當場砍死，而\(bName)也很快被抓了出來，幾天後遭到公開處刑"
-            statsLabelText = ""
+            storyTextLabelText = "\(aName)衝上去準備決一死戰，回頭一看\(bName)卻躲到了一旁，寡不敵眾的\(aName)被當場砍的半死，所幸最後兩人都逃了出來"
+            statsLabelText = "HP-10"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
-            storyTextLabelText = "\(aName)衝上去準備決一死戰，回頭一看\(bName)卻躲到了床底下，寡不敵眾的\(aName)被當場砍死，而\(bName)也很快被抓了出來，幾天後遭到公開處刑"
-            statsLabelText = ""
+            storyTextLabelText = "\(aName)衝上去準備決一死戰，回頭一看\(bName)卻躲到了一旁，寡不敵眾的\(aName)被當場砍的半死，所幸最後兩人都逃了出來"
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "HP-10"
         }
+        abChange(aH: -10, aA: 0, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
         question99_2()
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "\(aName)和\(bName)大吼一聲便衝了出去，兩人彷彿開了無雙，人擋殺人 佛擋殺佛，Ｃ國士兵紛紛嚇得四處逃跑，兩人趁隙逃出了城堡"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }else if playerID == "B" {
             storyTextLabelText = "\(aName)和\(bName)大吼一聲便衝了出去，兩人彷彿開了無雙，人擋殺人 佛擋殺佛，Ｃ國士兵紛紛嚇得四處逃跑，兩人趁隙逃出了城堡"
-            statsLabelText = ""
+            statsLabelText = "沒有變化"
+            otherStatsLabelText = "沒有變化"
         }
         question99_2()
     }
@@ -621,18 +1079,17 @@ func story99_1(){
 
 func question99_2() {
     questionID = 99.2
+    selectionquestionBool = true
+    backGroundImage = "road.jpg"
+    situationViewLabelString = "終於完成任務回到返家的路上"
+
     if playerID == "A" {
-        questionsLabelText = "逃到了Ｃ國邊界，你突然想起Ｃ國國王已死，\(bName)的國家就是最大的敵人了，是否要跟\(bName)決一死戰？"
+        questionsLabelText = "歷經重重任務任務成功的你突然想起，\(bName)的國家就是最大的敵人了，是否要跟\(bName)決一死戰？"
     }else if playerID == "B"{
-        questionsLabelText = "逃到了Ｃ國邊界，你突然想起Ｃ國國王已死，\(aName)的國家就是最大的敵人了，是否要跟\(aName)決一死戰？"
+        questionsLabelText = "歷經重重任務任務成功的你突然想起，\(aName)的國家就是最大的敵人了，是否要跟\(aName)決一死戰？"
     }
     yesLabelText = "YES"
     noLabelText = "YES"
-    //成就
-    let achievement = GKAchievement(identifier: "missioncomplete")
-    achievement.showsCompletionBanner = true
-    GKAchievement.report([achievement], withCompletionHandler: nil)
-
 }
 
 
@@ -659,6 +1116,8 @@ func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
     aGold = aGold + aG
     if aGold >= 1000{
         aGold = 1000
+    }else if aGold <= 0 {
+        aGold = 0
     }
     bHP = bHP + bH
     if bHP >= 50 {
@@ -675,6 +1134,8 @@ func abChange(aH:Int,aA:Int,aL:Int,aG:Int,bH:Int,bA:Int,bL:Int,bG:Int) {
     bGold = bGold + bG
     if bGold >= 1000 {
         bGold = 1000
+    }else if bGold <= 0 {
+        bGold = 0
     }
     if aHP <= 0 || bHP <= 0 {
         print("有人死摟")

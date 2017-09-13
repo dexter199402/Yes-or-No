@@ -414,7 +414,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HP" translatesAutoresizingMaskIntoConstraints="NO" id="dZ5-uE-ye2">
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blood" translatesAutoresizingMaskIntoConstraints="NO" id="dZ5-uE-ye2">
                                 <rect key="frame" x="74.5" y="98.5" width="16.5" height="16.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityalert" translatesAutoresizingMaskIntoConstraints="NO" id="Fmb-8K-H5x">
@@ -423,7 +423,7 @@
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Curse" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-mG-gb7">
                                 <rect key="frame" x="117" y="98.5" width="16.5" height="16.5"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HP" translatesAutoresizingMaskIntoConstraints="NO" id="Wnu-HF-p4j">
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blood" translatesAutoresizingMaskIntoConstraints="NO" id="Wnu-HF-p4j">
                                 <rect key="frame" x="229" y="98.5" width="16.5" height="16.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityalert" translatesAutoresizingMaskIntoConstraints="NO" id="xUD-Rb-yZO">
@@ -1343,10 +1343,10 @@
         <image name="Achievement" width="700" height="700"/>
         <image name="Complete" width="700" height="700"/>
         <image name="Curse" width="64" height="64"/>
-        <image name="HP" width="109" height="98"/>
         <image name="Preloader_3.gif" width="128" height="128"/>
         <image name="attack" width="700" height="700"/>
         <image name="bandage" width="700" height="700"/>
+        <image name="blood" width="553" height="491"/>
         <image name="cityalert" width="64" height="64"/>
         <image name="defense" width="700" height="700"/>
         <image name="gameoverView" width="3125" height="5558"/>

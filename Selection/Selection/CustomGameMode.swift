@@ -24,7 +24,7 @@ var yourAnswer = 9
 var playerID = "noting"
 
 //答案倒數
-var countdownNember = 25
+var countdownNember = 40
 var answerCountdown = Timer()
 
 var aHP = 50
@@ -195,6 +195,8 @@ class CustomGameMode: UIViewController {
             }
         }else if questionID == 99.1 {
             musicSelection(musicName: "99.1")
+        }else if questionID == 52.1 {
+            musicSelection(musicName: "52.1")
         }
         
         //背景順便
@@ -314,7 +316,7 @@ class CustomGameMode: UIViewController {
             if countDownUse {
                 self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(15-countdownNember)/15)
             }else{
-                self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(25-countdownNember)/25)
+                self.countDownImageWidth.constant = -(countDownImageWidthValue*CGFloat(25-countdownNember)/40)
             }
             if countdownNember <= 0 {
                 countDownImage.alpha = 0
@@ -421,7 +423,7 @@ class CustomGameMode: UIViewController {
             if self.countDownUse {
                 countdownNember = 15
             }else{
-                countdownNember = 25
+                countdownNember = 40
             }
             print("問題倒數計開始:\(countdownNember)")
             answerCountdown.fire()
@@ -559,6 +561,8 @@ class CustomGameMode: UIViewController {
         var bCurseString = ""
         var cityalertAString = ""
         var cityalertBString = ""
+        var bloodAString = ""
+        var bloodBString = ""
         
         if aCurse {
             
@@ -640,12 +644,53 @@ class CustomGameMode: UIViewController {
             }
         }
         
-        if playerID == "A" {
-            selfStatusLabel.text = "\n\(cityalertAString)\n\(aCurseString)"
-            otherStatusLabel.text = "\n\(cityalertBString)\n\(bCurseString)"
+        
+        if bloodA {
+            
+            bloodAString = "受傷：一直在流血"
+            
+            if playerID == "A" {
+                selfStatus1.alpha = 1
+            }else if playerID == "B"{
+                otherStatus1.alpha = 1
+            }
         }else{
-            selfStatusLabel.text = "\n\(cityalertBString)\n\(bCurseString)"
-            otherStatusLabel.text = "\n\(cityalertAString)\n\(aCurseString)"
+            
+            bloodAString = ""
+            
+            if playerID == "A" {
+                selfStatus1.alpha = 0
+            }else if playerID == "B"{
+                otherStatus1.alpha = 0
+            }
+        }
+        
+        if bloodB {
+            
+            bloodBString = "受傷：一直在流血"
+            
+            if playerID == "B" {
+                selfStatus1.alpha = 1
+            }else if playerID == "A"{
+                otherStatus1.alpha = 1
+            }
+        }else{
+            
+            bloodBString = ""
+            
+            if playerID == "B" {
+                selfStatus1.alpha = 0
+            }else if playerID == "A"{
+                otherStatus1.alpha = 0
+            }
+        }
+        
+        if playerID == "A" {
+            selfStatusLabel.text = "\(bloodAString)\n\(cityalertAString)\n\(aCurseString)"
+            otherStatusLabel.text = "\(bloodBString)\n\(cityalertBString)\n\(bCurseString)"
+        }else{
+            selfStatusLabel.text = "\(bloodBString)\n\(cityalertBString)\n\(bCurseString)"
+            otherStatusLabel.text = "\(bloodAString)\n\(cityalertAString)\n\(aCurseString)"
         }
     }
     

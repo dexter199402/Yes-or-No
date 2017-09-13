@@ -81,6 +81,12 @@ func questionSwitch(ID:Int) {
             question51_1()
             print("選到問題\(ID)")
             break
+        case 52:
+            question52_1()
+            break
+        case 98:
+            question98_1()
+            break
         case 99:
             question99_1()
             print("選到問題\(ID)")

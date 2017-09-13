@@ -37,6 +37,7 @@
 		D5C217911F63ED3C00FF28CF /* 100_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C217901F63ED3C00FF28CF /* 100_1.mp3 */; };
 		D5C217931F63F50D00FF28CF /* 99.1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C217921F63F50D00FF28CF /* 99.1.mp3 */; };
 		D5C217951F63FD5400FF28CF /* 主選單.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5C217941F63FD5400FF28CF /* 主選單.mp3 */; };
+		D5FD8B771F6964BA00C2768F /* 52.1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5FD8B761F6964BA00C2768F /* 52.1.mp3 */; };
 		D702B8FFE17977DB7F51C77C /* Pods_Selection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A67EF924D2BB67C48E43B8CA /* Pods_Selection.framework */; };
 		DF042F341F2B394F00C7799A /* ResultJudgement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF042F331F2B394F00C7799A /* ResultJudgement.swift */; };
 		DFF66F111F20E8A00053DF37 /* SelectPlayerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF66F101F20E8A00053DF37 /* SelectPlayerMenu.swift */; };
@@ -77,6 +78,7 @@
 		D5C217901F63ED3C00FF28CF /* 100_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 100_1.mp3; sourceTree = "<group>"; };
 		D5C217921F63F50D00FF28CF /* 99.1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 99.1.mp3; sourceTree = "<group>"; };
 		D5C217941F63FD5400FF28CF /* 主選單.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "主選單.mp3"; sourceTree = "<group>"; };
+		D5FD8B761F6964BA00C2768F /* 52.1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 52.1.mp3; sourceTree = "<group>"; };
 		DF042F331F2B394F00C7799A /* ResultJudgement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultJudgement.swift; sourceTree = "<group>"; };
 		DFF66F101F20E8A00053DF37 /* SelectPlayerMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPlayerMenu.swift; sourceTree = "<group>"; };
 		F08597B25214BF4847FF1321 /* Pods-Selection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Selection.release.xcconfig"; path = "Pods/Target Support Files/Pods-Selection/Pods-Selection.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				D5422ABB1F52E25A00B74096 /* Preloader_3.gif */,
 				D533B9891F4471AA00099A6A /* show.ttc */,
 				D5422ABD1F52FF8E00B74096 /* page-flip-9.wav */,
+				D5FD8B761F6964BA00C2768F /* 52.1.mp3 */,
 				D5C217921F63F50D00FF28CF /* 99.1.mp3 */,
 				D5C2178C1F63DE6B00FF28CF /* 1_1.mp3 */,
 				D5C217901F63ED3C00FF28CF /* 100_1.mp3 */,
@@ -298,6 +301,7 @@
 				D5C217911F63ED3C00FF28CF /* 100_1.mp3 in Resources */,
 				D5422ABC1F52E25A00B74096 /* Preloader_3.gif in Resources */,
 				D52CB6B71F1B553A00BA07E7 /* Assets.xcassets in Resources */,
+				D5FD8B771F6964BA00C2768F /* 52.1.mp3 in Resources */,
 				D52CB6B51F1B553A00BA07E7 /* Main.storyboard in Resources */,
 				D533B98A1F4471AA00099A6A /* show.ttc in Resources */,
 			);
