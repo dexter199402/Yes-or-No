@@ -17,7 +17,7 @@ func  question1_1()  {
     if playerID == "A" {
        situationViewLabelString = "你的名字是\(aName)，今天開始要跟\(bName)一起進行暗殺Ｃ國國王任務，你們尷尬地打過招呼後，踏上了旅途"
     }else if playerID == "B"{
-       situationViewLabelString = "你的名字是\(bName)，今天開始要跟\(aName)"
+       situationViewLabelString = "你的名字是\(bName)，今天開始要跟\(aName)一起進行暗殺Ｃ國國王任務，你們尷尬地打過招呼後，踏上了旅途"
     }
     
     if playerID == "A" {
@@ -953,7 +953,7 @@ func question98_1() {
     }
     yesLabelText = "一人擺平一個"
     noLabelText = "我把風你上"
-    backGroundImage = "背景圖.jpg"
+    backGroundImage = "98_1.jpg"
     situationViewLabelString = "當天夜裡，你們偷偷溜進城堡，來到國王房前"
     selectionquestionBool = true
 }

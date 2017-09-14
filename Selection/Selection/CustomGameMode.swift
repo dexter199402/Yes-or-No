@@ -197,6 +197,10 @@ class CustomGameMode: UIViewController {
             musicSelection(musicName: "99.1")
         }else if questionID == 52.1 {
             musicSelection(musicName: "52.1")
+        }else if questionID == 20.1 {
+            musicSelection(musicName: "20_1")
+        }else if questionID == 98.1 {
+            musicSelection(musicName: "98_1")
         }
         
         //背景順便
@@ -407,7 +411,7 @@ class CustomGameMode: UIViewController {
     
 
     override func viewDidAppear(_ animated: Bool) {
-        
+        colorButton.isUserInteractionEnabled = true
         self.yesLabel.text = yesLabelText
         self.noLabel.text = noLabelText
         DispatchQueue.main.async{
@@ -448,6 +452,7 @@ class CustomGameMode: UIViewController {
 //    判斷按下的按鈕
     @IBAction func customGameModeButton(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: sender.view)
+        colorButton.isUserInteractionEnabled = false
         if buttonColorPath.contains(point) {
             //音效
             if  onlineMode == true {
