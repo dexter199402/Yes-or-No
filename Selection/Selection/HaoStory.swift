@@ -14,7 +14,12 @@ func  question1_1()  {
     questionID = 1.1
     selectionquestionBool = true
     backGroundImage = "road.jpg"
-    situationViewLabelString = "你到了路上"
+    if playerID == "A" {
+       situationViewLabelString = "你的名字是\(aName)，今天開始要跟\(bName)一起進行暗殺Ｃ國國王任務，你們尷尬地打過招呼後，踏上了旅途"
+    }else if playerID == "B"{
+       situationViewLabelString = "你的名字是\(bName)，今天開始要跟\(aName)"
+    }
+    
     if playerID == "A" {
         questionsLabelText = "一路上你感到氣氛有些尷尬，是否要找\(bName)聊天？"
     }else if playerID == "B"{
@@ -272,7 +277,7 @@ func story1_3(){
             otherStatsLabelText = "ＨＰ+1\nＡＴＫ+1\nＬＵＣＫ+1"
         }
         abChange(aH: 1, aA: 1, aL: 1, aG: 0, bH: 0, bA: 0, bL: -2, bG: 0)
-        selectionQuestion()
+        question2_1()
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "\(aName)大聲的質問\(bName)，引起許多旅人的圍觀，但最後證明只是有小動物咬走了一些食物而已，\(aName)於是被\(bName)及路人瘋狂嘲諷，羞愧得無地自容"
@@ -284,7 +289,7 @@ func story1_3(){
             otherStatsLabelText = "ＨＰ-2\nＡＴＫ-2\nＬＵＣＫ-2"
         }
         abChange(aH: -2, aA: -2, aL: -2, aG: 0, bH: 1, bA: 1, bL: 1, bG: 0)
-        selectionQuestion()
+        question2_1()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "\(bName)偷看了\(aName)的信件，掌握了\(aName)的弱點，事後把信放回原位，\(aName)完全沒有發現"
@@ -296,7 +301,7 @@ func story1_3(){
             otherStatsLabelText = "ＨＰ-1\nＡＴＫ-1\nＬＵＣＫ-1"
         }
         abChange(aH: -1, aA: -1, aL: -1, aG: 0, bH: 0, bA: 2, bL: 1, bG: 0)
-        selectionQuestion()
+        question2_1()
     }else if judgeValue == 4{
         storyTextLabelText = "\(bName)沒有動\(aName)的東西，\(aName)也沒去懷疑\(bName)，兩人像沒事一樣繼續踏上旅途"
         if playerID == "A" {
@@ -306,7 +311,7 @@ func story1_3(){
             statsLabelText = "沒有變化"
             otherStatsLabelText = "沒有變化"
         }
-        selectionQuestion()
+        question2_1()
     }
 }
 
@@ -316,6 +321,7 @@ func question50_1() {
     questionID = 50.1
     selectionquestionBool = true
     backGroundImage = "road.jpg"
+    situationViewLabelString = "你到了路上"
     if playerID == "A" {
         questionsLabelText = "這傢伙怎麼突然要給我水喝，是否要接受他的心意？"
     }else if playerID == "B"{
@@ -455,7 +461,7 @@ func story50_2(){
             otherStatsLabelText = "HP-1\nATK-1\nLuck-1"
         }
         abChange(aH: -1, aA: -1, aL: -1, aG: 0, bH: -1, bA: -1, bL: -1, bG: 0)
-        selectionQuestion()
+        question51_1()
     }else if judgeValue == 2{
         if playerID == "A" {
             storyTextLabelText = "\(aName)突然開口唱歌，儘管\(bName)在旁咒罵著說閉嘴別再唱，但是\(aName)仍然唱的很陶醉。"
@@ -467,7 +473,7 @@ func story50_2(){
             otherStatsLabelText = "ATK+2"
         }
         abChange(aH: 0, aA: 2, aL: 0, aG: 0, bH: 0, bA: 0, bL: 0, bG: 0)
-        selectionQuestion()
+        question51_1()
     }else if judgeValue == 3{
         if playerID == "A" {
             storyTextLabelText = "\(bName)突然開口唱歌，儘管\(aName)在旁咒罵著說閉嘴別再唱，但是\(bName)仍然唱的很陶醉。"
@@ -479,7 +485,7 @@ func story50_2(){
             otherStatsLabelText = "沒有變化"
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 00, bH: 0, bA: 2, bL: 0, bG: 0)
-        selectionQuestion()
+        question51_1()
     }else if judgeValue == 4{
         if playerID == "A" {
             storyTextLabelText = "你還是覺得很無聊"
@@ -490,7 +496,7 @@ func story50_2(){
             statsLabelText = "沒有變化"
             otherStatsLabelText = "沒有變化"
         }
-        selectionQuestion()
+        question51_1()
     }
 }
 
@@ -500,7 +506,7 @@ func story50_2(){
 func question51_1() {
     
     questionID = 50.1
-    selectionquestionBool = true
+    selectionquestionBool = false
     backGroundImage = "road.jpg"
     
     questionID = 51.1
@@ -523,7 +529,7 @@ func story51_1(){
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 50, bH: 0, bA: 0, bL: 0, bG: 50)
         //帶入下個問題
-        question52_1()
+        question20_1()
         //
     }else if judgeValue == 2{
         if playerID == "A" {
@@ -537,7 +543,7 @@ func story51_1(){
         }
         abChange(aH: -2, aA: 0, aL: 0, aG: 100, bH: 0, bA: 0, bL: 0, bG: 0)
         //下個問題
-        question52_1()
+        question20_1()
         //
     }else if judgeValue == 3{
         if playerID == "A" {
@@ -551,7 +557,7 @@ func story51_1(){
         }
         abChange(aH: 0, aA: 0, aL: 0, aG: 0, bH: -2, bA: 0, bL: 0, bG: 100)
         //下個問題
-        question52_1()
+        question20_1()
         //
     }else if judgeValue == 4{
         if playerID == "A" {
@@ -565,7 +571,7 @@ func story51_1(){
         }
         abChange(aH: -1, aA: 0, aL: 0, aG: 0, bH: -1, bA: 0, bL: 0, bG: 0)
         //下個問題
-        question52_1()
+        question20_1()
         //
     }
 }

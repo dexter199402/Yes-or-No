@@ -79,6 +79,21 @@ func result(vv:UIViewController)  {
     case 3.11:
         story3_11()
         break
+    case 20.1:
+        story20_1()
+        break
+    case 20.11:
+        story20_11()
+        break
+    case 20.12:
+        story20_12()
+        break
+    case 20.13:
+        story20_13()
+        break
+    case 21.1:
+        story21_1()
+        break
     case 100.1:
         story100_1()
         break

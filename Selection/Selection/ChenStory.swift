@@ -17,6 +17,7 @@ var bloodA = false
 var bloodB = false
 func question2_1() {
     questionID = 2.1
+    selectionquestionBool = true
     backGroundImage = "2_1.jpg"
     situationViewLabelString = "你到了分岔路"
     if playerID == "A" {
